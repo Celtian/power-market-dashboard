@@ -2,7 +2,9 @@
   "name": "@power-market-dashboard/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky"
+  },
   "private": true,
   "dependencies": {
     "@angular-devkit/build-angular": "~22.1.0",
@@ -53,8 +55,10 @@
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-playwright": "^1.6.2",
+    "husky": "^9.1.7",
     "jsdom": "^27.1.0",
     "nx": "23.2.1",
+    "quick-commitlint": "^0.1.2",
     "tslib": "^2.3.0",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.58.0",
