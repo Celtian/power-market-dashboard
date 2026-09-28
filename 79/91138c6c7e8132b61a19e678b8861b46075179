@@ -1,0 +1,41 @@
+apps/importer/src/app/entsoe/entsoe.service.ts
+  s_3a42dfe33ee8d2::t_adcb8dbe44530a 1-43
+README.md
+  s_3a42dfe33ee8d2::t_adcb8dbe44530a 20-47
+apps/importer/src/app/app.module.ts
+  s_3a42dfe33ee8d2::t_adcb8dbe44530a 4-6,10-11
+apps/importer/src/app/entsoe/entsoe.config.ts
+  s_3a42dfe33ee8d2::t_adcb8dbe44530a 1-38
+apps/importer/.env.example
+  s_3a42dfe33ee8d2::t_adcb8dbe44530a 1-8
+.gitignore
+  s_3a42dfe33ee8d2::t_adcb8dbe44530a 50-55
+compose.yaml
+  s_3a42dfe33ee8d2::t_adcb8dbe44530a 1-40
+apps/importer/src/app/entsoe/entsoe.controller.ts
+  s_3a42dfe33ee8d2::t_adcb8dbe44530a 1-5,7,9-17,19-20,22-34,42-43
+  s_3a42dfe33ee8d2::t_c4d0ca0f7e9f64 6,8,18,21,35-41
+apps/importer/src/main.ts
+  s_3a42dfe33ee8d2::t_adcb8dbe44530a 8-10,14-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "7991138c6c7e8132b61a19e678b8861b46075179",
+  "prompts": {},
+  "humans": {
+    "h_aa1f579535d063": {
+      "author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  },
+  "sessions": {
+    "s_3a42dfe33ee8d2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0e979-fc01-7213-9907-a9bd15eb0ec6",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  }
+}
