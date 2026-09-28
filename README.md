@@ -17,6 +17,34 @@ flowchart LR
     api --> angular[Angular]
 ```
 
+## Local infrastructure
+
+Start PostgreSQL and RabbitMQ with Docker Compose:
+
+```sh
+docker compose up -d
+```
+
+PostgreSQL is available on `localhost:5432`. RabbitMQ uses `localhost:5672`,
+and its management UI is available at `http://localhost:15672`. The local
+development credentials are `power_market` / `power_market`.
+
+Copy the importer environment template and add your private ENTSO-E token:
+
+```sh
+cp apps/importer/.env.example apps/importer/.env
+```
+
+The `.env` file is ignored by git. Never expose `ENTSOE_SECURITY_TOKEN` through
+the Angular application. After starting the importer, a day-ahead price request
+for the configured bidding zone can be made through the server-side endpoint:
+
+```text
+GET http://localhost:3000/api/entsoe/day-ahead-prices?periodStart=202609280000&periodEnd=202609290000
+```
+
+ENTSO-E timestamps use UTC and the `YYYYMMDDHHmm` format.
+
 ## Run tasks
 
 To run tasks with Nx use:
