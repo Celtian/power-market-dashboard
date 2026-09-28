@@ -9,9 +9,17 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "target": "es2021",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "strict": true,
+    "lib": [
+      "es2022",
+      "dom"
+    ]
   },
   "include": [
     "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
   ]
 }

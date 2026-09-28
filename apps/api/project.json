@@ -58,6 +58,16 @@
           "buildTarget": "api:build:production"
         }
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/api"
+      ],
+      "options": {
+        "jestConfig": "apps/api/jest.config.cjs",
+        "passWithNoTests": false
+      }
     }
   }
 }

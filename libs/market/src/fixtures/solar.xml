@@ -1,0 +1,6 @@
+<GL_MarketDocument xmlns="urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:0">
+  <mRID>fixture-solar</mRID><revisionNumber>1</revisionNumber><type>A69</type><process.processType>A01</process.processType><createdDateTime>2026-09-26T16:00:00Z</createdDateTime>
+  <TimeSeries><mRID>solar</mRID><inBiddingZone_Domain.mRID>10YHU-MAVIR----U</inBiddingZone_Domain.mRID><quantity_Measure_Unit.name>MAW</quantity_Measure_Unit.name><curveType>A03</curveType><MktPSRType><psrType>B16</psrType></MktPSRType>
+    <Period><timeInterval><start>2026-09-27T00:00Z</start><end>2026-09-27T01:00Z</end></timeInterval><resolution>PT15M</resolution><Point><position>1</position><quantity>0</quantity></Point><Point><position>3</position><quantity>20</quantity></Point></Period>
+  </TimeSeries>
+</GL_MarketDocument>

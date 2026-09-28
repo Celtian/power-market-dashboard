@@ -58,6 +58,16 @@
           "buildTarget": "importer:build:production"
         }
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/importer"
+      ],
+      "options": {
+        "jestConfig": "apps/importer/jest.config.cjs",
+        "passWithNoTests": false
+      }
     }
   }
 }

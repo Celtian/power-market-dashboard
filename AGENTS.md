@@ -30,7 +30,7 @@ bun nx serve api
 bun nx serve importer
 ```
 
-The API and importer both default to port `3000`; set `PORT` when running them simultaneously.
+The API defaults to port `3000` and the importer to `3001`; override with `PORT` when needed.
 
 Run the narrowest checks that cover a change:
 

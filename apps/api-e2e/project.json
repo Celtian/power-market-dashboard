@@ -9,16 +9,15 @@
     "e2e": {
       "executor": "@nx/jest:jest",
       "outputs": [
-        "{workspaceRoot}/coverage/{e2eProjectRoot}"
-      ],
-      "dependsOn": [
-        "api:build",
-        "api:serve"
+        "{workspaceRoot}/coverage/api-e2e"
       ],
       "options": {
-        "jestConfig": "apps/api-e2e/jest.config.cts",
-        "passWithNoTests": true
-      }
+        "jestConfig": "apps/api-e2e/jest.config.cjs",
+        "passWithNoTests": false
+      },
+      "dependsOn": [
+        "api:build"
+      ]
     }
   }
 }

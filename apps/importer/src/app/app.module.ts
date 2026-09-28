@@ -1,3 +1,8 @@
+import { ScheduleModule } from '@nestjs/schedule';
+import { DatabaseModule } from '@power-market-dashboard/database';
+import { ImportScheduler } from './import/scheduler.service';
+import { ImportWorker } from './import/worker.controller';
+import { SourceClient } from './import/source.client';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -6,8 +11,14 @@ import { EntsoeController } from './entsoe/entsoe.controller';
 import { EntsoeService } from './entsoe/entsoe.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController, EntsoeController],
-  providers: [AppService, EntsoeConfig, EntsoeService],
+  imports: [DatabaseModule, ScheduleModule.forRoot()],
+  controllers: [AppController, EntsoeController, ImportWorker],
+  providers: [
+    AppService,
+    EntsoeConfig,
+    EntsoeService,
+    SourceClient,
+    ImportScheduler,
+  ],
 })
 export class AppModule {}
