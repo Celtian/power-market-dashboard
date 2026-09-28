@@ -1,0 +1,37 @@
+AGENTS.md
+  s_b605aadeb8560a::t_17d2a00fb40802 1-100
+.husky/commit-msg
+  s_b52cd09512f260::t_0d68ebff97397c 1
+package.json
+  s_b52cd09512f260::t_0d68ebff97397c 5-7,58,61
+.quick-commitlint.json
+  s_b52cd09512f260::t_0d68ebff97397c 1-10
+README.md
+  s_b52cd09512f260::t_ed4578c9387638 9-19
+bun.lock
+  s_b52cd09512f260::t_f82e125b1d30e8 56,59,1605-1606,2127-2128
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "446905d3f14140c9eb63e2dad8afca082cf5de17",
+  "prompts": {},
+  "sessions": {
+    "s_b52cd09512f260": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0e974-bd5c-79b0-bc30-e3060dade74f",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_b605aadeb8560a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0e974-07b8-7150-b90e-1c3ef210ea07",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  }
+}
