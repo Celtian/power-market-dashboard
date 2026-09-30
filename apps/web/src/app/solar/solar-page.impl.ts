@@ -299,11 +299,7 @@ export class SolarPage {
   protected readonly actualFreshnessWarning = computed<ActualFreshnessWarning | null>(() => {
     const now = this.currentTime();
     const status = this.status();
-    if (
-      now === null ||
-      !status ||
-      this.selectedDate() !== marketToday(DateTime.fromMillis(now))
-    ) {
+    if (now === null || !status || this.selectedDate() !== marketToday(DateTime.fromMillis(now))) {
       return null;
     }
     const intervalEnd = status.datasets.find(
@@ -327,11 +323,14 @@ export class SolarPage {
       const valid = isMarketDate(next) ? next : marketToday();
       const changed = valid !== this.selectedDate();
       this.selectedDate.set(valid);
-      if (next !== valid) void this.writeDate(valid, true);
       if (changed && this.clientStarted) this.loadSolar();
     });
 
     afterNextRender(() => {
+      const requestedDate = this.route.snapshot.queryParamMap.get('date');
+      const selectedDate = this.selectedDate();
+      if (requestedDate !== selectedDate) void this.writeDate(selectedDate, true);
+
       this.clientStarted = true;
       this.currentTime.set(Date.now());
       timer(30_000, 30_000)

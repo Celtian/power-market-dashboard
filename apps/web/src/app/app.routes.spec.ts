@@ -32,6 +32,8 @@ describe('appRoutes', () => {
 
     const page = await harness.navigateByUrl('/', SolarPage);
 
+    harness.detectChanges();
+    await harness.fixture.whenStable();
     expect(page).toBeInstanceOf(SolarPage);
     expect(TestBed.inject(Router).url).toMatch(/^\/solar\?date=\d{4}-\d{2}-\d{2}$/);
   });
