@@ -1,0 +1,27 @@
+apps/web/src/app/solar/solar-page.impl.ts
+  s_f9ef5c275dea2e::t_3604778bd4a7ce 302
+  s_f9ef5c275dea2e::t_5d26fb35b3e6ac 330-333
+apps/web/src/app/app.routes.spec.ts
+  s_f9ef5c275dea2e::t_519e70529bd6a3 35-36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "86f613330eac902cc4ec15fd01851cafc1cafbd3",
+  "prompts": {},
+  "humans": {
+    "h_aa1f579535d063": {
+      "author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  },
+  "sessions": {
+    "s_f9ef5c275dea2e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f231-d7dd-77c1-9fb9-7611b518633e",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  }
+}
