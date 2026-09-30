@@ -25,9 +25,7 @@ export class SonnerToasterComponent implements OnDestroy {
   protected readonly browserReady = signal(false);
 
   public readonly theme = input<Theme | null>(null);
-  public readonly resolvedTheme = computed(
-    () => this.theme() ?? this.sonnerTheme?.() ?? 'system',
-  );
+  public readonly resolvedTheme = computed(() => this.theme() ?? this.sonnerTheme?.() ?? 'system');
   public readonly position = input<Position>('bottom-right');
   public readonly hotKey = input<string[]>(['altKey', 'KeyT']);
   public readonly richColors = input(true);
@@ -77,15 +75,11 @@ export class SonnerToasterComponent implements OnDestroy {
     '--ngx-sonner-toast-dark-info-border': 'var(--app-secondary-700)',
     '--ngx-sonner-toast-dark-info-color': 'var(--app-secondary-contrast-900)',
     '--ngx-sonner-toast-close-button-background': 'var(--app-primary-200)',
-    '--ngx-sonner-toast-close-button-border':
-      '1px solid var(--app-primary-400)',
+    '--ngx-sonner-toast-close-button-border': '1px solid var(--app-primary-400)',
     '--ngx-sonner-toast-close-button-color': 'var(--app-primary-contrast-200)',
-    '--ngx-sonner-toast-close-button-hover-background':
-      'var(--app-primary-300)',
-    '--ngx-sonner-toast-close-button-hover-color':
-      'var(--app-primary-contrast-300)',
-    '--ngx-sonner-toast-close-button-hover-border-color':
-      'var(--app-primary-500)',
+    '--ngx-sonner-toast-close-button-hover-background': 'var(--app-primary-300)',
+    '--ngx-sonner-toast-close-button-hover-color': 'var(--app-primary-contrast-300)',
+    '--ngx-sonner-toast-close-button-hover-border-color': 'var(--app-primary-500)',
     ...this.style(),
   }));
 

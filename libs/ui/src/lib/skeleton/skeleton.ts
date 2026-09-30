@@ -21,9 +21,7 @@ const styles = cva('block surface-400 dark:surface-700', {
   },
 });
 
-export type SkeletonAnimation = NonNullable<
-  VariantProps<typeof styles>['animation']
->;
+export type SkeletonAnimation = NonNullable<VariantProps<typeof styles>['animation']>;
 export type SkeletonShape = NonNullable<VariantProps<typeof styles>['shape']>;
 
 @Component({

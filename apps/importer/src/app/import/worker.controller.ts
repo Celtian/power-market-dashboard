@@ -1,10 +1,12 @@
-import { InjectDataSource } from '@nestjs/typeorm';
-import { DataSource, QueryRunner } from 'typeorm';
 import { Controller, Logger } from '@nestjs/common';
 import { Ctx, EventPattern, Payload, RmqContext } from '@nestjs/microservices';
+import { InjectDataSource } from '@nestjs/typeorm';
 import { Channel, ConsumeMessage } from 'amqplib';
+import { DataSource, QueryRunner } from 'typeorm';
+
 import { MarketRepository } from '@power-market-dashboard/database';
 import { ImportJob } from '@power-market-dashboard/market';
+
 import { IMPORT_PATTERN } from './queue';
 import { ImportFailure, SourceClient } from './source.client';
 
@@ -112,9 +114,7 @@ export class ImportWorker {
       channel.ack(message);
     } catch (error) {
       const failure =
-        error instanceof ImportFailure
-          ? error
-          : new ImportFailure('Import storage unavailable');
+        error instanceof ImportFailure ? error : new ImportFailure('Import storage unavailable');
       if (client && job && locked) {
         const dead = !failure.retryable || job.attempts >= 5;
         try {
@@ -122,9 +122,7 @@ export class ImportWorker {
           await client.manager.query(
             "SELECT pg_advisory_xact_lock(hashtext('market-snapshot-commit'))",
           );
-          const previous = await client.manager.query<
-            { error: string | null }[]
-          >(
+          const previous = await client.manager.query<{ error: string | null }[]>(
             'SELECT error FROM market_windows WHERE dataset=$1 AND "from"=$2 AND "to"=$3',
             [job.dataset, job.from, job.to],
           );
@@ -134,10 +132,7 @@ export class ImportWorker {
               id,
               dead ? 'dead' : 'retry',
               failure.message,
-              Math.max(
-                failure.retryAfterMs,
-                Math.min(60000, 1000 * 2 ** job.attempts),
-              ),
+              Math.max(failure.retryAfterMs, Math.min(60000, 1000 * 2 ** job.attempts)),
             ],
           );
           await client.manager.query(

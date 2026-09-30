@@ -1,4 +1,5 @@
 import { Check, Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
+
 import { Dataset } from '@power-market-dashboard/market';
 
 @Entity('import_jobs')
@@ -7,10 +8,7 @@ import { Dataset } from '@power-market-dashboard/market';
   where: "state IN ('pending','published','running','retry')",
 })
 @Index('import_jobs_dispatch', ['state', 'nextAttemptAt'])
-@Check(
-  'import_jobs_dataset_check',
-  "dataset IN ('solar-actual','solar-forecast','afrr','mfrr')",
-)
+@Check('import_jobs_dataset_check', "dataset IN ('solar-actual','solar-forecast','afrr','mfrr')")
 @Check('import_jobs_priority_check', "priority IN ('live','history')")
 @Check(
   'import_jobs_state_check',

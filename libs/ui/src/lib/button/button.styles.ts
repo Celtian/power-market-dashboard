@@ -76,9 +76,5 @@ export const buttonIconStyles = cva(
 );
 
 export type ButtonSize = NonNullable<VariantProps<typeof buttonStyles>['size']>;
-export type ButtonRadius = NonNullable<
-  VariantProps<typeof buttonStyles>['rounded']
->;
-export type ButtonColor = NonNullable<
-  VariantProps<typeof buttonStyles>['color']
->;
+export type ButtonRadius = NonNullable<VariantProps<typeof buttonStyles>['rounded']>;
+export type ButtonColor = NonNullable<VariantProps<typeof buttonStyles>['color']>;

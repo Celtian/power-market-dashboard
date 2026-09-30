@@ -1,12 +1,7 @@
-import {
-  Column,
-  Entity,
-  Index,
-  JoinColumn,
-  ManyToOne,
-  PrimaryColumn,
-} from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
+
 import { Dataset } from '@power-market-dashboard/market';
+
 import { MarketSnapshotEntity } from './market-snapshot.entity';
 
 @Entity('market_windows')

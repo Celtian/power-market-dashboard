@@ -1,13 +1,11 @@
-import { spawn, spawnSync, ChildProcess } from 'node:child_process';
+import { ChildProcess, spawn, spawnSync } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
 import { once } from 'node:events';
 import { createServer } from 'node:net';
-import { randomUUID } from 'node:crypto';
+
 import { createDataSource } from './lib/data-source';
 
-export async function waitFor<T>(
-  check: () => Promise<T | false>,
-  ms = 15000,
-): Promise<T> {
+export async function waitFor<T>(check: () => Promise<T | false>, ms = 15000): Promise<T> {
   const end = Date.now() + ms;
   while (Date.now() < end) {
     const value = await check();
@@ -27,14 +25,10 @@ export async function testDatabase() {
   address.pathname = `/${name}`;
   const connectionString = address.toString();
   const migrate = (direction: 'up' | 'down') => {
-    const result = spawnSync(
-      'bun',
-      ['run', direction === 'up' ? 'db:migrate' : 'db:rollback'],
-      {
-        env: { ...process.env, DATABASE_URL: connectionString },
-        encoding: 'utf8',
-      },
-    );
+    const result = spawnSync('bun', ['run', direction === 'up' ? 'db:migrate' : 'db:rollback'], {
+      env: { ...process.env, DATABASE_URL: connectionString },
+      encoding: 'utf8',
+    });
     if (result.status !== 0) throw new Error(result.stderr || result.stdout);
   };
   const db = createDataSource(connectionString);
@@ -69,10 +63,7 @@ async function freePort() {
   await new Promise<void>((resolve) => server.close(() => resolve()));
   return port;
 }
-export async function startApp(
-  app: 'api' | 'importer',
-  env: Record<string, string>,
-) {
+export async function startApp(app: 'api' | 'importer', env: Record<string, string>) {
   const port = await freePort();
   let output = '';
   const child = spawn(process.execPath, [`dist/apps/${app}/main.js`], {
@@ -88,8 +79,7 @@ export async function startApp(
   const url = `http://127.0.0.1:${port}/api`;
   try {
     await waitFor(async () => {
-      if (child.exitCode !== null)
-        throw new Error(`Application exited: ${output}`);
+      if (child.exitCode !== null) throw new Error(`Application exited: ${output}`);
       try {
         return (await fetch(url)).ok || false;
       } catch {
@@ -113,10 +103,7 @@ export async function stopApp(child: ChildProcess) {
     clearTimeout(timeout);
   }
 }
-export async function readEvent(
-  reader: ReadableStreamDefaultReader<Uint8Array>,
-  type: string,
-) {
+export async function readEvent(reader: ReadableStreamDefaultReader<Uint8Array>, type: string) {
   let buffer = '';
   while (true) {
     const { done, value } = await reader.read();

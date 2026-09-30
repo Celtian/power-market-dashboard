@@ -1,0 +1,9 @@
+<picture>
+  <source type="image/png" [attr.srcset]="imageSource().srcset" />
+  <img
+    [ngSrc]="imageSource().src"
+    [width]="imageSource().width"
+    [height]="imageSource().height"
+    [alt]="imageAlt()"
+  />
+</picture>

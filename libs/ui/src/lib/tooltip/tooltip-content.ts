@@ -10,15 +10,9 @@ export interface TooltipComponentTarget {
   inputs?: Record<string, unknown>;
 }
 
-export type TooltipTarget =
-  | string
-  | TemplateRef<void>
-  | Type<unknown>
-  | TooltipComponentTarget;
+export type TooltipTarget = string | TemplateRef<void> | Type<unknown> | TooltipComponentTarget;
 
-const isTooltipComponentTarget = (
-  target: TooltipTarget,
-): target is TooltipComponentTarget => {
+const isTooltipComponentTarget = (target: TooltipTarget): target is TooltipComponentTarget => {
   return typeof target === 'object' && target !== null && 'component' in target;
 };
 
@@ -34,14 +28,11 @@ const styles = cva(
         top: 'after:-top-1 after:left-1/2 after:-translate-x-1/2 after:border-l after:border-t',
         topLeft: 'after:-top-1 after:left-3 after:border-l after:border-t',
         topRight: 'after:-top-1 after:right-3 after:border-l after:border-t',
-        right:
-          'after:top-1/2 after:-right-1 after:-translate-y-1/2 after:border-r after:border-t',
+        right: 'after:top-1/2 after:-right-1 after:-translate-y-1/2 after:border-r after:border-t',
         bottom:
           'after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:border-r after:border-b',
-        bottomLeft:
-          'after:-bottom-1 after:left-3 after:border-r after:border-b',
-        bottomRight:
-          'after:right-3 after:-bottom-1 after:border-r after:border-b',
+        bottomLeft: 'after:-bottom-1 after:left-3 after:border-r after:border-b',
+        bottomRight: 'after:right-3 after:-bottom-1 after:border-r after:border-b',
         left: 'after:top-1/2 after:-left-1 after:-translate-y-1/2 after:border-b after:border-l',
       } satisfies Record<TooltipArrowPlacement, string>,
       padding: {
@@ -80,13 +71,9 @@ export class TooltipContent {
   public readonly maxWidth = input<number | string>();
 
   private readonly isText = computed(() => typeof this.content() === 'string');
-  private readonly isTemplate = computed(
-    () => this.content() instanceof TemplateRef,
-  );
+  private readonly isTemplate = computed(() => this.content() instanceof TemplateRef);
   public readonly template = computed<TemplateRef<void> | undefined>(() => {
-    return this.isTemplate()
-      ? (this.content() as TemplateRef<void>)
-      : undefined;
+    return this.isTemplate() ? (this.content() as TemplateRef<void>) : undefined;
   });
   public readonly text = computed(() => {
     return this.isText() ? (this.content() as string) : '';

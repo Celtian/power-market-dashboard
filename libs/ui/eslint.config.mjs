@@ -1,4 +1,5 @@
 import nx from '@nx/eslint-plugin';
+
 import baseConfig from '../../eslint.config.mjs';
 
 export default [
@@ -11,12 +12,7 @@ export default [
       '@nx/dependency-checks': [
         'error',
         {
-          ignoredDependencies: [
-            '@angular/platform-browser',
-            'axe-core',
-            'tslib',
-            'vitest',
-          ],
+          ignoredDependencies: ['@angular/platform-browser', 'axe-core', 'tslib', 'vitest'],
           ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}'],
         },
       ],
@@ -39,7 +35,7 @@ export default [
       '@angular-eslint/component-selector': [
         'error',
         {
-          type: 'element',
+          type: ['element', 'attribute'],
           prefix: 'ui',
           style: 'kebab-case',
         },
@@ -51,6 +47,7 @@ export default [
       '**/bottom-navigation-item.ts',
       '**/button.ts',
       '**/button-icon.ts',
+      '**/dropdown-panel.ts',
     ],
     rules: {
       '@angular-eslint/component-selector': 'off',

@@ -17,9 +17,7 @@
     "paths": {
       "@power-market-dashboard/market": ["./libs/market/src/index.ts"],
       "@power-market-dashboard/database": ["./libs/database/src/index.ts"],
-      "@power-market-dashboard/database/testing": [
-        "./libs/database/src/testing.ts"
-      ],
+      "@power-market-dashboard/database/testing": ["./libs/database/src/testing.ts"],
       "@power-market-dashboard/ui": ["./libs/ui/src/index.ts"]
     }
   },

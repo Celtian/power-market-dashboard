@@ -1,10 +1,9 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
+
 import * as entities from './entities';
 import { Market1780000000000 } from './migrations/1780000000000-market';
 
-export function databaseOptions(
-  url = process.env.DATABASE_URL,
-): DataSourceOptions {
+export function databaseOptions(url = process.env.DATABASE_URL): DataSourceOptions {
   if (!url) throw new Error('DATABASE_URL is required');
   return {
     type: 'postgres',

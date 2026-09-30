@@ -1,0 +1,35 @@
+<div class="relative">
+  <input
+    #inputElement
+    data-ui-input-number
+    type="number"
+    [id]="inputId()"
+    [attr.inputmode]="inputMode()"
+    [class]="twClasses()"
+    [value]="value() ?? ''"
+    [placeholder]="placeholder()"
+    [autocomplete]="autocomplete()"
+    [disabled]="disabled()"
+    [readOnly]="readonly()"
+    [required]="required()"
+    [min]="minAttr()"
+    [max]="maxAttr()"
+    [step]="step()"
+    [attr.name]="name() || null"
+    [attr.aria-invalid]="showErrors()"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+  @if (value() !== null) {
+    <button
+      class="absolute top-1/2 inline-flex -translate-y-1/2 cursor-pointer rounded-sm text-gray-500 focusable disabled:cursor-not-allowed disabled:text-gray-400"
+      type="button"
+      [attr.aria-label]="i18n().input.clear"
+      [class]="clearButtonPosition()"
+      [disabled]="disabled() || readonly()"
+      (click)="clear()"
+    >
+      <ng-icon class="block!" aria-hidden="true" name="faSolidXmark" />
+    </button>
+  }
+</div>

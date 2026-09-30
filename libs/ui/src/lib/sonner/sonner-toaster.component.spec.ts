@@ -138,7 +138,6 @@ describe('SonnerToasterComponent', () => {
   });
 
   function toaster(): NgxSonnerToaster {
-    return fixture.debugElement.query(By.directive(NgxSonnerToaster))
-      .componentInstance;
+    return fixture.debugElement.query(By.directive(NgxSonnerToaster)).componentInstance;
   }
 });

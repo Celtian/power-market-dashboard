@@ -1,0 +1,426 @@
+<section class="space-y-6" aria-labelledby="balancing-title">
+  <div class="flex flex-col gap-4">
+    <div>
+      <div class="flex flex-wrap items-center gap-2">
+        <h1 id="balancing-title" class="text-2xl font-bold">
+          {{ 'balancing.title' | transloco }}
+        </h1>
+        <span
+          uiBadge
+          class="cursor-help focusable"
+          color="blue"
+          tabindex="0"
+          weight="bold"
+          [tooltipPosition]="['bottomCenter', 'topCenter']"
+          [uiTooltip]="'balancing.badges.source-tooltip' | transloco"
+          >HU · ENTSO-E</span
+        >
+        <span
+          uiBadge
+          class="cursor-help focusable"
+          tabindex="0"
+          [color]="connectionColor()"
+          [tooltipPosition]="['bottomCenter', 'topCenter']"
+          [uiTooltip]="connectionTooltip()"
+          >{{ connectionLabel() }}</span
+        >
+        @if (ladder(); as result) {
+          <span
+            uiBadge
+            class="cursor-help focusable"
+            tabindex="0"
+            [color]="result.complete ? 'green' : 'yellow'"
+            [tooltipPosition]="['bottomCenter', 'topCenter']"
+            [uiTooltip]="
+              (result.complete
+                ? 'market.badge-tooltips.complete'
+                : 'market.badge-tooltips.incomplete'
+              ) | transloco
+            "
+          >
+            {{ (result.complete ? 'market.complete' : 'market.incomplete') | transloco }}
+          </span>
+        }
+      </div>
+      <p class="mt-2 max-w-4xl opacity-80">
+        {{ 'balancing.description' | transloco }}
+      </p>
+    </div>
+
+    <div ui-card>
+      <ui-card-content>
+        <div
+          class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7"
+          [attr.aria-label]="'balancing.filters.title' | transloco"
+        >
+          <ui-form-item>
+            <label ui-form-item-label for="balancing-product">
+              {{ 'balancing.filters.product' | transloco }}
+            </label>
+            <ui-input-select
+              labelId="balancing-product"
+              size="sm"
+              [options]="productOptions()"
+              [value]="product()"
+              (valueChange)="selectProduct($event)"
+            />
+          </ui-form-item>
+          <ui-form-item>
+            <label ui-form-item-label for="balancing-direction">
+              {{ 'balancing.filters.direction' | transloco }}
+            </label>
+            <ui-input-select
+              labelId="balancing-direction"
+              size="sm"
+              [options]="directionOptions()"
+              [value]="direction()"
+              (valueChange)="selectDirection($event)"
+            />
+          </ui-form-item>
+          <ui-form-item>
+            <label ui-form-item-label for="balancing-product-type">
+              {{ 'balancing.filters.product-type' | transloco }}
+            </label>
+            <ui-input-select
+              labelId="balancing-product-type"
+              size="sm"
+              [options]="productTypeOptions()"
+              [value]="productType()"
+              (valueChange)="selectProductType($event)"
+            />
+          </ui-form-item>
+          <ui-form-item>
+            <label ui-form-item-label for="balancing-currency">
+              {{ 'balancing.filters.currency' | transloco }}
+            </label>
+            <ui-input-select
+              labelId="balancing-currency"
+              size="sm"
+              [options]="currencyOptions()"
+              [value]="currency()"
+              (valueChange)="selectCurrency($event)"
+            />
+          </ui-form-item>
+          <ui-form-item>
+            <label ui-form-item-label for="balancing-date">
+              {{ 'balancing.filters.date' | transloco }}
+            </label>
+            <ui-input-date
+              labelId="balancing-date"
+              placeholder="YYYY-MM-DD"
+              size="sm"
+              [value]="selectedDate()"
+              (valueChange)="selectDate($event)"
+            />
+          </ui-form-item>
+          <ui-form-item>
+            <label ui-form-item-label for="balancing-quarter">
+              {{ 'balancing.filters.quarter' | transloco }}
+            </label>
+            <ui-input-select
+              labelId="balancing-quarter"
+              size="sm"
+              [options]="quarterOptions()"
+              [value]="at()"
+              (valueChange)="selectQuarter($event)"
+            />
+          </ui-form-item>
+          <ui-form-item>
+            <label ui-form-item-label for="balancing-target">
+              {{ 'balancing.filters.target' | transloco }}
+            </label>
+            <ui-input-number
+              labelId="balancing-target"
+              size="sm"
+              [min]="0.000001"
+              [step]="1"
+              [value]="targetMw()"
+              (valueChange)="selectTarget($event)"
+            />
+          </ui-form-item>
+        </div>
+        <div class="mt-4 flex justify-end">
+          <button
+            ui-button
+            size="sm"
+            rounded="all"
+            type="button"
+            [disabled]="refreshing()"
+            [withBorder]="true"
+            (click)="refresh()"
+          >
+            {{ 'market.refresh' | transloco }}
+          </button>
+        </div>
+      </ui-card-content>
+    </div>
+  </div>
+
+  @if (error()) {
+    <div
+      class="rounded-lg border border-danger-400 bg-danger-50 p-4 text-danger-800 dark:bg-danger-950 dark:text-danger-200"
+      role="alert"
+    >
+      {{ 'market.load-error' | transloco }}
+    </div>
+  }
+  @if (loading() && !ladder()) {
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4" aria-label="Loading">
+      @for (item of skeletons; track item) {
+        <div class="h-28 animate-pulse rounded-xl surface-300 dark:surface-800"></div>
+      }
+    </div>
+  } @else if (ladder(); as result) {
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      @for (metric of metrics(); track metric.key) {
+        <article ui-card>
+          <ui-card-content>
+            <p class="text-sm font-medium opacity-70">{{ metric.label }}</p>
+            <p class="mt-2 text-2xl font-bold tabular-nums">{{ metric.value }}</p>
+            @if (metric.detail) {
+              <p class="mt-1 text-xs opacity-65">{{ metric.detail }}</p>
+            }
+          </ui-card-content>
+        </article>
+      }
+    </div>
+
+    <article ui-card>
+      <ui-card-header>
+        <div>
+          <ui-card-title>{{ 'balancing.ladder-chart.title' | transloco }}</ui-card-title>
+          <ui-card-subtitle>{{
+            'balancing.ladder-chart.description'
+              | transloco: { target: formatNumber(targetMw(), 1) }
+          }}</ui-card-subtitle>
+        </div>
+      </ui-card-header>
+      <ui-card-content>
+        @if (result.steps.length) {
+          <ui-chart-line
+            class="h-96"
+            [accessibleLabel]="'balancing.ladder-chart.accessible' | transloco"
+            [data]="ladderChart()"
+            [legend]="true"
+            [options]="ladderOptions()"
+          />
+        } @else {
+          <p class="py-12 text-center opacity-75">
+            {{ 'market.no-data' | transloco }}
+          </p>
+        }
+      </ui-card-content>
+    </article>
+
+    <article ui-card>
+      <ui-card-header>
+        <div>
+          <ui-card-title>{{ 'balancing.history-chart.title' | transloco }}</ui-card-title>
+          <ui-card-subtitle>{{
+            'balancing.history-chart.description'
+              | transloco: { target: formatNumber(targetMw(), 1) }
+          }}</ui-card-subtitle>
+        </div>
+      </ui-card-header>
+      <ui-card-content>
+        @if (history(); as historyResult) {
+          <ui-chart-line
+            [accessibleLabel]="'balancing.history-chart.accessible' | transloco"
+            [data]="historyChart()"
+            [options]="historyOptions()"
+          />
+        }
+      </ui-card-content>
+    </article>
+
+    <div class="grid gap-6 xl:grid-cols-2">
+      <article ui-card>
+        <ui-card-header>
+          <div>
+            <ui-card-title>{{ 'balancing.bid-table.title' | transloco }}</ui-card-title>
+            <ui-card-subtitle>{{ 'balancing.bid-table.description' | transloco }}</ui-card-subtitle>
+          </div>
+        </ui-card-header>
+        <ui-card-content [withPadding]="false">
+          <div class="ui-scrollbar max-h-96 overflow-auto">
+            <table class="w-full min-w-3xl border-collapse text-sm">
+              <thead class="sticky top-0 surface-400 dark:surface-700">
+                <tr>
+                  <th class="px-4 py-3 text-left" scope="col">
+                    {{ 'balancing.bid-table.id' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-right" scope="col">
+                    {{ 'balancing.bid-table.price' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-right" scope="col">
+                    {{ 'balancing.bid-table.volume' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-right" scope="col">
+                    {{ 'balancing.bid-table.cumulative' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-left" scope="col">
+                    {{ 'balancing.bid-table.flags' | transloco }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of bidRows(); track row.bid.bidId) {
+                  <tr class="border-t border-primary-400 dark:border-secondary-600">
+                    <th class="px-4 py-2 text-left font-medium" scope="row">
+                      {{ row.bid.bidId }}
+                    </th>
+                    <td class="px-4 py-2 text-right tabular-nums">
+                      @if (row.bid.price !== null) {
+                        {{
+                          row.bid.price
+                            | translocoDecimal
+                              : {
+                                  minimumFractionDigits: 2,
+                                  maximumFractionDigits: 2,
+                                }
+                        }}
+                        {{ currency() }}/MWh
+                      } @else {
+                        —
+                      }
+                    </td>
+                    <td class="px-4 py-2 text-right tabular-nums">
+                      {{
+                        row.bid.mw
+                          | translocoDecimal
+                            : {
+                                minimumFractionDigits: 1,
+                                maximumFractionDigits: 1,
+                              }
+                      }}
+                      MW
+                    </td>
+                    <td class="px-4 py-2 text-right tabular-nums">
+                      @if (row.cumulative !== null) {
+                        {{
+                          row.cumulative
+                            | translocoDecimal
+                              : {
+                                  minimumFractionDigits: 1,
+                                  maximumFractionDigits: 1,
+                                }
+                        }}
+                        MW
+                      } @else {
+                        —
+                      }
+                    </td>
+                    <td class="px-4 py-2">
+                      <div class="flex flex-wrap gap-1">
+                        @for (flag of bidFlags(row.bid); track flag) {
+                          <span uiBadge size="xs" color="yellow">{{ flag }}</span>
+                        } @empty {
+                          <span class="opacity-60">—</span>
+                        }
+                      </div>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td class="px-4 py-8 text-center opacity-70" colspan="5">
+                      {{ 'market.no-data' | transloco }}
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </ui-card-content>
+      </article>
+
+      <article ui-card>
+        <ui-card-header>
+          <div>
+            <ui-card-title>{{ 'balancing.history-table.title' | transloco }}</ui-card-title>
+            <ui-card-subtitle>{{
+              'balancing.history-table.description' | transloco
+            }}</ui-card-subtitle>
+          </div>
+        </ui-card-header>
+        <ui-card-content [withPadding]="false">
+          <div class="ui-scrollbar max-h-96 overflow-auto">
+            <table class="w-full min-w-xl border-collapse text-sm">
+              <thead class="sticky top-0 surface-400 dark:surface-700">
+                <tr>
+                  <th class="px-4 py-3 text-left" scope="col">
+                    {{ 'balancing.history-table.quarter' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-right" scope="col">
+                    {{ 'balancing.history-table.price' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-right" scope="col">
+                    {{ 'balancing.history-table.volume' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-left" scope="col">
+                    {{ 'balancing.history-table.status' | transloco }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (point of history()?.data ?? []; track point.from) {
+                  <tr class="border-t border-primary-400 dark:border-secondary-600">
+                    <th class="px-4 py-2 text-left font-medium tabular-nums" scope="row">
+                      {{
+                        point.from
+                          | translocoDate
+                            : {
+                                timeZone: 'Europe/Budapest',
+                                dateStyle: 'short',
+                                timeStyle: 'short',
+                              }
+                      }}
+                    </th>
+                    <td class="px-4 py-2 text-right tabular-nums">
+                      @if (point.price !== null) {
+                        {{
+                          point.price
+                            | translocoDecimal
+                              : {
+                                  minimumFractionDigits: 2,
+                                  maximumFractionDigits: 2,
+                                }
+                        }}
+                        {{ currency() }}/MWh
+                      } @else {
+                        —
+                      }
+                    </td>
+                    <td class="px-4 py-2 text-right tabular-nums">
+                      {{
+                        point.totalMw
+                          | translocoDecimal
+                            : {
+                                minimumFractionDigits: 1,
+                                maximumFractionDigits: 1,
+                              }
+                      }}
+                      MW
+                    </td>
+                    <td class="px-4 py-2">
+                      <span uiBadge size="xs" [color]="point.complete ? 'green' : 'yellow'">
+                        {{ (point.complete ? 'market.complete' : 'market.incomplete') | transloco }}
+                      </span>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td class="px-4 py-8 text-center opacity-70" colspan="4">
+                      {{ 'market.no-data' | transloco }}
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </ui-card-content>
+      </article>
+    </div>
+
+    <p class="text-sm opacity-65">{{ 'balancing.method-note' | transloco }}</p>
+  }
+</section>

@@ -1,31 +1,27 @@
+import { strToU8, zipSync } from 'fflate';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { strToU8, zipSync } from 'fflate';
+
 import { canonicalPoints, parseResponse } from './parser';
+
 const solar = readFileSync(join(__dirname, '../fixtures/solar.xml'), 'utf8');
 const bids = readFileSync(join(__dirname, '../fixtures/bids.xml'), 'utf8');
 
 describe('ENTSO-E parser', () => {
   it('expands A03 constant segments including zero and final segment', () => {
-    expect(
-      parseResponse(strToU8(solar), 'solar-forecast').generation.map(
-        (p) => p.mw,
-      ),
-    ).toEqual([0, 0, 20, 20]);
+    expect(parseResponse(strToU8(solar), 'solar-forecast').generation.map((p) => p.mw)).toEqual([
+      0, 0, 20, 20,
+    ]);
   });
   it('preserves gaps in A01 curves', () => {
     expect(
-      parseResponse(
-        strToU8(solar.replace('A03', 'A01')),
-        'solar-forecast',
-      ).generation.map((p) => p.mw),
+      parseResponse(strToU8(solar.replace('A03', 'A01')), 'solar-forecast').generation.map(
+        (p) => p.mw,
+      ),
     ).toEqual([0, null, 20, null]);
   });
   it('reads ZIP XML and preserves bid identity, currency, negative price and validity', () => {
-    const result = parseResponse(
-      zipSync({ 'bids.xml': strToU8(bids) }),
-      'afrr',
-    );
+    const result = parseResponse(zipSync({ 'bids.xml': strToU8(bids) }), 'afrr');
     expect(result.seriesCount).toBe(1);
     expect(result.bids[0]).toMatchObject({
       bidId: 'bid-1',
@@ -73,8 +69,6 @@ describe('ENTSO-E parser', () => {
     expect(canonicalPoints([p, p, { ...p, revision: 2, price: 25 }])).toEqual([
       { ...p, revision: 2, price: 25 },
     ]);
-    expect(() => canonicalPoints([p, { ...p, price: 99 }])).toThrow(
-      'Conflicting',
-    );
+    expect(() => canonicalPoints([p, { ...p, price: 99 }])).toThrow('Conflicting');
   });
 });

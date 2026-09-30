@@ -87,6 +87,8 @@ Before handing off a code change, run lint and the relevant tests. Also run the 
 - Test observable behavior, not implementation details.
 - Angular unit tests use the Angular test builder with Vitest. Use `TestBed` only when Angular integration is needed.
 - Web end-to-end tests use Playwright and belong in `apps/web-e2e/src`.
+- When running under WSL, do not conclude that browser verification is unavailable only because a Linux or MCP-managed Chrome binary is missing. Check for and prefer the host Windows browsers before downloading another browser, especially `/mnt/c/Program Files/Google/Chrome/Application/chrome.exe` and `/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe`.
+- When invoking a Windows browser from WSL, quote executable paths containing spaces and convert Linux output paths with `wslpath -w` when the browser must write screenshots or other artifacts. If an MCP browser cannot be configured with the Windows executable, use the Windows browser directly in headless mode for the required verification.
 - NestJS end-to-end tests use Jest and belong in their matching `*-e2e` project.
 - Keep tests deterministic: do not rely on execution order, real external services, arbitrary sleeps, or undeclared local state.
 - A bug fix should include a regression test when practical.

@@ -2,18 +2,12 @@
   "name": "api-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "implicitDependencies": [
-    "api"
-  ],
+  "implicitDependencies": ["api"],
   "targets": {
     "e2e": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/api-e2e"
-      ],
-      "dependsOn": [
-        "api:build"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/api-e2e"],
+      "dependsOn": ["api:build"],
       "options": {
         "jestConfig": "apps/api-e2e/jest.config.cjs",
         "passWithNoTests": false

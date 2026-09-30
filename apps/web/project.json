@@ -18,6 +18,11 @@
           {
             "glob": "**/*",
             "input": "apps/web/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/ui/assets",
+            "output": "/"
           }
         ],
         "styles": ["apps/web/src/styles.css"],
@@ -60,7 +65,8 @@
           "buildTarget": "web:build:production"
         },
         "development": {
-          "buildTarget": "web:build:development"
+          "buildTarget": "web:build:development",
+          "proxyConfig": "apps/web/proxy.conf.json"
         }
       }
     },

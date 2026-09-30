@@ -13,14 +13,9 @@ describe('ModalHeader', () => {
     fixture.componentInstance.closeClicked.subscribe(closeClicked);
     await fixture.whenStable();
 
-    const closeButtonDebugElement = fixture.debugElement.query(
-      By.directive(ButtonIcon),
-    );
-    const closeButton =
-      closeButtonDebugElement.nativeElement as HTMLButtonElement;
-    const heading = fixture.nativeElement.querySelector(
-      'h2',
-    ) as HTMLHeadingElement;
+    const closeButtonDebugElement = fixture.debugElement.query(By.directive(ButtonIcon));
+    const closeButton = closeButtonDebugElement.nativeElement as HTMLButtonElement;
+    const heading = fixture.nativeElement.querySelector('h2') as HTMLHeadingElement;
 
     expect(fixture.nativeElement.hasAttribute('title')).toBe(false);
     expect(heading.textContent).toBe('Example modal');

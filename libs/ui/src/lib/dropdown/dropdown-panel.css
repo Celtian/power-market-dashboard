@@ -1,0 +1,71 @@
+:host([data-dropdown-arrow-placement])::after {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  content: '';
+  background-color: inherit;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  transform: rotate(45deg);
+}
+
+:host([data-dropdown-arrow-placement='top'])::after {
+  top: -0.25rem;
+  left: 50%;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+:host([data-dropdown-arrow-placement='topLeft'])::after {
+  top: -0.25rem;
+  left: 0.75rem;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+:host([data-dropdown-arrow-placement='topRight'])::after {
+  top: -0.25rem;
+  right: 0.75rem;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+:host([data-dropdown-arrow-placement='right'])::after {
+  top: 50%;
+  right: -0.25rem;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+:host([data-dropdown-arrow-placement='bottom'])::after {
+  bottom: -0.25rem;
+  left: 50%;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+:host([data-dropdown-arrow-placement='bottomLeft'])::after {
+  bottom: -0.25rem;
+  left: 0.75rem;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
+
+:host([data-dropdown-arrow-placement='bottomRight'])::after {
+  right: 0.75rem;
+  bottom: -0.25rem;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
+
+:host([data-dropdown-arrow-placement='left'])::after {
+  top: 50%;
+  left: -0.25rem;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  transform: translateY(-50%) rotate(45deg);
+}

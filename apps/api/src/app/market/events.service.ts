@@ -1,15 +1,7 @@
-import { InjectDataSource } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 import { Injectable, MessageEvent } from '@nestjs/common';
-import {
-  Observable,
-  catchError,
-  concatMap,
-  defer,
-  exhaustMap,
-  of,
-  timer,
-} from 'rxjs';
+import { InjectDataSource } from '@nestjs/typeorm';
+import { Observable, catchError, concatMap, defer, exhaustMap, of, timer } from 'rxjs';
+import { DataSource } from 'typeorm';
 
 @Injectable()
 export class EventsService {
@@ -52,9 +44,7 @@ export class EventsService {
             : [];
         }),
         concatMap((events) => events),
-        catchError(() =>
-          of({ type: 'unavailable', data: { reconnect: true } }),
-        ),
+        catchError(() => of({ type: 'unavailable', data: { reconnect: true } })),
       );
     });
   }

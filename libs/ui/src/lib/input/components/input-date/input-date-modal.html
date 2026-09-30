@@ -1,0 +1,35 @@
+<ui-modal-header
+  [modalTitle]="i18n().input.selectDate"
+  [showCloseButton]="true"
+  [titleId]="data.titleId"
+  (closeClicked)="cancel()"
+/>
+
+<ui-modal-content [contentId]="data.contentId">
+  <div class="flex justify-center">
+    <ui-input-calendar
+      [firstDayOfWeek]="data.firstDayOfWeek"
+      [labelId]="data.calendarId"
+      [locale]="data.locale"
+      [maxDate]="data.maxDate"
+      [minDate]="data.minDate"
+      [(value)]="value"
+    />
+  </div>
+</ui-modal-content>
+
+<ui-modal-footer>
+  <button ui-button type="button" rounded="all" [withBorder]="true" (click)="cancel()">
+    {{ i18n().cancel }}
+  </button>
+  <button
+    data-input-date-select
+    ui-button
+    type="button"
+    rounded="all"
+    [withBorder]="true"
+    (click)="select()"
+  >
+    {{ i18n().input.select }}
+  </button>
+</ui-modal-footer>

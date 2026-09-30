@@ -1,0 +1,94 @@
+Twemoji graphics are licensed under the Creative Commons Attribution 4.0
+International license (CC-BY-4.0).
+
+Full license text:
+https://creativecommons.org/licenses/by/4.0/legalcode.txt
+
+Source:
+https://github.com/jdecked/twemoji
+
+Copyright (c) 2018 Twitter, Inc and other contributors.
+
+U.S. state flag graphics (`us-*.svg`)
+
+Source:
+https://flagcdn.com/
+
+Original vector sources:
+https://commons.wikimedia.org/
+
+Flagpedia identifies its flag images as public domain and available for use
+without restriction:
+https://flagpedia.net/terms
+
+Argentinian, Austrian, Canadian, Australian, Brazilian, Swiss, Colombian,
+German, Greek, Mexican, Polish, Portuguese, Spanish, Italian, and Japanese
+subdivision flag graphics
+(`ar-*.svg`, `at-*.svg`, `ca-*.svg`, `au-*.svg`, `br-*.svg`, `ch-*.svg`
+except `ch-ar.svg`, `co-*.svg`, `de-*.svg`, `gr-*.svg`, `mx-*.svg`,
+`pl-*.svg`, `pt-*.svg` except `pt-02.svg`, `pt-12.svg`, and `pt-17.svg`,
+`es-*.svg`, `it-*.svg`, `jp-*.svg`)
+
+Source:
+https://github.com/amckenna41/iso3166-flags
+
+Appenzell Ausserrhoden flag graphic (`ch-ar.svg`)
+
+Source:
+https://commons.wikimedia.org/wiki/File:Flag_of_Canton_of_Appenzell_Ausserrhoden.svg
+
+This Swiss official work is identified as public domain on its Wikimedia
+Commons source page. Legal restrictions on the use of official insignia may
+apply independently of copyright.
+
+Beja flag graphic (`pt-02.svg`)
+
+Author: 117-M-I-K-E
+Source:
+https://commons.wikimedia.org/wiki/File:Flag_of_Beja.svg
+
+The source page identifies this Portuguese official insignia as public domain.
+The artwork was normalized to the package's rounded 36×36 SVG canvas.
+
+Portalegre and Vila Real flag graphics (`pt-12.svg`, `pt-17.svg`)
+
+Authors: Sérgio Horta (`pt-12.svg`) and Zloyel (`pt-17.svg`)
+Sources:
+https://commons.wikimedia.org/wiki/File:PTG.png
+https://commons.wikimedia.org/wiki/File:Bandeira_de_Vila_Real.jpg
+
+These source graphics are licensed under the Creative Commons
+Attribution-ShareAlike 3.0 Unported license (CC BY-SA 3.0):
+https://creativecommons.org/licenses/by-sa/3.0/
+
+The Portalegre crest was composited over a reconstructed vector flag field, and
+both graphics were resized and normalized to the package's rounded 36×36 SVG
+canvas. These adaptations are distributed under CC BY-SA 3.0.
+
+Northern Ireland flag graphic (`gb-nir.svg`)
+
+Source:
+https://github.com/lipis/flag-icons
+
+The MIT License (MIT)
+
+Copyright (c) 2021 AJ McKenna
+Copyright (c) 2013 Panayiotis Lipiridis
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

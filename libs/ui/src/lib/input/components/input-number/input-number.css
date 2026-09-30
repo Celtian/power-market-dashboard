@@ -1,0 +1,9 @@
+[data-ui-input-number] {
+  appearance: textfield;
+}
+
+[data-ui-input-number]::-webkit-inner-spin-button,
+[data-ui-input-number]::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}

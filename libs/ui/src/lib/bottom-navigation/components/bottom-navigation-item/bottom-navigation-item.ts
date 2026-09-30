@@ -1,11 +1,6 @@
 import { Directive, computed, inject, input } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import {
-  IsActiveMatchOptions,
-  NavigationEnd,
-  Router,
-  RouterLink,
-} from '@angular/router';
+import { IsActiveMatchOptions, NavigationEnd, Router, RouterLink } from '@angular/router';
 
 import { filter } from 'rxjs';
 
@@ -33,9 +28,7 @@ export class BottomNavigationItem {
     { initialValue: null },
   );
   public readonly active = input<boolean>();
-  public readonly routerLinkActiveOptions = input<
-    IsActiveMatchOptions | { exact: boolean }
-  >({
+  public readonly routerLinkActiveOptions = input<IsActiveMatchOptions | { exact: boolean }>({
     exact: false,
   });
   public readonly isActive = computed(() => {

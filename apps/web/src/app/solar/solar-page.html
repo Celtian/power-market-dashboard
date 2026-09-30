@@ -1,0 +1,336 @@
+<section class="space-y-6" aria-labelledby="solar-title">
+  <div class="flex flex-col gap-4">
+    <div>
+      <div class="flex flex-wrap items-center gap-2">
+        <h1 id="solar-title" class="text-2xl font-bold">
+          {{ 'solar.title' | transloco }}
+        </h1>
+        <span
+          uiBadge
+          class="cursor-help focusable"
+          color="blue"
+          tabindex="0"
+          weight="bold"
+          [tooltipPosition]="['bottomCenter', 'topCenter']"
+          [uiTooltip]="'solar.badges.market-tooltip' | transloco"
+          >HU · Europe/Budapest</span
+        >
+        <span
+          uiBadge
+          class="cursor-help focusable"
+          tabindex="0"
+          [color]="connectionColor()"
+          [tooltipPosition]="['bottomCenter', 'topCenter']"
+          [uiTooltip]="connectionTooltip()"
+          >{{ connectionLabel() }}</span
+        >
+        @if (actualFreshnessWarning(); as freshness) {
+          <span
+            uiBadge
+            class="cursor-help focusable"
+            color="yellow"
+            tabindex="0"
+            [tooltipPosition]="['bottomCenter', 'topCenter']"
+            [uiTooltip]="freshness.message"
+            >{{ freshness.label }}</span
+          >
+        }
+        @if (data(); as result) {
+          <span
+            uiBadge
+            class="cursor-help focusable"
+            tabindex="0"
+            [color]="result.complete ? 'green' : 'yellow'"
+            [tooltipPosition]="['bottomCenter', 'topCenter']"
+            [uiTooltip]="
+              (result.complete
+                ? 'market.badge-tooltips.complete'
+                : 'market.badge-tooltips.incomplete'
+              ) | transloco
+            "
+          >
+            {{ (result.complete ? 'market.complete' : 'market.incomplete') | transloco }}
+          </span>
+        }
+      </div>
+      <p class="mt-2 max-w-3xl opacity-80">
+        {{ 'solar.description' | transloco }}
+      </p>
+      <p class="mt-1 text-sm opacity-65">
+        {{ 'market.source' | transloco }}: ENTSO-E
+        @if (lastUpdated(); as updated) {
+          · {{ 'market.updated' | transloco }}
+          {{
+            updated
+              | translocoDate
+                : {
+                    timeZone: 'Europe/Budapest',
+                    dateStyle: 'medium',
+                    timeStyle: 'short',
+                  }
+          }}
+        }
+      </p>
+    </div>
+
+    <div ui-card>
+      <ui-card-content>
+        <div
+          class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end"
+          role="group"
+          [attr.aria-label]="'solar.date-controls' | transloco"
+        >
+          <button
+            ui-button
+            class="w-full sm:w-auto"
+            size="sm"
+            rounded="all"
+            type="button"
+            [withBorder]="true"
+            (click)="shiftDate(-1)"
+          >
+            {{ 'solar.previous-day' | transloco }}
+          </button>
+          <ui-form-item class="w-full sm:w-48">
+            <label ui-form-item-label for="solar-delivery-date">
+              {{ 'solar.date' | transloco }}
+            </label>
+            <ui-input-date
+              labelId="solar-delivery-date"
+              placeholder="YYYY-MM-DD"
+              size="sm"
+              [value]="selectedDate()"
+              (valueChange)="selectDate($event)"
+            />
+          </ui-form-item>
+          <button
+            ui-button
+            class="w-full sm:w-auto"
+            size="sm"
+            rounded="all"
+            type="button"
+            [withBorder]="true"
+            (click)="goToday()"
+          >
+            {{ 'solar.today' | transloco }}
+          </button>
+          <button
+            ui-button
+            class="w-full sm:w-auto"
+            size="sm"
+            rounded="all"
+            type="button"
+            [withBorder]="true"
+            (click)="shiftDate(1)"
+          >
+            {{ 'solar.next-day' | transloco }}
+          </button>
+          <button
+            ui-button
+            class="w-full sm:w-auto lg:ml-auto"
+            size="sm"
+            rounded="all"
+            type="button"
+            [disabled]="refreshing()"
+            [withBorder]="true"
+            (click)="refresh()"
+          >
+            {{ 'market.refresh' | transloco }}
+          </button>
+        </div>
+      </ui-card-content>
+    </div>
+  </div>
+
+  @if (error()) {
+    <div
+      class="rounded-lg border border-danger-400 bg-danger-50 p-4 text-danger-800 dark:bg-danger-950 dark:text-danger-200"
+      role="alert"
+    >
+      {{ 'market.load-error' | transloco }}
+    </div>
+  }
+  @if (actualFreshnessWarning(); as freshness) {
+    <div
+      class="rounded-lg border border-warning-400 bg-warning-50 p-4 text-warning-800 dark:bg-warning-950 dark:text-warning-200"
+      role="status"
+    >
+      {{ freshness.message }}
+    </div>
+  }
+  @if (loading() && !data()) {
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3" aria-label="Loading">
+      @for (item of skeletons; track item) {
+        <div class="h-28 animate-pulse rounded-xl surface-300 dark:surface-800"></div>
+      }
+    </div>
+  } @else if (data(); as result) {
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      @for (metric of metrics(); track metric.key) {
+        <article ui-card>
+          <ui-card-content>
+            <p class="text-sm font-medium opacity-70">{{ metric.label }}</p>
+            <p class="mt-2 text-2xl font-bold tabular-nums">{{ metric.value }}</p>
+            @if (metric.detail) {
+              <p class="mt-1 text-xs opacity-65">{{ metric.detail }}</p>
+            }
+          </ui-card-content>
+        </article>
+      }
+    </div>
+
+    @if (result.data.length) {
+      <article ui-card>
+        <ui-card-header>
+          <div>
+            <ui-card-title>{{ 'solar.production-chart.title' | transloco }}</ui-card-title>
+            <ui-card-subtitle>{{
+              'solar.production-chart.description' | transloco
+            }}</ui-card-subtitle>
+          </div>
+        </ui-card-header>
+        <ui-card-content>
+          <ui-chart-line
+            [accessibleLabel]="'solar.production-chart.accessible' | transloco"
+            [data]="productionChart()"
+            [legend]="true"
+            [options]="productionOptions()"
+          />
+        </ui-card-content>
+      </article>
+
+      <article ui-card>
+        <ui-card-header>
+          <div>
+            <ui-card-title>{{ 'solar.deviation-chart.title' | transloco }}</ui-card-title>
+            <ui-card-subtitle>{{
+              'solar.deviation-chart.description' | transloco
+            }}</ui-card-subtitle>
+          </div>
+        </ui-card-header>
+        <ui-card-content>
+          <ui-chart-bar
+            [accessibleLabel]="'solar.deviation-chart.accessible' | transloco"
+            [data]="deviationChart()"
+            [options]="deviationOptions()"
+          />
+        </ui-card-content>
+      </article>
+
+      <article ui-card>
+        <ui-card-header>
+          <div>
+            <ui-card-title>{{ 'solar.table.title' | transloco }}</ui-card-title>
+            <ui-card-subtitle>{{ 'solar.table.description' | transloco }}</ui-card-subtitle>
+          </div>
+        </ui-card-header>
+        <ui-card-content [withPadding]="false">
+          <div class="ui-scrollbar max-h-96 overflow-auto">
+            <table class="w-full min-w-2xl border-collapse text-sm">
+              <thead class="sticky top-0 surface-400 dark:surface-700">
+                <tr>
+                  <th class="px-4 py-3 text-left" scope="col">
+                    {{ 'solar.table.time' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-right" scope="col">
+                    {{ 'solar.table.actual' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-right" scope="col">
+                    {{ 'solar.table.forecast' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-right" scope="col">
+                    {{ 'solar.table.deviation-mw' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-right" scope="col">
+                    {{ 'solar.table.deviation-percent' | transloco }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (point of result.data; track point.start) {
+                  <tr class="border-t border-primary-400 dark:border-secondary-600">
+                    <th class="px-4 py-2 text-left font-medium tabular-nums" scope="row">
+                      {{ formatTimeInterval(point.start, point.end) }}
+                    </th>
+                    <td class="px-4 py-2 text-right tabular-nums">
+                      @if (point.actualMw !== null) {
+                        {{
+                          point.actualMw
+                            | translocoDecimal
+                              : {
+                                  minimumFractionDigits: 1,
+                                  maximumFractionDigits: 1,
+                                }
+                        }}
+                        MW
+                      } @else {
+                        —
+                      }
+                    </td>
+                    <td class="px-4 py-2 text-right tabular-nums">
+                      @if (point.forecastMw !== null) {
+                        {{
+                          point.forecastMw
+                            | translocoDecimal
+                              : {
+                                  minimumFractionDigits: 1,
+                                  maximumFractionDigits: 1,
+                                }
+                        }}
+                        MW
+                      } @else {
+                        —
+                      }
+                    </td>
+                    <td class="px-4 py-2 text-right tabular-nums">
+                      @if (point.deviationMw !== null) {
+                        {{
+                          point.deviationMw
+                            | translocoDecimal
+                              : {
+                                  minimumFractionDigits: 1,
+                                  maximumFractionDigits: 1,
+                                  signDisplay: 'exceptZero',
+                                }
+                        }}
+                        MW
+                      } @else {
+                        —
+                      }
+                    </td>
+                    <td class="px-4 py-2 text-right tabular-nums">
+                      @if (point.deviationPercent !== null) {
+                        {{
+                          point.deviationPercent
+                            | translocoDecimal
+                              : {
+                                  minimumFractionDigits: 1,
+                                  maximumFractionDigits: 1,
+                                  signDisplay: 'exceptZero',
+                                }
+                        }}
+                        %
+                      } @else {
+                        —
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </ui-card-content>
+      </article>
+    } @else {
+      <div ui-card>
+        <ui-card-content
+          ><p class="text-center opacity-75">
+            {{ 'market.no-data' | transloco }}
+          </p></ui-card-content
+        >
+      </div>
+    }
+
+    <p class="text-sm opacity-65">{{ 'solar.method-note' | transloco }}</p>
+  }
+</section>

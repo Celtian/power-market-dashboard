@@ -17,16 +17,11 @@ describe('overlay helpers', () => {
     ['right', 'left'],
     ['left', 'right'],
   ])('maps %s to the %s arrow placement', (position, arrowPlacement) => {
-    expect(getTooltipArrowPlacement(createConnectedPositions()[position])).toBe(
-      arrowPlacement,
-    );
+    expect(getTooltipArrowPlacement(createConnectedPositions()[position])).toBe(arrowPlacement);
   });
 
   it('selects positions in the requested order with the requested offset', () => {
-    const selected = createSelectedPositions(
-      ['left', 'bottomCenter', 'topRight'],
-      12,
-    );
+    const selected = createSelectedPositions(['left', 'bottomCenter', 'topRight'], 12);
 
     expect(selected).toEqual([
       expect.objectContaining({ offsetX: -12, overlayX: 'end' }),

@@ -2,19 +2,12 @@
   "name": "importer-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "implicitDependencies": [
-    "importer"
-  ],
+  "implicitDependencies": ["importer"],
   "targets": {
     "e2e": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/importer-e2e"
-      ],
-      "dependsOn": [
-        "api:build",
-        "importer:build"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/importer-e2e"],
+      "dependsOn": ["api:build", "importer:build"],
       "options": {
         "jestConfig": "apps/importer-e2e/jest.config.cjs",
         "passWithNoTests": false

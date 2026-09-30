@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
 import { Dataset } from '@power-market-dashboard/market';
 
 @Entity('market_snapshots')

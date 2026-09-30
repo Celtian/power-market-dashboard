@@ -152,6 +152,7 @@ export const statusSchema = object({
     }),
   ),
   additionalLatencyTargetSeconds: number,
+  solarActualFreshnessTargetSeconds: number,
   pollingSeconds: number,
   bidPublicationDeadlineMinutesAfterDelivery: number,
 });

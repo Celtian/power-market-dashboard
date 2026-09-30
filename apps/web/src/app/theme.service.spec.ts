@@ -84,9 +84,7 @@ describe('ThemeService', () => {
   it('synchronizes theme changes from another tab', () => {
     const service = TestBed.inject(ThemeService);
 
-    window.dispatchEvent(
-      new StorageEvent('storage', { key: 'theme', newValue: 'dark' }),
-    );
+    window.dispatchEvent(new StorageEvent('storage', { key: 'theme', newValue: 'dark' }));
 
     expect(service.theme()).toBe('dark');
     expect(document.documentElement.classList).toContain('dark');
@@ -114,17 +112,13 @@ describe('ThemeService', () => {
     });
     const changeListener = vi
       .mocked(mediaQuery.addEventListener)
-      .mock.calls.find(([type]) => type === 'change')?.[1] as
-      | EventListener
-      | undefined;
+      .mock.calls.find(([type]) => type === 'change')?.[1] as EventListener | undefined;
     changeListener?.(new Event('change'));
   }
 });
 
 function ensureThemeMeta(): HTMLMetaElement {
-  const existing = document.querySelector<HTMLMetaElement>(
-    'meta[name="theme-color"]',
-  );
+  const existing = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
   if (existing) {
     return existing;
   }
@@ -136,8 +130,5 @@ function ensureThemeMeta(): HTMLMetaElement {
 }
 
 function themeColor(): string | null {
-  return (
-    document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
-      ?.content ?? null
-  );
+  return document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.content ?? null;
 }

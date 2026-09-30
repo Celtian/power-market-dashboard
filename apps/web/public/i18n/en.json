@@ -1,0 +1,224 @@
+{
+  "app": {
+    "home": "Power Market Dashboard home",
+    "language": {
+      "switch-to-cs": "Switch to Czech",
+      "switch-to-en": "Switch to English"
+    },
+    "navigation": {
+      "balancing": "Balancing",
+      "open": "Open navigation",
+      "primary": "Primary navigation",
+      "solar": "Solar"
+    },
+    "scroll-top": "Scroll up",
+    "theme": {
+      "switch-to-dark": "Switch to dark theme",
+      "switch-to-light": "Switch to light theme"
+    }
+  },
+  "app-update": {
+    "confirm": "Update",
+    "description": "Reload to use the latest version.",
+    "dismiss": "Not now",
+    "title": "A new version is available"
+  },
+  "balancing": {
+    "badges": {
+      "source-tooltip": "Data for the Hungarian market comes from the ENTSO-E platform."
+    },
+    "title": "Balancing energy bid ladder",
+    "description": "Inspect Hungary’s published aFRR and mFRR offers, the marginal price at a selected cumulative volume, and its 24-hour history.",
+    "filters": {
+      "title": "Balancing filters",
+      "product": "Product",
+      "direction": "Direction",
+      "product-type": "Offer type",
+      "currency": "Currency",
+      "date": "Delivery day",
+      "quarter": "Delivery quarter",
+      "target": "Target volume (MW)"
+    },
+    "direction": {
+      "up": "Upward",
+      "down": "Downward"
+    },
+    "metrics": {
+      "target-price": "Price at target",
+      "total-volume": "Offered volume",
+      "bids": "Published bids",
+      "steps": "price steps",
+      "quality": "Data quality"
+    },
+    "series": {
+      "ladder": "Bid ladder",
+      "target": "Selected target",
+      "history": "Price at target"
+    },
+    "ladder-chart": {
+      "title": "Bid price ladder",
+      "description": "Published offer price by cumulative volume; target {{ target }} MW is highlighted.",
+      "accessible": "Step chart of balancing offer price by cumulative megawatts."
+    },
+    "history-chart": {
+      "title": "24-hour target price history",
+      "description": "Price covering {{ target }} MW in each delivery quarter. Gaps indicate missing or insufficient offers.",
+      "accessible": "Line chart of the selected balancing target price over 24 hours."
+    },
+    "bid-table": {
+      "title": "Published bid detail",
+      "description": "Eligible bids are shown in ladder order; excluded bids follow without a cumulative value.",
+      "id": "Bid ID",
+      "price": "Price",
+      "volume": "Volume",
+      "cumulative": "Cumulative",
+      "flags": "Flags"
+    },
+    "history-table": {
+      "title": "Target price intervals",
+      "description": "Completeness and available volume for every quarter in the history window.",
+      "quarter": "Delivery quarter",
+      "price": "Target price",
+      "volume": "Available volume",
+      "status": "Status"
+    },
+    "flags": {
+      "cancelled": "Cancelled",
+      "unavailable": "Unavailable",
+      "unknown": "Availability unknown"
+    },
+    "method-note": "This is an analytical ordering of published offers, not an activation simulation. Linked or exclusive constraints are not optimized and currencies are not converted."
+  },
+  "not-found": {
+    "back": "Back to dashboard",
+    "description": "The page you’re looking for doesn’t exist or may have moved.",
+    "title": "Page not found"
+  },
+  "pwa": {
+    "reload-action": "Reload",
+    "reload-description": "A cached application file can no longer be recovered.",
+    "reload-title": "The application needs to be reloaded"
+  },
+  "routes": {
+    "balancing": "Balancing",
+    "not-found": "Page Not Found",
+    "solar": "Solar"
+  },
+  "solar": {
+    "badges": {
+      "market-tooltip": "Data is shown for Hungary in the Europe/Budapest market time zone."
+    },
+    "title": "Solar production",
+    "description": "Compare Hungary’s published day-ahead solar forecast with actual generation and quantify the forecast error.",
+    "date-controls": "Solar delivery day controls",
+    "date": "Delivery day",
+    "previous-day": "Previous day",
+    "today": "Today",
+    "next-day": "Next day",
+    "method-note": "Deviation is actual minus forecast. Missing intervals remain gaps and are never interpreted as zero.",
+    "freshness": {
+      "badge": "Actual delayed by {{ minutes }} min",
+      "message": "The latest actual interval ended at {{ time }}. ENTSO-E has not published newer actual data yet."
+    },
+    "metrics": {
+      "actual": "Latest actual",
+      "interval": "Interval",
+      "forecast": "Matching forecast",
+      "deviation": "Latest deviation",
+      "mae": "Mean absolute error",
+      "rmse": "Root mean square error",
+      "coverage": "Joint coverage"
+    },
+    "series": {
+      "actual": "Actual generation",
+      "forecast": "Day-ahead forecast",
+      "deviation": "Deviation"
+    },
+    "production-chart": {
+      "title": "Forecast vs. actual",
+      "description": "Quarter-hour solar generation in MW, Hungary market time.",
+      "accessible": "Line chart comparing actual and forecast solar production."
+    },
+    "deviation-chart": {
+      "title": "Forecast deviation",
+      "description": "Positive values mean production above forecast; negative values mean below forecast.",
+      "accessible": "Bar chart of solar forecast deviations."
+    },
+    "table": {
+      "title": "Interval detail",
+      "description": "Exact source-aligned values for every delivery interval.",
+      "time": "Time",
+      "actual": "Actual (MW)",
+      "forecast": "Forecast (MW)",
+      "deviation-mw": "Deviation (MW)",
+      "deviation-percent": "Deviation (%)"
+    }
+  },
+  "ui": {
+    "calendar": {
+      "next-month": "Next month",
+      "next-period": "Next period",
+      "next-year": "Next year",
+      "previous-month": "Previous month",
+      "previous-period": "Previous period",
+      "previous-year": "Previous year"
+    },
+    "cancel": "Cancel",
+    "input": {
+      "clear": "Clear input",
+      "date-placeholder": "YYYY-MM-DD",
+      "open-date-picker": "Open date picker",
+      "select": "Select",
+      "select-date": "Select date",
+      "select-option": "Select an option"
+    },
+    "modal": {
+      "close": "Close"
+    },
+    "reset": "Reset",
+    "retry": "Retry",
+    "save": "Save",
+    "validation": {
+      "email": "Enter a valid email address",
+      "invalid": "Invalid value",
+      "maximum": "Maximum value is {{value}}",
+      "maximum-date": "Maximum date is {{value}}",
+      "maximum-length": "The length should be at most {{value}} characters",
+      "minimum": "Minimum value is {{value}}",
+      "minimum-date": "Minimum date is {{value}}",
+      "minimum-length": "The length should be at least {{value}} characters",
+      "parse": "Enter a valid value",
+      "pattern": "Value has an invalid format",
+      "required": "This field is required",
+      "too-early": "Date is too early",
+      "too-large": "Value is too large",
+      "too-late": "Date is too late",
+      "too-long": "Value is too long",
+      "too-short": "Value is too short",
+      "too-small": "Value is too small"
+    }
+  },
+  "market": {
+    "badge-tooltips": {
+      "complete": "The dataset contains all expected records for the selected interval.",
+      "connection": {
+        "connecting": "The application is connecting to receive automatic data updates.",
+        "delayed": "The source data or its updates are delayed.",
+        "live": "Live updates are connected and new data loads automatically.",
+        "offline": "Live updates are unavailable; the displayed data will not refresh automatically."
+      },
+      "incomplete": "Some expected records are missing; the results may be incomplete."
+    },
+    "complete": "Complete",
+    "connecting": "Connecting live updates",
+    "delayed": "Data delayed",
+    "incomplete": "Incomplete",
+    "live": "Live",
+    "load-error": "Fresh data could not be loaded. The last valid snapshot remains visible.",
+    "no-data": "No data is available for this selection.",
+    "offline": "Live updates unavailable",
+    "refresh": "Refresh",
+    "source": "Source",
+    "updated": "Updated"
+  }
+}

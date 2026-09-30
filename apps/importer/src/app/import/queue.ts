@@ -7,10 +7,7 @@ function prefix() {
   return value;
 }
 export const IMPORT_PATTERN = 'market.import.v1';
-export function queueOptions(
-  priority: 'live' | 'history',
-  consumer = true,
-): RmqOptions {
+export function queueOptions(priority: 'live' | 'history', consumer = true): RmqOptions {
   const url = process.env.RABBITMQ_URL;
   if (!url) throw new Error('RABBITMQ_URL is required');
   return {
@@ -41,11 +38,7 @@ export async function provisionQueues() {
       durable: true,
     });
     await channel.assertQueue(`${prefix()}.import.dead`, { durable: true });
-    await channel.bindQueue(
-      `${prefix()}.import.dead`,
-      `${prefix()}.dead`,
-      'failed',
-    );
+    await channel.bindQueue(`${prefix()}.import.dead`, `${prefix()}.dead`, 'failed');
     for (const priority of ['live', 'history'] as const) {
       const config = queueOptions(priority).options;
       if (!config?.queue) throw new Error('Missing queue configuration');

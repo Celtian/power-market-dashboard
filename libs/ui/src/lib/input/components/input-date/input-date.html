@@ -1,0 +1,28 @@
+<div class="relative">
+  <input
+    #inputElement
+    type="text"
+    inputmode="numeric"
+    [id]="inputId()"
+    [class]="twClasses()"
+    [value]="value()"
+    [placeholder]="displayPlaceholder()"
+    [disabled]="disabled()"
+    [readOnly]="readonly()"
+    [required]="required()"
+    [attr.name]="name() || null"
+    [attr.aria-invalid]="showErrors()"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+  <button
+    class="absolute top-1/2 inline-flex -translate-y-1/2 cursor-pointer rounded-sm text-gray-500 focusable disabled:cursor-not-allowed disabled:text-gray-400"
+    type="button"
+    [attr.aria-label]="i18n().input.openDatePicker"
+    [class]="calendarButtonPosition()"
+    [disabled]="disabled() || readonly()"
+    (click)="openDatePicker()"
+  >
+    <ng-icon class="block!" aria-hidden="true" name="faSolidCalendarDays" />
+  </button>
+</div>

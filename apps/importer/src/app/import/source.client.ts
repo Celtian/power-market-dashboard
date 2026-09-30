@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
+
 import {
   Dataset,
   HU_DOMAIN,
@@ -10,6 +11,7 @@ import {
   entsoeTime,
   parseResponse,
 } from '@power-market-dashboard/market';
+
 import { EntsoeConfig } from '../entsoe/entsoe.config';
 
 export class ImportFailure extends Error {
@@ -25,12 +27,7 @@ function retryAfter(value: unknown): number {
   if (typeof value !== 'string') return 0;
   const seconds = Number(value);
   return (
-    Math.max(
-      0,
-      Number.isFinite(seconds)
-        ? seconds * 1000
-        : Date.parse(value) - Date.now(),
-    ) || 0
+    Math.max(0, Number.isFinite(seconds) ? seconds * 1000 : Date.parse(value) - Date.now()) || 0
   );
 }
 @Injectable()
@@ -52,11 +49,7 @@ export class SourceClient {
       await new Promise((resolve) =>
         setTimeout(
           resolve,
-          Math.max(
-            0,
-            this.nextRequestAt - Date.now(),
-            this.blockedUntil - Date.now(),
-          ),
+          Math.max(0, this.nextRequestAt - Date.now(), this.blockedUntil - Date.now()),
         ),
       );
       // A 429 can extend the shared cooldown while this timer is pending.
@@ -106,18 +99,14 @@ export class SourceClient {
           const status = error.response?.status;
           const delay = retryAfter(error.response?.headers['retry-after']);
           if (status === 429)
-            this.blockedUntil = Math.max(
-              this.blockedUntil,
-              Date.now() + Math.max(delay, 60_000),
-            );
+            this.blockedUntil = Math.max(this.blockedUntil, Date.now() + Math.max(delay, 60_000));
           throw new ImportFailure(
             `Source HTTP ${status ?? 'unavailable'}`,
             !status || status === 429 || status >= 500,
             delay,
           );
         }
-        if (error instanceof SourceRejection)
-          throw new ImportFailure(error.message, false);
+        if (error instanceof SourceRejection) throw new ImportFailure(error.message, false);
         throw new ImportFailure('Invalid source response', false);
       }
       const fingerprint = JSON.stringify(page.bids);
@@ -140,10 +129,7 @@ export class SourceClient {
         return result;
       }
     }
-    throw new ImportFailure(
-      'Source pagination limit exceeded; snapshot not published',
-      false,
-    );
+    throw new ImportFailure('Source pagination limit exceeded; snapshot not published', false);
   }
   private parameters(dataset: Dataset): Record<string, string> {
     switch (dataset) {

@@ -3,39 +3,36 @@
     class="sticky top-0 z-20 border-b border-primary-400 surface-300 shadow-md dark:border-secondary-600 dark:surface-800"
   >
     <div
-      class="mx-auto grid h-14 w-full max-w-screen-2xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-4 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:px-6"
+      class="mx-auto grid h-14 w-full max-w-screen-2xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-4 sm:px-6"
     >
-      <a
-        class="min-w-0 truncate rounded-sm font-bold focusable focus:outline-primary-500 dark:focus:outline-primary-400"
-        routerLink="/solar"
-      >
-        Power Market Dashboard
-      </a>
-
-      <nav
-        class="hidden items-stretch self-stretch sm:flex"
-        data-desktop-navigation
-        aria-label="Primary navigation"
-      >
+      <div class="flex items-center">
         <a
-          class="flex items-center rounded-sm px-4 font-medium focusable hover:surface-400 focus:outline-primary-500 dark:hover:surface-700 dark:focus:outline-primary-400"
+          class="flex h-14 items-center px-2 focusable hover:surface-400 focus:outline-primary-500 dark:hover:surface-700 dark:focus:outline-primary-400"
           routerLink="/solar"
-          routerLinkActive="surface-400 font-bold dark:surface-700"
-          ariaCurrentWhenActive="page"
+          [attr.aria-label]="'app.home' | transloco"
+          [tooltipPosition]="['bottomRight', 'topRight']"
+          [uiTooltip]="'app.home' | transloco"
         >
-          Solar
+          <app-logo class="h-8" logoType="responsive" />
         </a>
-        <a
-          class="flex items-center rounded-sm px-4 font-medium focusable hover:surface-400 focus:outline-primary-500 dark:hover:surface-700 dark:focus:outline-primary-400"
-          routerLink="/balancing"
-          routerLinkActive="surface-400 font-bold dark:surface-700"
-          ariaCurrentWhenActive="page"
-        >
-          Balancing
-        </a>
-      </nav>
+      </div>
 
-      <div class="flex justify-end">
+      <div class="flex justify-end gap-2">
+        <button
+          ui-button-icon
+          data-language-toggle
+          rounded="all"
+          size="sm"
+          type="button"
+          [attr.aria-label]="languageToggleLabel()"
+          [tooltipPosition]="['bottomLeft', 'topLeft']"
+          [uiTooltip]="languageToggleLabel()"
+          [withBorder]="true"
+          (click)="toggleLanguage()"
+        >
+          <ui-flag aria-hidden="true" countryName="" [countryCode]="languageFlag()" />
+        </button>
+
         <button
           ui-button-icon
           data-theme-toggle
@@ -43,16 +40,65 @@
           size="sm"
           type="button"
           [attr.aria-label]="themeToggleLabel()"
-          [attr.title]="themeToggleLabel()"
+          [tooltipPosition]="['bottomLeft', 'topLeft']"
+          [uiTooltip]="themeToggleLabel()"
           [withBorder]="true"
           (click)="theme.toggleTheme()"
         >
-          <ng-icon
-            class="size-4"
-            aria-hidden="true"
-            [name]="themeToggleIcon()"
-          />
+          <ng-icon class="size-4" aria-hidden="true" [name]="themeToggleIcon()" />
         </button>
+
+        <button
+          #navigationDropdown="uiDropdown"
+          ui-button-icon
+          class="hidden sm:inline-flex"
+          id="header-navigation-trigger"
+          type="button"
+          data-header-navigation-trigger
+          dropdownControls="header-navigation-panel"
+          [attr.aria-label]="'app.navigation.open' | transloco"
+          [uiDropdown]="navigationMenu"
+          [tooltipPosition]="['bottomLeft', 'topLeft']"
+          [uiTooltip]="'app.navigation.open' | transloco"
+          [dropdownPosition]="['bottomLeft', 'topLeft']"
+          [withBorder]="true"
+          rounded="all"
+          size="sm"
+        >
+          <ng-icon class="size-4" aria-hidden="true" name="faSolidBars" />
+        </button>
+
+        <ng-template #navigationMenu>
+          <section
+            uiDropdownPanel
+            id="header-navigation-panel"
+            class="w-48 p-2"
+            aria-labelledby="header-navigation-trigger"
+          >
+            <nav class="flex flex-col" [attr.aria-label]="'app.navigation.primary' | transloco">
+              <a
+                class="flex items-center gap-2 rounded-sm px-3 py-2 font-medium focusable hover:surface-300 focus:outline-primary-700 dark:hover:surface-600 dark:focus:outline-primary-300"
+                routerLink="/solar"
+                routerLinkActive="surface-300 font-bold dark:surface-600"
+                ariaCurrentWhenActive="page"
+                (click)="navigationDropdown.close()"
+              >
+                <ng-icon class="size-4" aria-hidden="true" name="faSolidSun" />
+                {{ 'app.navigation.solar' | transloco }}
+              </a>
+              <a
+                class="flex items-center gap-2 rounded-sm px-3 py-2 font-medium focusable hover:surface-300 focus:outline-primary-700 dark:hover:surface-600 dark:focus:outline-primary-300"
+                routerLink="/balancing"
+                routerLinkActive="surface-300 font-bold dark:surface-600"
+                ariaCurrentWhenActive="page"
+                (click)="navigationDropdown.close()"
+              >
+                <ng-icon class="size-4" aria-hidden="true" name="faSolidScaleBalanced" />
+                {{ 'app.navigation.balancing' | transloco }}
+              </a>
+            </nav>
+          </section>
+        </ng-template>
       </div>
     </div>
   </header>
@@ -69,9 +115,7 @@
     <footer
       class="border-t border-primary-400 surface-300 dark:border-secondary-600 dark:surface-800"
     >
-      <div
-        class="mx-auto w-full max-w-screen-2xl px-4 py-6 text-center text-sm sm:px-6"
-      >
+      <div class="mx-auto w-full max-w-screen-2xl px-4 py-6 text-center text-sm sm:px-6">
         &copy; {{ currentYear }} Power Market Dashboard
       </div>
     </footer>
@@ -79,18 +123,35 @@
 </div>
 
 <ui-bottom-navigation
-  ariaLabel="Primary navigation"
+  [ariaLabel]="'app.navigation.primary' | transloco"
   containerSelector="[data-bottom-navigation-container]"
   [mobileOnly]="true"
 >
   <a ui-bottom-navigation-item routerLink="/solar">
     <ng-icon class="size-5" aria-hidden="true" name="faSolidSun" />
-    <span class="max-w-full truncate">Solar</span>
+    <span class="max-w-full truncate">
+      {{ 'app.navigation.solar' | transloco }}
+    </span>
   </a>
   <a ui-bottom-navigation-item routerLink="/balancing">
     <ng-icon class="size-5" aria-hidden="true" name="faSolidScaleBalanced" />
-    <span class="max-w-full truncate">Balancing</span>
+    <span class="max-w-full truncate">
+      {{ 'app.navigation.balancing' | transloco }}
+    </span>
   </a>
 </ui-bottom-navigation>
+
+<button
+  ui-button-icon
+  ngxScrollTop
+  class="fixed right-4 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-40 sm:bottom-4"
+  rounded="all"
+  size="sm"
+  type="button"
+  [attr.aria-label]="'app.scroll-top' | transloco"
+  [withBorder]="true"
+>
+  <ng-icon class="size-4" aria-hidden="true" name="faSolidChevronUp" />
+</button>
 
 <ui-sonner-toaster />

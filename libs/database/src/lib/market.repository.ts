@@ -1,14 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { createHash } from 'node:crypto';
-import {
-  DataSource,
-  EntityManager,
-  In,
-  LessThan,
-  MoreThan,
-  Repository,
-} from 'typeorm';
+import { DataSource, EntityManager, In, LessThan, MoreThan, Repository } from 'typeorm';
+
 import {
   BidPoint,
   Dataset,
@@ -18,6 +12,7 @@ import {
   ImportResult,
   canonicalPoints,
 } from '@power-market-dashboard/market';
+
 import {
   BalancingBidEntity,
   GenerationIntervalEntity,
@@ -28,8 +23,7 @@ import {
   SourceDocumentEntity,
 } from './entities';
 
-const hash = (value: string) =>
-  createHash('sha256').update(value).digest('hex');
+const hash = (value: string) => createHash('sha256').update(value).digest('hex');
 export interface WindowMetadata {
   dataset: Dataset;
   from: Date;
@@ -72,17 +66,12 @@ export class MarketRepository {
 
   async store(manager: EntityManager, job: ImportJob, result: ImportResult) {
     const inWindow = (p: { start: string; end: string }) =>
-      Date.parse(p.start) < Date.parse(job.to) &&
-      Date.parse(p.end) > Date.parse(job.from);
+      Date.parse(p.start) < Date.parse(job.to) && Date.parse(p.end) > Date.parse(job.from);
     const generation = canonicalPoints(result.generation.filter(inWindow));
     const bids = canonicalPoints(result.bids.filter(inWindow));
-    const contentHash = hash(
-      JSON.stringify({ generation, bids, noData: result.noData }),
-    );
+    const contentHash = hash(JSON.stringify({ generation, bids, noData: result.noData }));
     // Serialize event IDs with commit order so SSE cursors cannot skip a concurrent commit.
-    await manager.query(
-      "SELECT pg_advisory_xact_lock(hashtext('market-snapshot-commit'))",
-    );
+    await manager.query("SELECT pg_advisory_xact_lock(hashtext('market-snapshot-commit'))");
     const windows = manager.getRepository(MarketWindowEntity);
     const key = {
       dataset: job.dataset,
@@ -171,8 +160,7 @@ export class MarketRepository {
           })),
         );
     }
-    if (changed || previous?.error)
-      await manager.getRepository(MarketChangeEntity).insert(key);
+    if (changed || previous?.error) await manager.getRepository(MarketChangeEntity).insert(key);
     await windows.upsert(
       {
         ...key,
@@ -187,11 +175,7 @@ export class MarketRepository {
     return changed;
   }
 
-  async windows(
-    datasets: Dataset[],
-    from: string,
-    to: string,
-  ): Promise<WindowMetadata[]> {
+  async windows(datasets: Dataset[], from: string, to: string): Promise<WindowMetadata[]> {
     const windows = await this.windowRepository.find({
       where: {
         dataset: In(datasets),
@@ -217,11 +201,7 @@ export class MarketRepository {
     }));
   }
 
-  async generation(
-    snapshotIds: string[],
-    from: string,
-    to: string,
-  ): Promise<GenerationPoint[]> {
+  async generation(snapshotIds: string[], from: string, to: string): Promise<GenerationPoint[]> {
     const points = await this.generationRepository.find({
       where: {
         snapshotId: In(snapshotIds),
@@ -241,11 +221,7 @@ export class MarketRepository {
     }));
   }
 
-  async bids(
-    snapshotIds: string[],
-    from: string,
-    to: string,
-  ): Promise<BidPoint[]> {
+  async bids(snapshotIds: string[], from: string, to: string): Promise<BidPoint[]> {
     const bids = await this.bidRepository.find({
       where: {
         snapshotId: In(snapshotIds),

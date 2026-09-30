@@ -1,10 +1,5 @@
 export const HU_DOMAIN = '10YHU-MAVIR----U';
-export const DATASETS = [
-  'solar-actual',
-  'solar-forecast',
-  'afrr',
-  'mfrr',
-] as const;
+export const DATASETS = ['solar-actual', 'solar-forecast', 'afrr', 'mfrr'] as const;
 export type Dataset = (typeof DATASETS)[number];
 export type Direction = 'up' | 'down';
 export interface ImportRequest {

@@ -1,17 +1,13 @@
-import { InjectDataSource } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 import { Injectable, Logger, OnModuleDestroy } from '@nestjs/common';
-import { Interval } from '@nestjs/schedule';
 import { ClientProxy, ClientProxyFactory } from '@nestjs/microservices';
+import { Interval } from '@nestjs/schedule';
+import { InjectDataSource } from '@nestjs/typeorm';
 import { firstValueFrom, timeout } from 'rxjs';
+import { DataSource } from 'typeorm';
+
 import { MarketRepository } from '@power-market-dashboard/database';
-import {
-  DATASETS,
-  ImportJob,
-  QUARTER_MS,
-  quarters,
-  utcDay,
-} from '@power-market-dashboard/market';
+import { DATASETS, ImportJob, QUARTER_MS, quarters, utcDay } from '@power-market-dashboard/market';
+
 import { IMPORT_PATTERN, queueOptions } from './queue';
 
 @Injectable()
@@ -29,8 +25,7 @@ export class ImportScheduler implements OnModuleDestroy {
   ) {}
   @Interval(15000)
   async schedule() {
-    if (this.scheduling || process.env.IMPORT_SCHEDULER_ENABLED === 'false')
-      return;
+    if (this.scheduling || process.env.IMPORT_SCHEDULER_ENABLED === 'false') return;
     this.scheduling = true;
     try {
       await this.db.transaction(async (client) => {
@@ -46,11 +41,7 @@ export class ImportScheduler implements OnModuleDestroy {
         const current = Math.floor(now / QUARTER_MS) * QUARTER_MS;
         for (const dataset of DATASETS) {
           if (dataset.startsWith('solar')) {
-            for (const day of [
-              -1,
-              0,
-              ...(dataset === 'solar-forecast' ? [1] : []),
-            ])
+            for (const day of [-1, 0, ...(dataset === 'solar-forecast' ? [1] : [])])
               await this.repository.enqueue(
                 { dataset, ...utcDay(now + day * 86400000), priority: 'live' },
                 client,
@@ -60,10 +51,7 @@ export class ImportScheduler implements OnModuleDestroy {
               new Date(current - 6 * QUARTER_MS).toISOString(),
               new Date(current + QUARTER_MS).toISOString(),
             ))
-              await this.repository.enqueue(
-                { dataset, ...range, priority: 'live' },
-                client,
-              );
+              await this.repository.enqueue({ dataset, ...range, priority: 'live' }, client);
           }
         }
         await client.query(
@@ -72,10 +60,7 @@ export class ImportScheduler implements OnModuleDestroy {
         const history = await client.query<{ updated_at: Date }[]>(
           "SELECT updated_at FROM scheduler_state WHERE key='history'",
         );
-        if (
-          !history[0] ||
-          now - history[0].updated_at.getTime() >= 6 * 3600000
-        ) {
+        if (!history[0] || now - history[0].updated_at.getTime() >= 6 * 3600000) {
           for (let day = 7; day >= 1; day--) {
             const range = utcDay(now - day * 86400000);
             for (const dataset of DATASETS) {
@@ -83,10 +68,7 @@ export class ImportScheduler implements OnModuleDestroy {
                 ? [range]
                 : quarters(range.from, range.to);
               for (const window of windows)
-                await this.repository.enqueue(
-                  { dataset, ...window, priority: 'history' },
-                  client,
-                );
+                await this.repository.enqueue({ dataset, ...window, priority: 'history' }, client);
             }
           }
           await client.query(
@@ -117,9 +99,7 @@ export class ImportScheduler implements OnModuleDestroy {
           );
           for (const job of rows) {
             await firstValueFrom(
-              this.clients[priority]
-                .emit(IMPORT_PATTERN, { id: job.id })
-                .pipe(timeout(10000)),
+              this.clients[priority].emit(IMPORT_PATTERN, { id: job.id }).pipe(timeout(10000)),
             );
             await client.query(
               "UPDATE import_jobs SET state='published',updated_at=clock_timestamp() WHERE id=$1",
@@ -135,8 +115,6 @@ export class ImportScheduler implements OnModuleDestroy {
     }
   }
   async onModuleDestroy() {
-    await Promise.all(
-      Object.values(this.clients).map((client) => client.close()),
-    );
+    await Promise.all(Object.values(this.clients).map((client) => client.close()));
   }
 }

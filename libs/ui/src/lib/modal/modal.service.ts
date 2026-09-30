@@ -20,10 +20,7 @@ export class ModalService {
     return this.open(data, false);
   }
 
-  private open(
-    data: ModalConfirmData,
-    destructive: boolean,
-  ): DialogRef<boolean> {
+  private open(data: ModalConfirmData, destructive: boolean): DialogRef<boolean> {
     const id = ModalService.nextId++;
     const dialogData: ModalConfirmDialogData = {
       ...data,

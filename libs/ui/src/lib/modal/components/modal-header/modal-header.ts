@@ -1,10 +1,4 @@
-import {
-  Component,
-  booleanAttribute,
-  inject,
-  input,
-  output,
-} from '@angular/core';
+import { Component, booleanAttribute, inject, input, output } from '@angular/core';
 
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { faSolidXmark } from '@ng-icons/font-awesome/solid';

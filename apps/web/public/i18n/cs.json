@@ -1,0 +1,224 @@
+{
+  "app": {
+    "home": "Domovská stránka Power Market Dashboard",
+    "language": {
+      "switch-to-cs": "Přepnout do češtiny",
+      "switch-to-en": "Přepnout do angličtiny"
+    },
+    "navigation": {
+      "balancing": "Regulační energie",
+      "open": "Otevřít navigaci",
+      "primary": "Hlavní navigace",
+      "solar": "Solární výroba"
+    },
+    "scroll-top": "Posunout nahoru",
+    "theme": {
+      "switch-to-dark": "Přepnout na tmavý motiv",
+      "switch-to-light": "Přepnout na světlý motiv"
+    }
+  },
+  "app-update": {
+    "confirm": "Aktualizovat",
+    "description": "Načtěte aplikaci znovu a použijte nejnovější verzi.",
+    "dismiss": "Teď ne",
+    "title": "Je dostupná nová verze"
+  },
+  "balancing": {
+    "badges": {
+      "source-tooltip": "Data pro maďarský trh pocházejí z platformy ENTSO-E."
+    },
+    "title": "Žebříček nabídek regulační energie",
+    "description": "Sledujte publikované nabídky aFRR a mFRR v Maďarsku, mezní cenu na zvoleném kumulativním výkonu a její vývoj za 24 hodin.",
+    "filters": {
+      "title": "Filtry regulační energie",
+      "product": "Produkt",
+      "direction": "Směr",
+      "product-type": "Typ nabídky",
+      "currency": "Měna",
+      "date": "Den dodávky",
+      "quarter": "Čtvrthodina dodávky",
+      "target": "Cílový výkon (MW)"
+    },
+    "direction": {
+      "up": "Kladná",
+      "down": "Záporná"
+    },
+    "metrics": {
+      "target-price": "Cena na cíli",
+      "total-volume": "Nabízený výkon",
+      "bids": "Publikované nabídky",
+      "steps": "cenových stupňů",
+      "quality": "Kvalita dat"
+    },
+    "series": {
+      "ladder": "Žebříček nabídek",
+      "target": "Zvolený cíl",
+      "history": "Cena na cíli"
+    },
+    "ladder-chart": {
+      "title": "Cenový žebřík nabídek",
+      "description": "Publikovaná nabídková cena podle kumulativního výkonu; cíl {{ target }} MW je zvýrazněn.",
+      "accessible": "Schodový graf ceny regulačních nabídek podle kumulativního výkonu."
+    },
+    "history-chart": {
+      "title": "24hodinový vývoj cílové ceny",
+      "description": "Cena pokrývající {{ target }} MW v každé dodávkové čtvrthodině. Mezery znamenají chybějící nebo nedostatečné nabídky.",
+      "accessible": "Čárový graf zvolené cílové ceny regulační energie za 24 hodin."
+    },
+    "bid-table": {
+      "title": "Detail publikovaných nabídek",
+      "description": "Použitelné nabídky jsou v pořadí ladderu; vyřazené následují bez kumulativní hodnoty.",
+      "id": "ID nabídky",
+      "price": "Cena",
+      "volume": "Výkon",
+      "cumulative": "Kumulativně",
+      "flags": "Příznaky"
+    },
+    "history-table": {
+      "title": "Intervaly cílové ceny",
+      "description": "Úplnost a dostupný výkon pro každou čtvrthodinu historie.",
+      "quarter": "Čtvrthodina dodávky",
+      "price": "Cílová cena",
+      "volume": "Dostupný výkon",
+      "status": "Stav"
+    },
+    "flags": {
+      "cancelled": "Zrušeno",
+      "unavailable": "Nedostupné",
+      "unknown": "Neznámá dostupnost"
+    },
+    "method-note": "Jde o analytické pořadí publikovaných nabídek, nikoli simulaci aktivace. Propojená ani výhradní omezení se neoptimalizují a měny se nepřepočítávají."
+  },
+  "not-found": {
+    "back": "Zpět na dashboard",
+    "description": "Hledaná stránka neexistuje nebo byla přesunuta.",
+    "title": "Stránka nenalezena"
+  },
+  "pwa": {
+    "reload-action": "Načíst znovu",
+    "reload-description": "Soubor aplikace uložený v mezipaměti již nelze obnovit.",
+    "reload-title": "Aplikaci je nutné načíst znovu"
+  },
+  "routes": {
+    "balancing": "Regulační energie",
+    "not-found": "Stránka nenalezena",
+    "solar": "Solární výroba"
+  },
+  "solar": {
+    "badges": {
+      "market-tooltip": "Data jsou zobrazena pro Maďarsko v tržním časovém pásmu Europe/Budapest."
+    },
+    "title": "Solární výroba",
+    "description": "Porovnejte publikovanou day-ahead predikci solární výroby v Maďarsku se skutečností a vyhodnoťte chybu predikce.",
+    "date-controls": "Ovládání dne dodávky solární výroby",
+    "date": "Den dodávky",
+    "previous-day": "Předchozí den",
+    "today": "Dnes",
+    "next-day": "Následující den",
+    "method-note": "Odchylka je skutečnost minus predikce. Chybějící intervaly zůstávají mezerami a nikdy se nepovažují za nulu.",
+    "freshness": {
+      "badge": "Skutečnost zpožděna o {{ minutes }} min",
+      "message": "Poslední skutečný interval skončil ve {{ time }}. ENTSO-E zatím novější data nezveřejnilo."
+    },
+    "metrics": {
+      "actual": "Poslední skutečnost",
+      "interval": "Interval",
+      "forecast": "Odpovídající predikce",
+      "deviation": "Poslední odchylka",
+      "mae": "Průměrná absolutní chyba",
+      "rmse": "Střední kvadratická chyba",
+      "coverage": "Společné pokrytí"
+    },
+    "series": {
+      "actual": "Skutečná výroba",
+      "forecast": "Day-ahead predikce",
+      "deviation": "Odchylka"
+    },
+    "production-chart": {
+      "title": "Predikce vs. skutečnost",
+      "description": "Čtvrthodinová solární výroba v MW v maďarském tržním čase.",
+      "accessible": "Čárový graf porovnávající skutečnou a predikovanou solární výrobu."
+    },
+    "deviation-chart": {
+      "title": "Odchylka predikce",
+      "description": "Kladné hodnoty znamenají výrobu nad predikcí, záporné pod predikcí.",
+      "accessible": "Sloupcový graf odchylek solární predikce."
+    },
+    "table": {
+      "title": "Detail intervalů",
+      "description": "Přesné hodnoty zarovnané na jednotlivé intervaly zdroje.",
+      "time": "Čas",
+      "actual": "Skutečnost (MW)",
+      "forecast": "Predikce (MW)",
+      "deviation-mw": "Odchylka (MW)",
+      "deviation-percent": "Odchylka (%)"
+    }
+  },
+  "ui": {
+    "calendar": {
+      "next-month": "Další měsíc",
+      "next-period": "Další období",
+      "next-year": "Další rok",
+      "previous-month": "Předchozí měsíc",
+      "previous-period": "Předchozí období",
+      "previous-year": "Předchozí rok"
+    },
+    "cancel": "Zrušit",
+    "input": {
+      "clear": "Vymazat pole",
+      "date-placeholder": "RRRR-MM-DD",
+      "open-date-picker": "Otevřít výběr data",
+      "select": "Vybrat",
+      "select-date": "Vybrat datum",
+      "select-option": "Vyberte možnost"
+    },
+    "modal": {
+      "close": "Zavřít"
+    },
+    "reset": "Obnovit",
+    "retry": "Zkusit znovu",
+    "save": "Uložit",
+    "validation": {
+      "email": "Zadejte platnou e-mailovou adresu",
+      "invalid": "Neplatná hodnota",
+      "maximum": "Maximální hodnota je {{value}}",
+      "maximum-date": "Nejzazší datum je {{value}}",
+      "maximum-length": "Délka může být nejvýše {{value}} znaků",
+      "minimum": "Minimální hodnota je {{value}}",
+      "minimum-date": "Nejdřívější datum je {{value}}",
+      "minimum-length": "Délka musí být alespoň {{value}} znaků",
+      "parse": "Zadejte platnou hodnotu",
+      "pattern": "Hodnota má neplatný formát",
+      "required": "Toto pole je povinné",
+      "too-early": "Datum je příliš brzké",
+      "too-large": "Hodnota je příliš vysoká",
+      "too-late": "Datum je příliš pozdní",
+      "too-long": "Hodnota je příliš dlouhá",
+      "too-short": "Hodnota je příliš krátká",
+      "too-small": "Hodnota je příliš nízká"
+    }
+  },
+  "market": {
+    "badge-tooltips": {
+      "complete": "Datová sada obsahuje všechny očekávané záznamy pro zvolený interval.",
+      "connection": {
+        "connecting": "Aplikace navazuje spojení pro automatické aktualizace dat.",
+        "delayed": "Zdrojová data nebo jejich aktualizace jsou opožděné.",
+        "live": "Živá aktualizace je připojena a nová data se načítají automaticky.",
+        "offline": "Živé aktualizace nejsou dostupné; zobrazená data se automaticky neobnovují."
+      },
+      "incomplete": "Některé očekávané záznamy chybí; výsledky mohou být neúplné."
+    },
+    "complete": "Kompletní",
+    "connecting": "Připojuji živé aktualizace",
+    "delayed": "Data mají zpoždění",
+    "incomplete": "Neúplné",
+    "live": "Živě",
+    "load-error": "Čerstvá data se nepodařilo načíst. Poslední platný snapshot zůstává zobrazen.",
+    "no-data": "Pro tento výběr nejsou dostupná data.",
+    "offline": "Živé aktualizace nejsou dostupné",
+    "refresh": "Obnovit",
+    "source": "Zdroj",
+    "updated": "Aktualizováno"
+  }
+}

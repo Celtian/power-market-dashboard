@@ -13,38 +13,29 @@ const radiusClasses = [
 ] as const;
 
 describe.each(styleFactories)('%s styles', (_name, styles) => {
-  it.each(radiusClasses)(
-    'maps the %s radius to its logical class',
-    (rounded, expectedClass) => {
-      const classes = styles({ rounded }).split(' ');
+  it.each(radiusClasses)('maps the %s radius to its logical class', (rounded, expectedClass) => {
+    const classes = styles({ rounded }).split(' ');
 
-      if (expectedClass) {
-        expect(classes).toContain(expectedClass);
-      } else {
-        expect(
-          classes.some((className) => className.startsWith('rounded-')),
-        ).toBe(false);
-      }
-    },
-  );
+    if (expectedClass) {
+      expect(classes).toContain(expectedClass);
+    } else {
+      expect(classes.some((className) => className.startsWith('rounded-'))).toBe(false);
+    }
+  });
 
   it('keeps border styling independent from corner rounding', () => {
     const classes = styles({ withBorder: true, rounded: 'none' }).split(' ');
 
     expect(classes).toContain('border');
     expect(classes).toContain('border-primary-400');
-    expect(classes.some((className) => className.startsWith('rounded-'))).toBe(
-      false,
-    );
+    expect(classes.some((className) => className.startsWith('rounded-'))).toBe(false);
   });
 
   it('defaults to neither a border nor rounded corners', () => {
     const classes = styles().split(' ');
 
     expect(classes).not.toContain('border');
-    expect(classes.some((className) => className.startsWith('rounded-'))).toBe(
-      false,
-    );
+    expect(classes.some((className) => className.startsWith('rounded-'))).toBe(false);
   });
 
   it('provides a destructive danger variant', () => {

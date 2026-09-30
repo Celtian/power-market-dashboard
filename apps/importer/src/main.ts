@@ -1,16 +1,17 @@
-import { EntsoeConfig } from './app/entsoe/entsoe.config';
-import { queueOptions, provisionQueues } from './app/import/queue';
 /**
  * This is not a production server yet!
  * This is only a minimal backend to get started.
  */
-
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadEnvFile } from 'node:process';
+
 import { AppModule } from './app/app.module';
+import { EntsoeConfig } from './app/entsoe/entsoe.config';
+import { configureHttp } from './app/http';
+import { provisionQueues, queueOptions } from './app/import/queue';
 
 async function bootstrap() {
   const localEnvFile = join(process.cwd(), 'apps/importer/.env');
@@ -29,18 +30,14 @@ async function bootstrap() {
   app.connectMicroservice(queueOptions('live'));
   app.connectMicroservice(queueOptions('history'));
   await app.startAllMicroservices();
-  const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
+  configureHttp(app);
   const port = process.env.PORT || 3001;
   await app.listen(port);
-  Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`,
-  );
+  Logger.log(`Importer listening at http://localhost:${port}/api`);
+  Logger.log('OpenAPI available at /api/docs');
 }
 
 bootstrap().catch(() => {
-  Logger.error(
-    'Importer startup failed; check configuration and infrastructure',
-  );
+  Logger.error('Importer startup failed; check configuration and infrastructure');
   process.exitCode = 1;
 });

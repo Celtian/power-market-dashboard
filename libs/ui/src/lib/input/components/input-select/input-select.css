@@ -1,0 +1,30 @@
+@reference '../../../../css/styles.css';
+
+[data-select-popup] {
+  @apply z-50 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-primary-400 bg-primary-200 py-1 shadow-lg outline-none dark:border-secondary-600 dark:bg-secondary-700;
+}
+
+[ngListbox] {
+  @apply flex flex-col gap-0.5 outline-none;
+}
+
+[ngOption] {
+  @apply flex cursor-pointer items-center px-4 py-2 text-sm text-primary-contrast-200 outline-none dark:text-secondary-contrast-400;
+}
+
+[ngOption]:hover,
+[ngOption][data-active='true'] {
+  @apply bg-primary-300 text-primary-contrast-300 dark:bg-secondary-600 dark:text-secondary-contrast-600;
+}
+
+[ngOption][data-active='true'] {
+  @apply ring-2 ring-primary-500 ring-inset;
+}
+
+[ngOption][aria-selected='true'] {
+  @apply bg-primary-400 text-primary-contrast-400 dark:bg-primary-400 dark:text-primary-contrast-400;
+}
+
+[ngOption][aria-disabled='true'] {
+  @apply cursor-not-allowed opacity-50;
+}

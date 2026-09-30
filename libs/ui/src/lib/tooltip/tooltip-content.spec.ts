@@ -6,9 +6,7 @@ import { TooltipContent } from './tooltip-content';
 @Component({
   imports: [TooltipContent],
   template: `
-    <ng-template #contentTemplate
-      ><strong>Template content</strong></ng-template
-    >
+    <ng-template #contentTemplate><strong>Template content</strong></ng-template>
     <ui-tooltip-content
       arrowPlacement="bottomRight"
       elementId="tooltip-test"
@@ -49,12 +47,8 @@ describe('TooltipContent', () => {
 
     await fixture.whenStable();
 
-    const tooltip = fixture.nativeElement.querySelector(
-      'ui-tooltip-content',
-    ) as HTMLElement;
-    expect(tooltip.querySelector('strong')?.textContent).toBe(
-      'Template content',
-    );
+    const tooltip = fixture.nativeElement.querySelector('ui-tooltip-content') as HTMLElement;
+    expect(tooltip.querySelector('strong')?.textContent).toBe('Template content');
     expect(tooltip.style.maxWidth).toBe('');
     expect(tooltip.classList).not.toContain('whitespace-normal');
   });

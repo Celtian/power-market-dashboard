@@ -78,32 +78,23 @@ describe('SonnerService', () => {
     ['warning', toast.warning],
     ['error', toast.error],
     ['loading', toast.loading],
-  ] as const)(
-    'should create a toaster and delegate %s notifications',
-    (method, toastMethod) => {
-      vi.mocked(toastMethod).mockReturnValue(17);
-      const options = { description: 'Details' };
+  ] as const)('should create a toaster and delegate %s notifications', (method, toastMethod) => {
+    vi.mocked(toastMethod).mockReturnValue(17);
+    const options = { description: 'Details' };
 
-      const result = service[method]('Message', options);
+    const result = service[method]('Message', options);
 
-      expect(result).toBe(17);
-      expect(toastMethod).toHaveBeenCalledWith('Message', options);
-      expect(overlay.create).toHaveBeenCalledWith({
-        hasBackdrop: false,
-        panelClass: 'ui-sonner-overlay-pane',
-        positionStrategy: globalPosition,
-      });
-      expect(overlayRef.attach.mock.calls[0][0]).toBeInstanceOf(
-        ComponentPortal,
-      );
-      expect(overlayRef.hostElement.style.zIndex).toBe(
-        `${UI_OVERLAY_Z_INDEX.toast}`,
-      );
-      expect(overlayRef.overlayElement.style.zIndex).toBe(
-        `${UI_OVERLAY_Z_INDEX.toast}`,
-      );
-    },
-  );
+    expect(result).toBe(17);
+    expect(toastMethod).toHaveBeenCalledWith('Message', options);
+    expect(overlay.create).toHaveBeenCalledWith({
+      hasBackdrop: false,
+      panelClass: 'ui-sonner-overlay-pane',
+      positionStrategy: globalPosition,
+    });
+    expect(overlayRef.attach.mock.calls[0][0]).toBeInstanceOf(ComponentPortal);
+    expect(overlayRef.hostElement.style.zIndex).toBe(`${UI_OVERLAY_Z_INDEX.toast}`);
+    expect(overlayRef.overlayElement.style.zIndex).toBe(`${UI_OVERLAY_Z_INDEX.toast}`);
+  });
 
   it('should create the overlay only once', () => {
     service.show('First');

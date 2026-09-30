@@ -1,20 +1,49 @@
+import { BadRequestException, Controller, Get, Query, Res } from '@nestjs/common';
 import {
-  BadRequestException,
-  Controller,
-  Get,
-  Query,
-  Res,
-} from '@nestjs/common';
+  ApiBadRequestResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiProduces,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
 import { Response } from 'express';
+
 import { EntsoeService } from './entsoe.service';
 
 const ENTSOE_TIMESTAMP_PATTERN = /^\d{12}$/;
 
+@ApiTags('ENTSO-E')
 @Controller('entsoe')
 export class EntsoeController {
   constructor(private readonly entsoeService: EntsoeService) {}
 
   @Get('day-ahead-prices')
+  @ApiOperation({ summary: 'Fetch day-ahead prices from ENTSO-E' })
+  @ApiQuery({
+    name: 'periodStart',
+    required: true,
+    description: 'Inclusive interval start in YYYYMMDDHHmm format.',
+    schema: { type: 'string', pattern: '^\\d{12}$', example: '202609270000' },
+  })
+  @ApiQuery({
+    name: 'periodEnd',
+    required: true,
+    description: 'Exclusive interval end in YYYYMMDDHHmm format.',
+    schema: { type: 'string', pattern: '^\\d{12}$', example: '202609280000' },
+  })
+  @ApiProduces('application/xml')
+  @ApiOkResponse({
+    description: 'The ENTSO-E day-ahead price document.',
+    content: {
+      'application/xml': {
+        schema: { type: 'string' },
+      },
+    },
+  })
+  @ApiBadRequestResponse({
+    description: 'The timestamps are missing, malformed, or do not form an increasing interval.',
+  })
   async getDayAheadPrices(
     @Query('periodStart') periodStart: string | undefined,
     @Query('periodEnd') periodEnd: string | undefined,

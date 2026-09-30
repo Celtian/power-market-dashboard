@@ -2,7 +2,7 @@
 
 Bun/Nx workspace with a NestJS API, a NestJS importer, PostgreSQL 17 and RabbitMQ.
 The backend serves Hungarian solar forecasts/actuals and published aFRR/mFRR offer
-ladders. Angular is intentionally unchanged.
+ladders. The Angular trader dashboard consumes the REST snapshots and refreshes\nthrough the SSE change stream.
 
 ```mermaid
 flowchart LR
@@ -36,25 +36,31 @@ Run in separate terminals:
 ```sh
 bun nx serve api
 bun nx serve importer
+bun nx serve web
 ```
 
+The web development server proxies `/api` to `http://localhost:3000`. Production
+deployments must route `/api` to the NestJS API and disable response buffering
+for the long-lived SSE endpoint.
+
 API: `http://localhost:3000/api`; importer: `http://localhost:3001/api`.
-OpenAPI UI: `http://localhost:3000/api/docs`; JSON: `/api/docs-json`.
+OpenAPI UI and JSON: API `/api/docs` and `/api/docs-json` on port `3000`;
+importer `/api/docs` and `/api/docs-json` on port `3001`.
 The existing importer `/api/entsoe/day-ahead-prices` endpoint still uses
 `ENTSOE_DOMAIN` (default CZ). New solar/balancing imports always use Hungary,
 `10YHU-MAVIR----U`.
 
-| Environment | Purpose |
-| --- | --- |
-| `DATABASE_URL` | Required PostgreSQL connection for both applications/migrations |
-| `RABBITMQ_URL` | Required AMQP connection for importer |
-| `ENTSOE_SECURITY_TOKEN` | Private source token, importer only |
-| `ENTSOE_API_URL` | Defaults to `https://web-api.tp.entsoe.eu/api` |
-| `ENTSOE_TIMEOUT_MS` | Per-request timeout, default 30000 ms |
-| `ENTSOE_DOMAIN` | Legacy day-ahead price endpoint only |
-| `PORT` | API default 3000, importer default 3001 |
+| Environment                | Purpose                                                                  |
+| -------------------------- | ------------------------------------------------------------------------ |
+| `DATABASE_URL`             | Required PostgreSQL connection for both applications/migrations          |
+| `RABBITMQ_URL`             | Required AMQP connection for importer                                    |
+| `ENTSOE_SECURITY_TOKEN`    | Private source token, importer only                                      |
+| `ENTSOE_API_URL`           | Defaults to `https://web-api.tp.entsoe.eu/api`                           |
+| `ENTSOE_TIMEOUT_MS`        | Per-request timeout, default 30000 ms                                    |
+| `ENTSOE_DOMAIN`            | Legacy day-ahead price endpoint only                                     |
+| `PORT`                     | API default 3000, importer default 3001                                  |
 | `IMPORT_SCHEDULER_ENABLED` | Set `false` to disable automatic scheduling; dispatcher/worker still run |
-| `RABBITMQ_QUEUE_PREFIX` | Default `market`; isolate independent deployments sharing a broker |
+| `RABBITMQ_QUEUE_PREFIX`    | Default `market`; isolate independent deployments sharing a broker       |
 
 ## Data and freshness
 

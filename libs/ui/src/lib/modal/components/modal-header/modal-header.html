@@ -8,16 +8,16 @@
 <div class="flex shrink-0 items-center gap-2">
   <ng-content select="[modalHeaderAction]" />
   @if (showCloseButton()) {
-  <button
-    ui-button-icon
-    type="button"
-    rounded="all"
-    size="sm"
-    [attr.aria-label]="i18n().modal.close"
-    [withBorder]="true"
-    (click)="closeClicked.emit()"
-  >
-    <ng-icon aria-hidden="true" name="faSolidXmark" />
-  </button>
+    <button
+      ui-button-icon
+      type="button"
+      rounded="all"
+      size="sm"
+      [attr.aria-label]="i18n().modal.close"
+      [withBorder]="true"
+      (click)="closeClicked.emit()"
+    >
+      <ng-icon aria-hidden="true" name="faSolidXmark" />
+    </button>
   }
 </div>

@@ -14,38 +14,70 @@
       (() => {
         let theme;
         try {
-          const storedTheme = localStorage.getItem("theme");
+          const storedTheme = localStorage.getItem('theme');
           theme =
-            storedTheme === "light" || storedTheme === "dark"
+            storedTheme === 'light' || storedTheme === 'dark'
               ? storedTheme
-              : window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
         } catch {
-          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
 
-        document.documentElement.classList.toggle("dark", theme === "dark");
+        document.documentElement.classList.toggle('dark', theme === 'dark');
         document.documentElement.style.colorScheme = theme;
         document
           .querySelector('meta[name="theme-color"]')
-          ?.setAttribute("content", theme === "dark" ? "#2a3444" : "#1d4ed8");
+          ?.setAttribute('content', theme === 'dark' ? '#2a3444' : '#1d4ed8');
       })();
     </script>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link
-      rel="apple-touch-icon"
-      sizes="192x192"
-      href="icons/icon-192x192.png"
-    />
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192x192.png" />
     <link rel="manifest" href="manifest.webmanifest" />
   </head>
   <body class="surface-200 dark:surface-700">
-    <app-root></app-root>
-    <noscript
-      >Please enable JavaScript to continue using this application.</noscript
-    >
+    <app-root>
+      <div class="flex h-screen w-screen items-center justify-center p-4" data-app-loading-logo>
+        <svg
+          class="h-auto w-full max-w-sm"
+          xmlns="http://www.w3.org/2000/svg"
+          width="760"
+          height="128"
+          viewBox="0 0 760 128"
+          role="img"
+          aria-label="Power Market Dashboard"
+        >
+          <g fill="none" stroke="#f59e0b" stroke-linecap="round" stroke-width="7">
+            <path d="M52 13v8" />
+            <path d="m25 24 6 6" />
+            <path d="M14 51h9" />
+            <path d="m25 79 6-6" />
+            <path d="m79 24-6 6" />
+            <path d="M81 51h9" />
+          </g>
+          <circle cx="52" cy="52" r="24" fill="#f59e0b" />
+          <g fill="#2563eb">
+            <rect x="50" y="55" width="64" height="15" rx="6" />
+            <rect x="39" y="73" width="64" height="15" rx="6" />
+            <rect x="28" y="91" width="64" height="15" rx="6" />
+          </g>
+          <text
+            x="144"
+            y="64"
+            fill="currentColor"
+            font-family="ui-sans-serif, system-ui, sans-serif"
+            font-size="46"
+            font-weight="700"
+            dominant-baseline="middle"
+            textLength="592"
+            lengthAdjust="spacingAndGlyphs"
+          >
+            Power Market Dashboard
+          </text>
+        </svg>
+      </div>
+    </app-root>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
   </body>
 </html>

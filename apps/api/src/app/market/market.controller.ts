@@ -1,27 +1,10 @@
-import {
-  solarSchema,
-  ladderSchema,
-  historySchema,
-  statusSchema,
-} from './schemas';
-import {
-  BadRequestException,
-  Controller,
-  Get,
-  Headers,
-  Query,
-  Sse,
-} from '@nestjs/common';
-import {
-  ApiHeader,
-  ApiOkResponse,
-  ApiOperation,
-  ApiProduces,
-  ApiTags,
-} from '@nestjs/swagger';
+import { BadRequestException, Controller, Get, Headers, Query, Sse } from '@nestjs/common';
+import { ApiHeader, ApiOkResponse, ApiOperation, ApiProduces, ApiTags } from '@nestjs/swagger';
+
 import { EventsService } from './events.service';
 import { MarketService } from './market.service';
 import { LadderQuery, PriceHistoryQuery, RangeQuery } from './queries';
+import { historySchema, ladderSchema, solarSchema, statusSchema } from './schemas';
 
 @ApiTags('Hungarian market')
 @Controller()
@@ -32,13 +15,11 @@ export class MarketController {
   ) {}
   @Get('solar')
   @ApiOperation({
-    summary:
-      'Day-ahead solar forecast, actual generation and deviations (max 31 days)',
+    summary: 'Day-ahead solar forecast, actual generation and deviations (max 31 days)',
   })
   @ApiOkResponse({
     schema: solarSchema,
-    description:
-      'Interval series in MW, duration-weighted MAE/RMSE, coverage and source metadata.',
+    description: 'Interval series in MW, duration-weighted MAE/RMSE, coverage and source metadata.',
   })
   solar(@Query() query: RangeQuery) {
     return this.market.solar(query);
@@ -55,8 +36,7 @@ export class MarketController {
   }
   @Get('balancing/price-history')
   @ApiOperation({
-    summary:
-      'Price at fixed cumulative MW across delivery quarters (max 7 days)',
+    summary: 'Price at fixed cumulative MW across delivery quarters (max 7 days)',
   })
   @ApiOkResponse({
     schema: historySchema,
@@ -80,8 +60,7 @@ export class MarketController {
   @ApiHeader({
     name: 'Last-Event-ID',
     required: false,
-    description:
-      'Durable change cursor; omit for ready event and initial REST refresh.',
+    description: 'Durable change cursor; omit for ready event and initial REST refresh.',
   })
   eventsStream(@Headers('last-event-id') lastId?: string) {
     if (

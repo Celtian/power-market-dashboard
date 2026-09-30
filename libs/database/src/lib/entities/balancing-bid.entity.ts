@@ -1,7 +1,9 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
+
 import { Direction } from '@power-market-dashboard/market';
-import { numericTransformer } from './numeric.transformer';
+
 import { MarketSnapshotEntity } from './market-snapshot.entity';
+import { numericTransformer } from './numeric.transformer';
 
 @Entity('balancing_bids')
 export class BalancingBidEntity {

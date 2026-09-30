@@ -1,0 +1,69 @@
+@if (logoType() === 'responsive') {
+  <svg
+    class="h-full w-auto shrink-0 sm:hidden"
+    xmlns="http://www.w3.org/2000/svg"
+    width="128"
+    height="128"
+    viewBox="0 0 128 128"
+    data-logo="icon"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <g fill="none" stroke="#f59e0b" stroke-linecap="round" stroke-width="7">
+      <path d="M52 13v8" />
+      <path d="m25 24 6 6" />
+      <path d="M14 51h9" />
+      <path d="m25 79 6-6" />
+      <path d="m79 24-6 6" />
+      <path d="M81 51h9" />
+    </g>
+    <circle cx="52" cy="52" r="24" fill="#f59e0b" />
+    <g fill="#2563eb">
+      <rect x="50" y="55" width="64" height="15" rx="6" />
+      <rect x="39" y="73" width="64" height="15" rx="6" />
+      <rect x="28" y="91" width="64" height="15" rx="6" />
+    </g>
+  </svg>
+}
+
+<svg
+  class="h-full w-auto shrink-0"
+  xmlns="http://www.w3.org/2000/svg"
+  width="760"
+  height="128"
+  viewBox="0 0 760 128"
+  data-logo="landscape"
+  aria-hidden="true"
+  focusable="false"
+  [class.hidden]="logoType() === 'responsive'"
+  [class.sm:block]="logoType() === 'responsive'"
+>
+  <g fill="none" stroke="#f59e0b" stroke-linecap="round" stroke-width="7">
+    <path d="M52 13v8" />
+    <path d="m25 24 6 6" />
+    <path d="M14 51h9" />
+    <path d="m25 79 6-6" />
+    <path d="m79 24-6 6" />
+    <path d="M81 51h9" />
+  </g>
+  <circle cx="52" cy="52" r="24" fill="#f59e0b" />
+  <g fill="#2563eb">
+    <rect x="50" y="55" width="64" height="15" rx="6" />
+    <rect x="39" y="73" width="64" height="15" rx="6" />
+    <rect x="28" y="91" width="64" height="15" rx="6" />
+  </g>
+  <text
+    x="144"
+    y="64"
+    fill="currentColor"
+    font-family="ui-sans-serif, system-ui, sans-serif"
+    font-size="46"
+    font-weight="700"
+    dominant-baseline="middle"
+    textLength="592"
+    lengthAdjust="spacingAndGlyphs"
+    data-logo-wordmark
+  >
+    Power Market Dashboard
+  </text>
+</svg>

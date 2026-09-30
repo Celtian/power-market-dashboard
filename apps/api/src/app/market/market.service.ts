@@ -1,10 +1,8 @@
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { BadRequestException, Injectable } from '@nestjs/common';
-import {
-  MarketRepository,
-  WindowMetadata,
-} from '@power-market-dashboard/database';
+
+import { MarketRepository, WindowMetadata } from '@power-market-dashboard/database';
 import {
   BidPoint,
   DATASETS,
@@ -13,12 +11,8 @@ import {
   ladder,
   quarters,
 } from '@power-market-dashboard/market';
-import {
-  LadderQuery,
-  PriceHistoryQuery,
-  RangeQuery,
-  validateRange,
-} from './queries';
+
+import { LadderQuery, PriceHistoryQuery, RangeQuery, validateRange } from './queries';
 
 const ids = (windows: WindowMetadata[]) =>
   windows.flatMap((w) => (w.snapshotId ? [w.snapshotId] : []));
@@ -81,9 +75,7 @@ export class MarketService {
     const result = compareSolar(actual, forecast, query.from, query.to);
     return {
       ...result,
-      complete:
-        result.summary.coverage === 1 &&
-        windows.every((w) => !w.error && !w.noData),
+      complete: result.summary.coverage === 1 && windows.every((w) => !w.error && !w.noData),
       metadata: metadata(windows),
     };
   }
@@ -105,10 +97,7 @@ export class MarketService {
     const from = new Date(time).toISOString(),
       to = new Date(time + QUARTER_MS).toISOString();
     const windows = await this.repository.windows([query.product], from, to);
-    const bids = this.select(
-      await this.repository.bids(ids(windows), from, to),
-      query,
-    );
+    const bids = this.select(await this.repository.bids(ids(windows), from, to), query);
     const result = ladder(bids, query.direction, query.targetMw);
     const complete =
       windows.length === 1 &&
@@ -134,32 +123,19 @@ export class MarketService {
   }
   async history(query: PriceHistoryQuery) {
     validateRange(query, 7);
-    const windows = await this.repository.windows(
-      [query.product],
-      query.from,
-      query.to,
-    );
-    const bids = this.select(
-      await this.repository.bids(ids(windows), query.from, query.to),
-      query,
-    );
+    const windows = await this.repository.windows([query.product], query.from, query.to);
+    const bids = this.select(await this.repository.bids(ids(windows), query.from, query.to), query);
     const data = quarters(query.from, query.to).map((range) => {
       const relevant = bids.filter(
         (b) =>
-          Date.parse(b.start) < Date.parse(range.to) &&
-          Date.parse(b.end) > Date.parse(range.from),
+          Date.parse(b.start) < Date.parse(range.to) && Date.parse(b.end) > Date.parse(range.from),
       );
       const window = windows.find(
         (w) =>
-          w.from.getTime() === Date.parse(range.from) &&
-          w.to.getTime() === Date.parse(range.to),
+          w.from.getTime() === Date.parse(range.from) && w.to.getTime() === Date.parse(range.to),
       );
       const result = ladder(relevant, query.direction, query.targetMw);
-      const complete =
-        !!window?.snapshotId &&
-        !window.noData &&
-        !window.error &&
-        result.complete;
+      const complete = !!window?.snapshotId && !window.noData && !window.error && result.complete;
       return {
         ...range,
         price: complete ? result.targetPrice : null,
@@ -184,7 +160,23 @@ export class MarketService {
       `SELECT DISTINCT ON (dataset) dataset,updated_at AS "lastAttemptAt",state,error,fetch_ms AS "fetchMs",queue_ms AS "queueMs",processing_ms AS "processingMs" FROM import_jobs ORDER BY dataset,updated_at DESC,id DESC`,
     );
     const successful = await this.db.query<SuccessRow[]>(
-      `SELECT dataset,max(last_success_at) AS "lastSuccessAt",max("to") FILTER (WHERE snapshot_id IS NOT NULL AND NOT no_data) AS "latestIntervalEnd" FROM market_windows GROUP BY dataset`,
+      `SELECT
+         w.dataset,
+         max(w.last_success_at) AS "lastSuccessAt",
+         max(
+           CASE
+             WHEN w.dataset IN ('solar-actual','solar-forecast') THEN (
+               SELECT max(g.end_at)
+               FROM generation_intervals g
+               WHERE g.snapshot_id=w.snapshot_id
+                 AND g.mw IS NOT NULL
+                 AND NOT g.cancelled
+             )
+             ELSE w."to"
+           END
+         ) FILTER (WHERE w.snapshot_id IS NOT NULL AND NOT w.no_data) AS "latestIntervalEnd"
+       FROM market_windows w
+       GROUP BY w.dataset`,
     );
     const groups = await this.db.query<GroupRow[]>(
       `SELECT DISTINCT w.dataset AS product,b.direction,b.product_type AS "productType",b.currency FROM market_windows w JOIN balancing_bids b ON b.snapshot_id=w.snapshot_id WHERE w."to">now()-interval '7 days' ORDER BY product,b.direction,"productType",b.currency`,
@@ -199,22 +191,16 @@ export class MarketService {
           ...attempt,
           available: !!success?.latestIntervalEnd,
           pollAgeSeconds: success?.lastSuccessAt
-            ? Math.max(
-                0,
-                (Date.now() - new Date(success.lastSuccessAt).getTime()) / 1000,
-              )
+            ? Math.max(0, (Date.now() - new Date(success.lastSuccessAt).getTime()) / 1000)
             : null,
           intervalAgeSeconds: success?.latestIntervalEnd
-            ? Math.max(
-                0,
-                (Date.now() - new Date(success.latestIntervalEnd).getTime()) /
-                  1000,
-              )
+            ? Math.max(0, (Date.now() - new Date(success.latestIntervalEnd).getTime()) / 1000)
             : null,
         };
       }),
       groups: groups,
       additionalLatencyTargetSeconds: 30,
+      solarActualFreshnessTargetSeconds: 20 * 60,
       pollingSeconds: 15,
       bidPublicationDeadlineMinutesAfterDelivery: 30,
     };

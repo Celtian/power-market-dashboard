@@ -1,0 +1,9 @@
+<ng-content />
+
+@if (showErrors()) {
+  <ui-form-item-message variant="error" [attr.id]="messageId() || null">
+    {{ errorMessage() }}
+  </ui-form-item-message>
+} @else if (hintText(); as hint) {
+  <ui-form-item-message [attr.id]="messageId() || null">{{ hint }}</ui-form-item-message>
+}

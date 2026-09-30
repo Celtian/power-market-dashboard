@@ -1,5 +1,6 @@
 import { BadGatewayException, Injectable, Logger } from '@nestjs/common';
 import axios, { isAxiosError } from 'axios';
+
 import { EntsoeConfig } from './entsoe.config';
 
 export interface DayAheadPriceQuery {
@@ -34,9 +35,7 @@ export class EntsoeService {
       return response.data;
     } catch (error: unknown) {
       const status = isAxiosError(error) ? error.response?.status : undefined;
-      this.logger.error(
-        `ENTSO-E request failed${status ? ` with status ${status}` : ''}`,
-      );
+      this.logger.error(`ENTSO-E request failed${status ? ` with status ${status}` : ''}`);
       throw new BadGatewayException('ENTSO-E request failed.');
     }
   }

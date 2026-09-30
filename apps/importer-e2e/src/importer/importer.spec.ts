@@ -1,8 +1,9 @@
-import { createServer, ServerResponse } from 'node:http';
-import { once } from 'node:events';
+import { ChannelModel, ConfirmChannel, connect } from 'amqplib';
 import { randomUUID } from 'node:crypto';
+import { once } from 'node:events';
 import { readFileSync } from 'node:fs';
-import { connect, ChannelModel, ConfirmChannel } from 'amqplib';
+import { ServerResponse, createServer } from 'node:http';
+
 import {
   readEvent,
   startApp,
@@ -13,15 +14,11 @@ import {
 
 const fixture = readFileSync('libs/market/src/fixtures/bids.xml', 'utf8');
 function page(count: number, offset = 0) {
-  const series = fixture.match(
-    /<Bid_TimeSeries>[\s\S]*<\/Bid_TimeSeries>/,
-  )?.[0];
+  const series = fixture.match(/<Bid_TimeSeries>[\s\S]*<\/Bid_TimeSeries>/)?.[0];
   if (!series) throw new Error('Missing bid fixture');
   return fixture.replace(
     series,
-    Array.from({ length: count }, (_, i) =>
-      series.replace('bid-1', `bid-${offset + i}`),
-    ).join(''),
+    Array.from({ length: count }, (_, i) => series.replace('bid-1', `bid-${offset + i}`)).join(''),
   );
 }
 describe('import pipeline with RabbitMQ and controlled source', () => {
@@ -31,9 +28,7 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
   let connection: ChannelModel;
   let channel: ConfirmChannel;
   const prefix = `market-test-${randomUUID()}`;
-  const url =
-    process.env.TEST_RABBITMQ_URL ||
-    'amqp://power_market:power_market@localhost:5672';
+  const url = process.env.TEST_RABBITMQ_URL || 'amqp://power_market:power_market@localhost:5672';
   let mode: 'normal' | 'hold' | 'failure' | 'invalid' | 'scheduled' = 'normal';
   let held: ServerResponse | undefined;
   let calls = 0;
@@ -71,17 +66,13 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
           .replace('<type>A69', '<type>A75')
           .replace('<process.processType>A01', '<process.processType>A16');
       if (params.get('processType') === 'A47')
-        body = body.replace(
-          '<process.processType>A51',
-          '<process.processType>A47',
-        );
+        body = body.replace('<process.processType>A51', '<process.processType>A47');
       res.setHeader('Content-Type', 'application/xml');
       res.end(body);
       return;
     }
     const offset = Number(
-      new URL(req.url ?? '/', 'http://localhost').searchParams.get('offset') ??
-        0,
+      new URL(req.url ?? '/', 'http://localhost').searchParams.get('offset') ?? 0,
     );
     res.setHeader('Content-Type', 'application/xml');
     res.end(offset === 0 ? page(100) : page(25, 100));
@@ -95,15 +86,10 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
   }
   async function state(id: string, wanted: string) {
     return waitFor(async () => {
-      const result = await database.db.query(
-        'SELECT * FROM import_jobs WHERE id=$1',
-        [id],
-      );
+      const result = await database.db.query('SELECT * FROM import_jobs WHERE id=$1', [id]);
       return result[0]?.state === wanted ? result[0] : false;
     }).catch(async () => {
-      const rows = await database.db.query(
-        'SELECT id,state,error FROM import_jobs',
-      );
+      const rows = await database.db.query('SELECT id,state,error FROM import_jobs');
       throw new Error(JSON.stringify(rows) + '\n' + importer.output());
     });
   }
@@ -112,8 +98,7 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
     server.listen(0, '127.0.0.1');
     await once(server, 'listening');
     const address = server.address();
-    if (!address || typeof address === 'string')
-      throw new Error('No source port');
+    if (!address || typeof address === 'string') throw new Error('No source port');
     env = {
       DATABASE_URL: database.connectionString,
       RABBITMQ_URL: url,
@@ -132,6 +117,38 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
     mode = 'normal';
     await database.db.query(
       'TRUNCATE import_jobs, market_changes, market_windows, market_snapshots, source_documents, scheduler_state RESTART IDENTITY CASCADE',
+    );
+  });
+  it('exposes OpenAPI for the importer HTTP endpoints', async () => {
+    const response = await fetch(`${importer.url}/docs-json`);
+    expect(response.status).toBe(200);
+
+    const document = (await response.json()) as {
+      paths: Record<
+        string,
+        {
+          get?: {
+            parameters?: Array<Record<string, unknown>>;
+            responses?: Record<string, Record<string, unknown>>;
+          };
+        }
+      >;
+    };
+
+    expect(document.paths['/api']?.get).toBeDefined();
+    const prices = document.paths['/api/entsoe/day-ahead-prices']?.get;
+    expect(prices?.parameters).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ name: 'periodStart', required: true }),
+        expect.objectContaining({ name: 'periodEnd', required: true }),
+      ]),
+    );
+    expect(prices?.responses?.['200']).toEqual(
+      expect.objectContaining({
+        content: expect.objectContaining({
+          'application/xml': expect.any(Object),
+        }),
+      }),
     );
   });
   afterAll(async () => {
@@ -173,17 +190,13 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
     abort.abort();
     channel.sendToQueue(
       `${prefix}.import.live`,
-      Buffer.from(
-        JSON.stringify({ pattern: 'market.import.v1', data: { id } }),
-      ),
+      Buffer.from(JSON.stringify({ pattern: 'market.import.v1', data: { id } })),
       { persistent: true },
     );
     await channel.waitForConfirms();
     // A subsequent job completing proves the consumer passed the duplicate delivery.
     await state(await enqueue(), 'complete');
-    expect(
-      (await database.db.query('SELECT count(*) FROM market_changes'))[0].count,
-    ).toBe('1');
+    expect((await database.db.query('SELECT count(*) FROM market_changes'))[0].count).toBe('1');
   });
   it('recovers an unacknowledged job after worker restart', async () => {
     mode = 'hold';
@@ -206,10 +219,7 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
     const id = await enqueue();
     await state(id, 'retry');
     expect(calls).toBeGreaterThan(beforeCalls);
-    expect(
-      (await database.db.query('SELECT count(*) FROM market_snapshots'))[0]
-        .count,
-    ).toBe('1');
+    expect((await database.db.query('SELECT count(*) FROM market_snapshots'))[0].count).toBe('1');
     mode = 'normal';
     await state(id, 'complete');
   });
@@ -219,14 +229,10 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
     const id = await enqueue();
     await state(id, 'dead');
     const dead = await waitFor(
-      async () =>
-        (await channel.get(`${prefix}.import.dead`, { noAck: true })) || false,
+      async () => (await channel.get(`${prefix}.import.dead`, { noAck: true })) || false,
     );
     expect(JSON.parse(dead.content.toString()).data.id).toBe(id);
-    expect(
-      (await database.db.query('SELECT count(*) FROM market_snapshots'))[0]
-        .count,
-    ).toBe('1');
+    expect((await database.db.query('SELECT count(*) FROM market_snapshots'))[0].count).toBe('1');
     mode = 'normal';
   });
   it('schedules live polling and seven-day backfill, making solar data available within 30 seconds', async () => {

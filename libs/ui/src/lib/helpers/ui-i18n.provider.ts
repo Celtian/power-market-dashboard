@@ -86,6 +86,19 @@ export interface UiI18n {
     useColor: string;
     useTransparentColor: string;
   };
+  validation: {
+    email: string;
+    invalid: string;
+    maximum: (value?: number) => string;
+    maximumDate: (value?: string) => string;
+    maximumLength: (value?: number) => string;
+    minimum: (value?: number) => string;
+    minimumDate: (value?: string) => string;
+    minimumLength: (value?: number) => string;
+    parse: string;
+    pattern: string;
+    required: string;
+  };
   layout: {
     description: string;
     gap: (x: string, y: string) => string;
@@ -169,13 +182,7 @@ export const DEFAULT_UI_I18N: UiI18n = {
     bottomRight: 'Bottom right',
     description: 'Adjust each corner of the leaderboard bars.',
     preview: 'Live bar shape preview',
-    previewDescription: ({
-      label,
-      topLeft,
-      topRight,
-      bottomRight,
-      bottomLeft,
-    }) =>
+    previewDescription: ({ label, topLeft, topRight, bottomRight, bottomLeft }) =>
       `${label}: top left ${topLeft}px, top right ${topRight}px, bottom right ${bottomRight}px, bottom left ${bottomLeft}px.`,
     title: 'Bar border radius editor',
     topLeft: 'Top left',
@@ -205,8 +212,7 @@ export const DEFAULT_UI_I18N: UiI18n = {
     openDatePicker: 'Open date picker',
     datePlaceholder: 'MM/DD/YYYY',
     noResults: 'No results found',
-    removeSelection: (label) =>
-      label ? `Remove ${label}` : 'Remove selection',
+    removeSelection: (label) => (label ? `Remove ${label}` : 'Remove selection'),
     search: 'Search…',
     select: 'Select',
     selectOption: 'Select an option',
@@ -214,6 +220,26 @@ export const DEFAULT_UI_I18N: UiI18n = {
     transparent: 'Transparent',
     useColor: 'Use color',
     useTransparentColor: 'Use transparent color',
+  },
+  validation: {
+    email: 'Enter a valid email address',
+    invalid: 'Invalid value',
+    maximum: (value) => (value === undefined ? 'Value is too large' : `Maximum value is ${value}`),
+    maximumDate: (value) => (value === undefined ? 'Date is too late' : `Maximum date is ${value}`),
+    maximumLength: (value) =>
+      value === undefined
+        ? 'Value is too long'
+        : `The length should be at most ${value} characters`,
+    minimum: (value) => (value === undefined ? 'Value is too small' : `Minimum value is ${value}`),
+    minimumDate: (value) =>
+      value === undefined ? 'Date is too early' : `Minimum date is ${value}`,
+    minimumLength: (value) =>
+      value === undefined
+        ? 'Value is too short'
+        : `The length should be at least ${value} characters`,
+    parse: 'Enter a valid value',
+    pattern: 'Value has an invalid format',
+    required: 'This field is required',
   },
   layout: {
     description: 'Adjust the spacing inside the visualization canvas.',
@@ -267,8 +293,7 @@ export const provideUiI18n = (i18nFactory?: UiI18nFactory) =>
         const i18n = signal(DEFAULT_UI_I18N);
         const cleanup = i18nFactory?.((value) => i18n.set(value));
         if (typeof cleanup === 'function') destroyRef.onDestroy(cleanup);
-        else if (cleanup?.unsubscribe)
-          destroyRef.onDestroy(() => cleanup.unsubscribe());
+        else if (cleanup?.unsubscribe) destroyRef.onDestroy(() => cleanup.unsubscribe());
         return i18n;
       },
     },

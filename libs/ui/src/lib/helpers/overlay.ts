@@ -1,14 +1,7 @@
 import type { ConnectedPosition } from '@angular/cdk/overlay';
 
 export type TooltipArrowPlacement =
-  | 'top'
-  | 'topLeft'
-  | 'topRight'
-  | 'right'
-  | 'bottom'
-  | 'bottomLeft'
-  | 'bottomRight'
-  | 'left';
+  'top' | 'topLeft' | 'topRight' | 'right' | 'bottom' | 'bottomLeft' | 'bottomRight' | 'left';
 
 export type OverlayPosition =
   | 'topRight'
@@ -91,9 +84,7 @@ export const createSelectedPositions = (
   return positions.map((position) => connectedPositions[position]);
 };
 
-export const getTooltipArrowPlacement = (
-  position: ConnectedPosition,
-): TooltipArrowPlacement => {
+export const getTooltipArrowPlacement = (position: ConnectedPosition): TooltipArrowPlacement => {
   if (position.overlayY === 'bottom') {
     return getAlignedArrowPlacement('bottom', position);
   }

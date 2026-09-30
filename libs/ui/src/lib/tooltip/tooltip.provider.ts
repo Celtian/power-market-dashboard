@@ -10,13 +10,10 @@ export const DEFAULT_TOOLTIP_CONFIG: TooltipConfig = {
   maxWidth: '12rem',
 };
 
-export const TOOLTIP_CONFIG = new InjectionToken<TooltipConfig>(
-  'TOOLTIP_CONFIG',
-  {
-    providedIn: 'root',
-    factory: () => DEFAULT_TOOLTIP_CONFIG,
-  },
-);
+export const TOOLTIP_CONFIG = new InjectionToken<TooltipConfig>('TOOLTIP_CONFIG', {
+  providedIn: 'root',
+  factory: () => DEFAULT_TOOLTIP_CONFIG,
+});
 
 export const provideTooltip = (config?: Partial<TooltipConfig>) => {
   return makeEnvironmentProviders([

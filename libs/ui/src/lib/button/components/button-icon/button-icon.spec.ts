@@ -16,23 +16,10 @@ const sizeClasses: Record<ButtonSize, string> = {
 @Component({
   imports: [ButtonIcon],
   template: `
-    <a
-      ui-button-icon
-      aria-label="Create project"
-      href="/create"
-      rounded="all"
-      [withBorder]="true"
-    >
+    <a ui-button-icon aria-label="Create project" href="/create" rounded="all" [withBorder]="true">
       <span data-testid="icon">+</span>
     </a>
-    <button
-      ui-button-icon
-      aria-label="Disabled action"
-      type="button"
-      [disabled]="true"
-    >
-      ×
-    </button>
+    <button ui-button-icon aria-label="Disabled action" type="button" [disabled]="true">×</button>
   `,
 })
 class ButtonIconHost {}

@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { SourceClient } from './source.client';
+
 import { EntsoeConfig } from '../entsoe/entsoe.config';
+import { SourceClient } from './source.client';
 
 const xml = readFileSync(resolve('libs/market/src/fixtures/bids.xml'), 'utf8');
 function page(count: number, offset = 0) {
@@ -11,9 +12,9 @@ function page(count: number, offset = 0) {
   return Buffer.from(
     xml.replace(
       series,
-      Array.from({ length: count }, (_, i) =>
-        series.replace('bid-1', `bid-${offset + i}`),
-      ).join(''),
+      Array.from({ length: count }, (_, i) => series.replace('bid-1', `bid-${offset + i}`)).join(
+        '',
+      ),
     ),
   );
 }

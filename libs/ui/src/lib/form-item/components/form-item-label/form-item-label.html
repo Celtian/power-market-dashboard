@@ -1,0 +1,14 @@
+<div
+  class="flex flex-wrap items-center gap-2 text-sm font-bold"
+  [class.text-danger-500]="showErrors()"
+>
+  <ng-content />
+  @if (isRequired()) {
+    <span aria-hidden="true">*</span>
+  }
+  @if (templateRef(); as template) {
+    <div class="ml-auto">
+      <ng-container [ngTemplateOutlet]="template" />
+    </div>
+  }
+</div>

@@ -1,0 +1,95 @@
+<div class="relative w-full">
+  <button
+    #origin
+    #trigger
+    #combobox="ngCombobox"
+    ngCombobox
+    type="button"
+    [id]="inputId()"
+    [class]="twClasses()"
+    [disabled]="disabled() || readonly()"
+    [attr.name]="name() || null"
+    [attr.aria-describedby]="ariaDescribedBy() || null"
+    [attr.aria-invalid]="showErrors()"
+    [attr.aria-required]="required()"
+    [attr.aria-readonly]="readonly()"
+    [attr.disabled]="disabled() || readonly() ? '' : null"
+    (blur)="onBlur()"
+  >
+    <span class="min-w-0 flex-1 truncate">
+      @if (selectedOption(); as option) {
+        @if (optionTemplate(); as context) {
+          <ng-container
+            [ngTemplateOutlet]="context.templateRef"
+            [ngTemplateOutletContext]="{ $implicit: option }"
+          />
+        } @else {
+          {{ option.label }}
+        }
+      } @else {
+        <span class="text-primary-contrast-400 dark:text-secondary-400">{{
+          displayPlaceholder()
+        }}</span>
+      }
+    </span>
+    <ng-icon
+      class="pointer-events-none block! shrink-0 text-gray-500 transition-transform"
+      aria-hidden="true"
+      name="faSolidChevronDown"
+      [class.rotate-180]="combobox.expanded()"
+    />
+  </button>
+
+  <ng-template ngComboboxPopup [combobox]="combobox">
+    <ng-template
+      [cdkConnectedOverlay]="{ origin, usePopover: 'inline', matchWidth: true }"
+      [cdkConnectedOverlayOpen]="combobox.expanded()"
+    >
+      <div class="ui-scrollbar" data-select-popup>
+        <div
+          #listbox="ngListbox"
+          ngComboboxWidget
+          ngListbox
+          selectionMode="explicit"
+          [activeDescendant]="listbox.activeDescendant()"
+          [value]="selectedValues()"
+          (valueChange)="onValuesChange($event, combobox)"
+        >
+          @for (option of options(); track option.value) {
+            <div
+              #optionView="ngOption"
+              ngOption
+              [value]="option.value"
+              [label]="option.label"
+              [disabled]="option.disabled ?? false"
+              [attr.aria-label]="option.accessibleLabel ?? null"
+            >
+              @if (optionTemplate(); as context) {
+                <ng-container
+                  [ngTemplateOutlet]="context.templateRef"
+                  [ngTemplateOutletContext]="{ $implicit: option }"
+                />
+              } @else {
+                <span class="flex min-w-0 flex-1 flex-col">
+                  <span class="truncate">{{ option.label }}</span>
+                  @if (option.description) {
+                    <span
+                      class="truncate text-xs text-primary-contrast-400 dark:text-secondary-400"
+                      data-option-description
+                      [attr.aria-hidden]="option.accessibleLabel ? 'true' : null"
+                    >
+                      {{ option.description }}
+                    </span>
+                  }
+                </span>
+              }
+              @if (optionView.selected()) {
+                <ng-icon class="block!" data-option-check aria-hidden="true" name="faSolidCheck" />
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </ng-template>
+  </ng-template>
+</div>

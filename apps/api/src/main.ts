@@ -2,6 +2,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { existsSync } from 'node:fs';
 import { loadEnvFile } from 'node:process';
+
 import { AppModule } from './app/app.module';
 import { configureHttp } from './app/market/http';
 

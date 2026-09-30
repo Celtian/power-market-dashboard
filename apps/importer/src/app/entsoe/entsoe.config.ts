@@ -18,9 +18,7 @@ export class EntsoeConfig {
     const token = process.env.ENTSOE_SECURITY_TOKEN?.trim();
 
     if (!token) {
-      throw new Error(
-        'ENTSOE_SECURITY_TOKEN is missing. Set it in apps/importer/.env.',
-      );
+      throw new Error('ENTSOE_SECURITY_TOKEN is missing. Set it in apps/importer/.env.');
     }
 
     return token;

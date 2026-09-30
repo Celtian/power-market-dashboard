@@ -1,4 +1,5 @@
 import { queueOptions } from './queue';
+
 describe('RabbitMQ acknowledgement configuration', () => {
   it('uses manual ACK for workers and automatic ACK for publisher direct-reply consumers', () => {
     process.env.RABBITMQ_URL = 'amqp://localhost';

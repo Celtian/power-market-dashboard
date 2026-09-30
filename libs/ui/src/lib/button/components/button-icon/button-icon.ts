@@ -1,12 +1,7 @@
 import { Component, booleanAttribute, computed, input } from '@angular/core';
 
 import { buildClasses } from '../../../helpers/tailwind';
-import {
-  ButtonColor,
-  ButtonRadius,
-  ButtonSize,
-  buttonIconStyles,
-} from '../../button.styles';
+import { ButtonColor, ButtonRadius, ButtonSize, buttonIconStyles } from '../../button.styles';
 
 @Component({
   selector: 'button[ui-button-icon],a[ui-button-icon]',

@@ -3,19 +3,13 @@ import { TestBed } from '@angular/core/testing';
 
 import { EMPTY } from 'rxjs';
 
-import {
-  ModalConfirm,
-  ModalConfirmDialogData,
-} from './components/modal-confirm/modal-confirm';
+import { ModalConfirm, ModalConfirmDialogData } from './components/modal-confirm/modal-confirm';
 import { ModalService } from './modal.service';
 
 describe('ModalService', () => {
   let config: DialogConfig<ModalConfirmDialogData>;
   const open = vi.fn(
-    (
-      _component: typeof ModalConfirm,
-      dialogConfig: DialogConfig<ModalConfirmDialogData>,
-    ) => {
+    (_component: typeof ModalConfirm, dialogConfig: DialogConfig<ModalConfirmDialogData>) => {
       config = dialogConfig;
       return { closed: EMPTY } as unknown as DialogRef<boolean>;
     },

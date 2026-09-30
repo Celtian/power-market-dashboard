@@ -1,0 +1,35 @@
+<div class="flex items-center gap-3 px-3 py-2.5">
+  <span
+    class="flex size-8 shrink-0 items-center justify-center rounded-md surface-400 text-primary-800 dark:surface-700 dark:text-primary-200"
+  >
+    <ng-icon aria-hidden="true" name="faSolidArrowsRotate" />
+  </span>
+
+  <div class="min-w-0">
+    <h2 id="app-update-title" class="text-sm leading-5 font-semibold">
+      {{ 'app-update.title' | transloco }}
+    </h2>
+    <p id="app-update-description" class="text-xs leading-4 opacity-80">
+      {{ 'app-update.description' | transloco }}
+    </p>
+  </div>
+</div>
+
+<div class="grid grid-cols-2">
+  <button
+    type="button"
+    data-app-update-dismiss
+    class="flex h-9 items-center justify-center border-r border-primary-400 text-xs font-medium focusable hover:surface-400 focus:outline-primary-600 dark:border-secondary-600 dark:hover:surface-700 dark:focus:outline-primary-300"
+    (click)="dismiss()"
+  >
+    {{ 'app-update.dismiss' | transloco }}
+  </button>
+  <button
+    type="button"
+    data-app-update-confirm
+    class="flex h-9 items-center justify-center text-xs font-semibold text-primary-800 focusable hover:surface-400 focus:outline-primary-600 dark:text-primary-200 dark:hover:surface-700 dark:focus:outline-primary-300"
+    (click)="update()"
+  >
+    {{ 'app-update.confirm' | transloco }}
+  </button>
+</div>

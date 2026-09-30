@@ -1,0 +1,17 @@
+<section
+  class="w-full max-w-md rounded-lg border border-primary-400 surface-300 p-6 text-center shadow-md sm:p-8 dark:border-secondary-600 dark:surface-800"
+  aria-labelledby="not-found-title"
+>
+  <app-logo class="mx-auto mb-6 h-12" logoType="landscape" />
+
+  <h1 id="not-found-title" class="mb-3 text-2xl font-bold">
+    {{ 'not-found.title' | transloco }}
+  </h1>
+  <p class="mb-6">
+    {{ 'not-found.description' | transloco }}
+  </p>
+
+  <a ui-button rounded="all" routerLink="/" [withBorder]="true">
+    {{ 'not-found.back' | transloco }}
+  </a>
+</section>

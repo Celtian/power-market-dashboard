@@ -1,11 +1,8 @@
-import { BidPoint, GenerationPoint } from './types';
 import { compareSolar, ladder } from './calculations';
 import { tradingDay } from './time';
-const point = (
-  start: string,
-  end: string,
-  mw: number | null,
-): GenerationPoint => ({
+import { BidPoint, GenerationPoint } from './types';
+
+const point = (start: string, end: string, mw: number | null): GenerationPoint => ({
   start,
   end,
   mw,
@@ -74,16 +71,14 @@ describe('trader calculations', () => {
     });
     expect(result.summary).toEqual({ maeMw: 10, rmseMw: 10, coverage: 1 });
     expect(
-      compareSolar([point(from, middle, 10)], [point(from, to, 10)], from, to)
-        .data[0].actualMw,
+      compareSolar([point(from, middle, 10)], [point(from, to, 10)], from, to).data[0].actualMw,
     ).toBeNull();
   });
   it('handles zero forecasts and missing data without fabricating percentages', () => {
     const from = '2026-09-27T00:00:00Z',
       to = '2026-09-27T00:15:00Z';
     expect(
-      compareSolar([point(from, to, 2)], [point(from, to, 0)], from, to).data[0]
-        .deviationPercent,
+      compareSolar([point(from, to, 2)], [point(from, to, 0)], from, to).data[0].deviationPercent,
     ).toBeNull();
     expect(compareSolar([], [], from, to).summary).toEqual({
       maeMw: null,
@@ -94,11 +89,7 @@ describe('trader calculations', () => {
   it('uses 23 and 25 hour Budapest trading days across DST', () => {
     const spring = tradingDay('2026-03-29'),
       autumn = tradingDay('2026-10-25');
-    expect((Date.parse(spring.to) - Date.parse(spring.from)) / 3600000).toBe(
-      23,
-    );
-    expect((Date.parse(autumn.to) - Date.parse(autumn.from)) / 3600000).toBe(
-      25,
-    );
+    expect((Date.parse(spring.to) - Date.parse(spring.from)) / 3600000).toBe(23);
+    expect((Date.parse(autumn.to) - Date.parse(autumn.from)) / 3600000).toBe(25);
   });
 });

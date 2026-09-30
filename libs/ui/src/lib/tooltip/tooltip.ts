@@ -46,8 +46,7 @@ export class Tooltip implements OnDestroy {
   public readonly target = input.required<TooltipTarget>({
     alias: 'uiTooltip',
   });
-  public readonly tooltipPosition =
-    input.required<readonly OverlayPosition[]>();
+  public readonly tooltipPosition = input.required<readonly OverlayPosition[]>();
   public readonly tooltipPadding = input(true);
 
   private readonly overlayPositionBuilder = inject(OverlayPositionBuilder);
@@ -63,10 +62,7 @@ export class Tooltip implements OnDestroy {
 
   public readonly describedBy = computed(() => {
     const tooltipId = this.visible() ? this.tooltipId : undefined;
-    return (
-      [this.existingDescribedBy, tooltipId].filter(Boolean).join(' ') ||
-      undefined
-    );
+    return [this.existingDescribedBy, tooltipId].filter(Boolean).join(' ') || undefined;
   });
 
   private overlayRef?: OverlayRef;
@@ -122,20 +118,12 @@ export class Tooltip implements OnDestroy {
     tooltipRef.setInput('maxWidth', this.tooltipConfig.maxWidth);
     const initialPosition = createSelectedPositions(positions)[0];
     if (initialPosition) {
-      tooltipRef.setInput(
-        'arrowPlacement',
-        getTooltipArrowPlacement(initialPosition),
-      );
+      tooltipRef.setInput('arrowPlacement', getTooltipArrowPlacement(initialPosition));
     }
 
-    this.positionSubscription = positionStrategy.positionChanges.subscribe(
-      ({ connectionPair }) => {
-        tooltipRef.setInput(
-          'arrowPlacement',
-          getTooltipArrowPlacement(connectionPair),
-        );
-      },
-    );
+    this.positionSubscription = positionStrategy.positionChanges.subscribe(({ connectionPair }) => {
+      tooltipRef.setInput('arrowPlacement', getTooltipArrowPlacement(connectionPair));
+    });
     this.detachmentsSubscription = overlayRef.detachments().subscribe(() => {
       this.handleOverlayDetachment(overlayRef);
     });

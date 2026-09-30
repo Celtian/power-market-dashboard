@@ -1,21 +1,10 @@
 import { BidPoint, Direction, GenerationPoint, LadderStep } from './types';
 
-export function ladder(
-  bids: BidPoint[],
-  direction: Direction,
-  targetMw?: number,
-) {
-  const eligible = bids.filter(
-    (b) => !b.cancelled && b.available !== false && b.mw > 0,
-  );
-  const missingPriceCount = eligible.filter(
-    (b) => b.price === null || !b.currency,
-  ).length;
+export function ladder(bids: BidPoint[], direction: Direction, targetMw?: number) {
+  const eligible = bids.filter((b) => !b.cancelled && b.available !== false && b.mw > 0);
+  const missingPriceCount = eligible.filter((b) => b.price === null || !b.currency).length;
   const priced = eligible
-    .filter(
-      (b): b is BidPoint & { price: number } =>
-        b.price !== null && !!b.currency,
-    )
+    .filter((b): b is BidPoint & { price: number } => b.price !== null && !!b.currency)
     .sort(
       (a, b) =>
         (direction === 'up' ? a.price - b.price : b.price - a.price) ||
@@ -43,22 +32,16 @@ export function ladder(
     totalMw: cumulative,
     complete,
     missingPriceCount,
-    unknownAvailabilityCount: eligible.filter((b) => b.available === null)
-      .length,
+    unknownAvailabilityCount: eligible.filter((b) => b.available === null).length,
     complexBidCount: eligible.filter((b) => b.complexity !== null).length,
     targetPrice:
       complete && targetMw !== undefined && targetMw > 0
-        ? (steps.find((s) => targetMw > s.fromMw && targetMw <= s.toMw)
-            ?.price ?? null)
+        ? (steps.find((s) => targetMw > s.fromMw && targetMw <= s.toMw)?.price ?? null)
         : null,
     interpretation: 'published-offer-order' as const,
   };
 }
-function average(
-  points: GenerationPoint[],
-  start: number,
-  end: number,
-): number | null {
+function average(points: GenerationPoint[], start: number, end: number): number | null {
   const sorted = points
     .filter((p) => Date.parse(p.start) < end && Date.parse(p.end) > start)
     .sort((a, b) => a.start.localeCompare(b.start));
@@ -91,16 +74,11 @@ export function compareSolar(
   let absolute = 0,
     squares = 0,
     duration = 0;
-  for (
-    let start = Date.parse(from);
-    start < Date.parse(to);
-    start += resolutionSeconds * 1000
-  ) {
+  for (let start = Date.parse(from); start < Date.parse(to); start += resolutionSeconds * 1000) {
     const end = Math.min(start + resolutionSeconds * 1000, Date.parse(to));
     const actualMw = average(actual, start, end);
     const forecastMw = average(forecast, start, end);
-    const deviationMw =
-      actualMw === null || forecastMw === null ? null : actualMw - forecastMw;
+    const deviationMw = actualMw === null || forecastMw === null ? null : actualMw - forecastMw;
     if (deviationMw !== null) {
       const weight = end - start;
       absolute += Math.abs(deviationMw) * weight;

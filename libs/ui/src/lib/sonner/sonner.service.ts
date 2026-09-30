@@ -16,50 +16,32 @@ export class SonnerService {
   private readonly toasterRegistry = inject(SonnerToasterRegistry);
   private overlayRef?: OverlayRef;
 
-  public show(
-    message: string | Type<unknown>,
-    data?: ExternalToast,
-  ): string | number {
+  public show(message: string | Type<unknown>, data?: ExternalToast): string | number {
     this.ensureToaster();
     return toast(message, data);
   }
 
-  public success(
-    message: string | Type<unknown>,
-    data?: ExternalToast,
-  ): string | number {
+  public success(message: string | Type<unknown>, data?: ExternalToast): string | number {
     this.ensureToaster();
     return toast.success(message, data);
   }
 
-  public info(
-    message: string | Type<unknown>,
-    data?: ExternalToast,
-  ): string | number {
+  public info(message: string | Type<unknown>, data?: ExternalToast): string | number {
     this.ensureToaster();
     return toast.info(message, data);
   }
 
-  public warning(
-    message: string | Type<unknown>,
-    data?: ExternalToast,
-  ): string | number {
+  public warning(message: string | Type<unknown>, data?: ExternalToast): string | number {
     this.ensureToaster();
     return toast.warning(message, data);
   }
 
-  public error(
-    message: string | Type<unknown>,
-    data?: ExternalToast,
-  ): string | number {
+  public error(message: string | Type<unknown>, data?: ExternalToast): string | number {
     this.ensureToaster();
     return toast.error(message, data);
   }
 
-  public loading(
-    message: string | Type<unknown>,
-    data?: ExternalToast,
-  ): string | number {
+  public loading(message: string | Type<unknown>, data?: ExternalToast): string | number {
     this.ensureToaster();
     return toast.loading(message, data);
   }
@@ -93,8 +75,6 @@ export class SonnerService {
     });
     this.overlayRef.hostElement.style.zIndex = this.zIndex;
     this.overlayRef.overlayElement.style.zIndex = this.zIndex;
-    this.overlayRef.attach(
-      new ComponentPortal(SonnerToasterComponent, null, this.injector),
-    );
+    this.overlayRef.attach(new ComponentPortal(SonnerToasterComponent, null, this.injector));
   }
 }

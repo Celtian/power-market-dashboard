@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
-import { numericTransformer } from './numeric.transformer';
+
 import { MarketSnapshotEntity } from './market-snapshot.entity';
+import { numericTransformer } from './numeric.transformer';
 
 @Entity('generation_intervals')
 export class GenerationIntervalEntity {

@@ -12,11 +12,7 @@ class EmptyRoute {}
 @Component({
   imports: [BottomNavigationItem, RouterLink],
   template: `
-    <a
-      ui-bottom-navigation-item
-      ariaCurrentWhenActive="page"
-      routerLink="/target"
-    >
+    <a ui-bottom-navigation-item ariaCurrentWhenActive="page" routerLink="/target">
       <span>Target</span>
     </a>
   `,

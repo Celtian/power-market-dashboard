@@ -1,11 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import {
-  DestroyRef,
-  PLATFORM_ID,
-  Service,
-  inject,
-  signal,
-} from '@angular/core';
+import { DestroyRef, PLATFORM_ID, Service, inject, signal } from '@angular/core';
 
 export type Theme = 'light' | 'dark';
 
@@ -15,8 +9,7 @@ const THEME_COLORS: Record<Theme, string> = {
   light: '#1d4ed8',
 };
 
-const isTheme = (value: string | null): value is Theme =>
-  value === 'light' || value === 'dark';
+const isTheme = (value: string | null): value is Theme => value === 'light' || value === 'dark';
 
 @Service()
 export class ThemeService {

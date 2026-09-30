@@ -1,0 +1,131 @@
+<div [class]="calendarClasses()">
+  <div class="mb-3 flex items-center justify-between gap-2">
+    <div
+      class="flex items-center gap-1"
+      role="group"
+      [attr.aria-label]="i18n().calendar.previousPeriod"
+    >
+      <button
+        ui-button-icon
+        rounded="all"
+        size="xs"
+        type="button"
+        [attr.aria-label]="i18n().calendar.previousYear"
+        [disabled]="disabled() || !canGoPreviousYear()"
+        (click)="previousYear()"
+      >
+        <ng-icon name="faSolidAnglesLeft" aria-hidden="true" />
+      </button>
+      <button
+        ui-button-icon
+        rounded="all"
+        size="xs"
+        type="button"
+        [attr.aria-label]="i18n().calendar.previousMonth"
+        [disabled]="disabled() || !canGoPreviousMonth()"
+        (click)="previousMonth()"
+      >
+        <ng-icon name="faSolidChevronLeft" aria-hidden="true" />
+      </button>
+    </div>
+
+    <h3 [class]="titleClasses()" [id]="headingId()">{{ monthYearLabel() }}</h3>
+
+    <div
+      class="flex items-center gap-1"
+      role="group"
+      [attr.aria-label]="i18n().calendar.nextPeriod"
+    >
+      <button
+        ui-button-icon
+        rounded="all"
+        size="xs"
+        type="button"
+        [attr.aria-label]="i18n().calendar.nextMonth"
+        [disabled]="disabled() || !canGoNextMonth()"
+        (click)="nextMonth()"
+      >
+        <ng-icon name="faSolidChevronRight" aria-hidden="true" />
+      </button>
+      <button
+        ui-button-icon
+        rounded="all"
+        size="xs"
+        type="button"
+        [attr.aria-label]="i18n().calendar.nextYear"
+        [disabled]="disabled() || !canGoNextYear()"
+        (click)="nextYear()"
+      >
+        <ng-icon name="faSolidAnglesRight" aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+
+  <table
+    ngGrid
+    class="w-full table-fixed border-separate border-spacing-1"
+    colWrap="continuous"
+    rowWrap="nowrap"
+    selectionMode="explicit"
+    [id]="calendarId()"
+    [attr.aria-labelledby]="headingId()"
+    [attr.aria-invalid]="showErrors()"
+    [attr.aria-readonly]="readonly()"
+    [attr.aria-required]="required()"
+    [disabled]="disabled()"
+    [enableSelection]="!readonly()"
+    [softDisabled]="false"
+    (keydown)="onCalendarKeydown($event)"
+  >
+    <thead>
+      <tr>
+        @for (weekday of weekdays(); track weekday.long) {
+          <th
+            class="h-8 text-center text-xs font-semibold text-primary-contrast-100 uppercase dark:text-secondary-contrast-300"
+            scope="col"
+          >
+            <span class="sr-only">{{ weekday.long }}</span>
+            <span aria-hidden="true">{{ weekday.short }}</span>
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (week of weeks(); track $index) {
+        <tr ngGridRow>
+          @for (day of week; track day.id) {
+            <td
+              ngGridCell
+              [class]="day.cellClasses"
+              [id]="day.id"
+              [disabled]="day.isDisabled || readonly()"
+              [selectable]="!day.isDisabled && !readonly()"
+              [selected]="day.isSelected"
+            >
+              @if (day.isCurrentMonth) {
+                <button
+                  ngGridCellWidget
+                  type="button"
+                  [class]="day.dayClasses"
+                  [attr.aria-current]="day.isToday ? 'date' : null"
+                  [attr.aria-label]="day.ariaLabel"
+                  [attr.data-date]="day.dateValue"
+                  [attr.data-day]="day.day"
+                  [disabled]="disabled() || readonly() || day.isDisabled"
+                  [attr.disabled]="disabled() || readonly() || day.isDisabled ? '' : null"
+                  (click)="selectDate(day.date)"
+                >
+                  {{ day.day }}
+                </button>
+              } @else {
+                <span aria-hidden="true" [class]="day.dayClasses">
+                  {{ day.day }}
+                </span>
+              }
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,14 +1,8 @@
+import { BadRequestException } from '@nestjs/common';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import {
-  IsIn,
-  IsISO8601,
-  IsNumber,
-  IsOptional,
-  Matches,
-  Min,
-} from 'class-validator';
-import { BadRequestException } from '@nestjs/common';
+import { IsISO8601, IsIn, IsNumber, IsOptional, Matches, Min } from 'class-validator';
+
 import { QUARTER_MS } from '@power-market-dashboard/market';
 
 export class RangeQuery {
@@ -88,9 +82,7 @@ export function validateRange(query: RangeQuery, maxDays: number) {
     end <= start ||
     end - start > maxDays * 86400000
   )
-    throw new BadRequestException(
-      `Range must be increasing and at most ${maxDays} days`,
-    );
+    throw new BadRequestException(`Range must be increasing and at most ${maxDays} days`);
   if (start % QUARTER_MS || end % QUARTER_MS)
     throw new BadRequestException('Times must align to delivery quarters');
 }

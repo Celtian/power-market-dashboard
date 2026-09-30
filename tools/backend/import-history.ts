@@ -14,9 +14,7 @@ async function main() {
     new Date(from).toISOString().slice(0, 10) !== from ||
     new Date(to).toISOString().slice(0, 10) !== to
   )
-    throw new Error(
-      'Usage: bun import:history YYYY-MM-DD YYYY-MM-DD (UTC, exclusive end)',
-    );
+    throw new Error('Usage: bun import:history YYYY-MM-DD YYYY-MM-DD (UTC, exclusive end)');
   if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is required');
   const dataSource = await createDataSource().initialize();
   try {
@@ -33,16 +31,12 @@ async function main() {
         }
       }
     }
-    console.log(
-      'Historical import jobs queued in PostgreSQL; importer will dispatch them.',
-    );
+    console.log('Historical import jobs queued in PostgreSQL; importer will dispatch them.');
   } finally {
     await dataSource.destroy();
   }
 }
 main().catch((error) => {
-  console.error(
-    error instanceof Error ? error.message : 'Import enqueue failed',
-  );
+  console.error(error instanceof Error ? error.message : 'Import enqueue failed');
   process.exitCode = 1;
 });

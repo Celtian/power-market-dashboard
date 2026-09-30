@@ -1,18 +1,19 @@
 import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
+
 import {
   BalancingBidEntity,
   GenerationIntervalEntity,
-  MarketWindowEntity,
   MarketRepository,
+  MarketWindowEntity,
 } from '@power-market-dashboard/database';
-import { ImportJob, parseResponse } from '@power-market-dashboard/market';
 import {
   readEvent,
   startApp,
   stopApp,
   testDatabase,
 } from '@power-market-dashboard/database/testing';
+import { ImportJob, parseResponse } from '@power-market-dashboard/market';
 
 describe('market API with PostgreSQL', () => {
   let database: Awaited<ReturnType<typeof testDatabase>>;
@@ -36,9 +37,7 @@ describe('market API with PostgreSQL', () => {
       fetchedAt: new Date().toISOString(),
       fetchMs: 1,
     };
-    return database.db.transaction((client) =>
-      repository.store(client, job, result),
-    );
+    return database.db.transaction((client) => repository.store(client, job, result));
   }
   beforeAll(async () => {
     database = await testDatabase();
@@ -71,14 +70,10 @@ describe('market API with PostgreSQL', () => {
   });
   it('enqueues a historical UTC day idempotently through the documented Bun command', async () => {
     for (let i = 0; i < 2; i++) {
-      const result = spawnSync(
-        'bun',
-        ['run', 'import:history', '2000-01-01', '2000-01-02'],
-        {
-          env: { ...process.env, DATABASE_URL: database.connectionString },
-          encoding: 'utf8',
-        },
-      );
+      const result = spawnSync('bun', ['run', 'import:history', '2000-01-01', '2000-01-02'], {
+        env: { ...process.env, DATABASE_URL: database.connectionString },
+        encoding: 'utf8',
+      });
       expect(result.status).toBe(0);
     }
     const rows = await database.db.query(
@@ -110,10 +105,9 @@ describe('market API with PostgreSQL', () => {
       `/balancing/ladder?at=${from}&product=fcr&direction=up&currency=HUF&productType=A04`,
     ])
       expect((await fetch(app.url + path)).status).toBe(400);
-    expect(
-      (await fetch(`${app.url}/events`, { headers: { 'Last-Event-ID': '-1' } }))
-        .status,
-    ).toBe(400);
+    expect((await fetch(`${app.url}/events`, { headers: { 'Last-Event-ID': '-1' } })).status).toBe(
+      400,
+    );
   });
   it('exposes OpenAPI, missing solar points and price history gaps', async () => {
     expect((await fetch(`${app.url}/docs-json`)).status).toBe(200);
@@ -130,27 +124,94 @@ describe('market API with PostgreSQL', () => {
       { price: null, complete: false },
     ]);
   });
+  it('reports the latest valid solar point instead of the window end', async () => {
+    const solarJob: ImportJob = {
+      ...job,
+      id: '2',
+      dataset: 'solar-actual',
+      from: '2026-09-26T00:00:00.000Z',
+      to: '2026-09-27T00:00:00.000Z',
+    };
+    await database.db.transaction((client) =>
+      repository.store(client, solarJob, {
+        bids: [],
+        documents: [],
+        fetchMs: 1,
+        fetchedAt: new Date().toISOString(),
+        generation: [
+          {
+            cancelled: false,
+            end: '2026-09-26T00:15:00.000Z',
+            mw: 0,
+            resolutionSeconds: 900,
+            revision: 1,
+            seriesId: 'solar',
+            start: '2026-09-26T00:00:00.000Z',
+          },
+          {
+            cancelled: false,
+            end: '2026-09-26T00:30:00.000Z',
+            mw: 25,
+            resolutionSeconds: 900,
+            revision: 1,
+            seriesId: 'solar',
+            start: '2026-09-26T00:15:00.000Z',
+          },
+          {
+            cancelled: false,
+            end: '2026-09-26T00:45:00.000Z',
+            mw: null,
+            resolutionSeconds: 900,
+            revision: 1,
+            seriesId: 'solar',
+            start: '2026-09-26T00:30:00.000Z',
+          },
+          {
+            cancelled: true,
+            end: '2026-09-26T01:00:00.000Z',
+            mw: 30,
+            resolutionSeconds: 900,
+            revision: 1,
+            seriesId: 'solar',
+            start: '2026-09-26T00:45:00.000Z',
+          },
+        ],
+        noData: false,
+        seriesCount: 1,
+      }),
+    );
+
+    const response = await fetch(`${app.url}/data-status`);
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as {
+      datasets: Array<{
+        dataset: string;
+        intervalAgeSeconds: number;
+        latestIntervalEnd: string;
+      }>;
+      solarActualFreshnessTargetSeconds: number;
+    };
+    expect(body.solarActualFreshnessTargetSeconds).toBe(1200);
+    const actual = body.datasets.find((dataset) => dataset.dataset === 'solar-actual');
+    expect(actual).toMatchObject({
+      latestIntervalEnd: '2026-09-26T00:30:00.000Z',
+    });
+    expect(actual?.intervalAgeSeconds).toBeGreaterThan(0);
+  });
   it('deduplicates repeated imports and rolls back a failed transaction', async () => {
-    const before = (
-      await database.db.query('SELECT count(*) FROM market_changes')
-    )[0].count;
+    const before = (await database.db.query('SELECT count(*) FROM market_changes'))[0].count;
     expect(await store()).toBe(false);
     await expect(
       database.db.transaction(async (client) => {
         await repository.store(client, job, {
-          ...parseResponse(
-            Buffer.from(fixture.toString().replace('-500', '999')),
-            'afrr',
-          ),
+          ...parseResponse(Buffer.from(fixture.toString().replace('-500', '999')), 'afrr'),
           fetchedAt: new Date().toISOString(),
           fetchMs: 1,
         });
         throw new Error('rollback');
       }),
     ).rejects.toThrow('rollback');
-    expect(
-      (await database.db.query('SELECT count(*) FROM market_changes'))[0].count,
-    ).toBe(before);
+    expect((await database.db.query('SELECT count(*) FROM market_changes'))[0].count).toBe(before);
   });
   it('delivers a committed revision through SSE and resumes after its cursor', async () => {
     const abort = new AbortController();
@@ -178,9 +239,7 @@ describe('market API with PostgreSQL', () => {
       signal: secondAbort.signal,
     });
     if (!replay.body) throw new Error('Missing replay body');
-    expect((await readEvent(replay.body.getReader(), 'market-change')).id).toBe(
-      event.id,
-    );
+    expect((await readEvent(replay.body.getReader(), 'market-change')).id).toBe(event.id);
     secondAbort.abort();
   });
 });

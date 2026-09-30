@@ -23,9 +23,7 @@ const tooltipComponentDestroyed = vi.fn();
 
 @Component({
   selector: 'ui-tooltip-test-content',
-  template: `<span data-testid="dynamic-tooltip"
-    >{{ context }}:{{ label() }}</span
-  >`,
+  template: `<span data-testid="dynamic-tooltip">{{ context }}:{{ label() }}</span>`,
 })
 class DynamicTooltip implements OnDestroy {
   public readonly context = inject(TOOLTIP_TEST_CONTEXT);
@@ -67,10 +65,7 @@ class BlurDuringRenderTooltip {
 })
 class TooltipTestHost {
   public readonly content = signal<TooltipTarget>('Tooltip text');
-  public readonly positions = signal<readonly OverlayPosition[]>([
-    'bottomCenter',
-    'topCenter',
-  ]);
+  public readonly positions = signal<readonly OverlayPosition[]>(['bottomCenter', 'topCenter']);
   public readonly template = viewChild.required<TemplateRef<void>>('template');
 }
 
@@ -78,21 +73,14 @@ class TooltipTestHost {
   selector: 'ui-tooltip-test-plain-host',
   imports: [Tooltip],
   template: `
-    <span
-      data-plain-tooltip
-      [tooltipPosition]="positions"
-      [uiTooltip]="content"
-    >
+    <span data-plain-tooltip [tooltipPosition]="positions" [uiTooltip]="content">
       Plain content
     </span>
   `,
 })
 class PlainTooltipTestHost {
   public readonly content: TooltipTarget = 'Tooltip text';
-  public readonly positions: readonly OverlayPosition[] = [
-    'bottomCenter',
-    'topCenter',
-  ];
+  public readonly positions: readonly OverlayPosition[] = ['bottomCenter', 'topCenter'];
 }
 
 interface TestContext {
@@ -115,9 +103,7 @@ const setup = async (arrow = true): Promise<TestContext> => {
     fixture,
     focusMonitor: TestBed.inject(FocusMonitor),
     overlayContainer: TestBed.inject(OverlayContainer).getContainerElement(),
-    tooltip: fixture.debugElement
-      .query(By.directive(Tooltip))
-      .injector.get(Tooltip),
+    tooltip: fixture.debugElement.query(By.directive(Tooltip)).injector.get(Tooltip),
   };
 };
 
@@ -126,10 +112,7 @@ const dispatch = async (context: TestContext, event: Event): Promise<void> => {
   await context.fixture.whenStable();
 };
 
-const focusVia = async (
-  context: TestContext,
-  origin: FocusOrigin,
-): Promise<void> => {
+const focusVia = async (context: TestContext, origin: FocusOrigin): Promise<void> => {
   context.focusMonitor.focusVia(context.button, origin);
   await context.fixture.whenStable();
 };
@@ -145,64 +128,45 @@ describe('Tooltip', () => {
     });
     const fixture = TestBed.createComponent(PlainTooltipTestHost);
     await fixture.whenStable();
-    const plainText = fixture.nativeElement.querySelector(
-      '[data-plain-tooltip]',
-    ) as HTMLElement;
-    const overlayContainer =
-      TestBed.inject(OverlayContainer).getContainerElement();
+    const plainText = fixture.nativeElement.querySelector('[data-plain-tooltip]') as HTMLElement;
+    const overlayContainer = TestBed.inject(OverlayContainer).getContainerElement();
 
     plainText.dispatchEvent(new MouseEvent('mouseenter'));
     await fixture.whenStable();
 
     expect(plainText.tabIndex).toBe(-1);
-    expect(
-      overlayContainer.querySelector('ui-tooltip-content')?.textContent,
-    ).toContain('Tooltip text');
+    expect(overlayContainer.querySelector('ui-tooltip-content')?.textContent).toContain(
+      'Tooltip text',
+    );
   });
 
   it('responds to keyboard, programmatic, and mouse focus while preserving hover state', async () => {
     const context = await setup();
 
     await focusVia(context, 'program');
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).toBeNull();
-    expect(context.button.getAttribute('aria-describedby')).toBe(
-      'existing-description',
-    );
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).toBeNull();
+    expect(context.button.getAttribute('aria-describedby')).toBe('existing-description');
 
     context.button.blur();
     await context.fixture.whenStable();
     await focusVia(context, 'keyboard');
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).not.toBeNull();
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).not.toBeNull();
 
     await dispatch(context, new MouseEvent('mouseenter'));
     await dispatch(context, new MouseEvent('mouseleave'));
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).not.toBeNull();
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).not.toBeNull();
 
     context.button.blur();
     await context.fixture.whenStable();
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).toBeNull();
-    expect(context.button.getAttribute('aria-describedby')).toBe(
-      'existing-description',
-    );
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).toBeNull();
+    expect(context.button.getAttribute('aria-describedby')).toBe('existing-description');
 
     await dispatch(context, new MouseEvent('mouseenter'));
     await focusVia(context, 'mouse');
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).not.toBeNull();
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).not.toBeNull();
 
     await dispatch(context, new MouseEvent('mouseleave'));
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).toBeNull();
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).toBeNull();
   });
 
   it('handles focus loss triggered while tooltip content renders', async () => {
@@ -212,12 +176,8 @@ describe('Tooltip', () => {
 
     await focusVia(context, 'keyboard');
 
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).toBeNull();
-    expect(context.button.getAttribute('aria-describedby')).toBe(
-      'existing-description',
-    );
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).toBeNull();
+    expect(context.button.getAttribute('aria-describedby')).toBe('existing-description');
   });
 
   it('dismisses the tooltip on click and Escape', async () => {
@@ -225,18 +185,14 @@ describe('Tooltip', () => {
 
     await focusVia(context, 'keyboard');
     await dispatch(context, new MouseEvent('click'));
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).toBeNull();
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).toBeNull();
 
     context.button.blur();
     await context.fixture.whenStable();
     await focusVia(context, 'keyboard');
     await dispatch(context, new KeyboardEvent('keydown', { key: 'Escape' }));
 
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).toBeNull();
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).toBeNull();
   });
 
   it('shows one configured tooltip and switches reactively between every content type', async () => {
@@ -244,8 +200,7 @@ describe('Tooltip', () => {
     await dispatch(context, new MouseEvent('mouseenter'));
     await dispatch(context, new MouseEvent('mouseenter'));
 
-    const contents =
-      context.overlayContainer.querySelectorAll('ui-tooltip-content');
+    const contents = context.overlayContainer.querySelectorAll('ui-tooltip-content');
     const tooltipContent = contents.item(0) as HTMLElement;
     expect(contents).toHaveLength(1);
     expect(tooltipContent.textContent).toContain('Tooltip text');
@@ -255,21 +210,16 @@ describe('Tooltip', () => {
       `existing-description ${tooltipContent.id}`,
     );
 
-    context.fixture.componentInstance.content.set(
-      context.fixture.componentInstance.template(),
-    );
+    context.fixture.componentInstance.content.set(context.fixture.componentInstance.template());
     await context.fixture.whenStable();
-    expect(tooltipContent.querySelector('strong')?.textContent).toBe(
-      'Template tooltip',
-    );
+    expect(tooltipContent.querySelector('strong')?.textContent).toBe('Template tooltip');
     expect(tooltipContent.style.maxWidth).toBe('');
 
     context.fixture.componentInstance.content.set(DynamicTooltip);
     await context.fixture.whenStable();
-    expect(
-      tooltipContent.querySelector('[data-testid="dynamic-tooltip"]')
-        ?.textContent,
-    ).toBe('scoped:direct');
+    expect(tooltipContent.querySelector('[data-testid="dynamic-tooltip"]')?.textContent).toBe(
+      'scoped:direct',
+    );
     expect(tooltipContent.style.maxWidth).toBe('');
 
     context.fixture.componentInstance.content.set({
@@ -277,10 +227,9 @@ describe('Tooltip', () => {
       inputs: { label: 'updated' },
     });
     await context.fixture.whenStable();
-    expect(
-      tooltipContent.querySelector('[data-testid="dynamic-tooltip"]')
-        ?.textContent,
-    ).toBe('scoped:updated');
+    expect(tooltipContent.querySelector('[data-testid="dynamic-tooltip"]')?.textContent).toBe(
+      'scoped:updated',
+    );
 
     context.fixture.componentInstance.content.set('Text again');
     await context.fixture.whenStable();
@@ -299,50 +248,35 @@ describe('Tooltip', () => {
     await context.fixture.whenStable();
 
     await dispatch(context, new MouseEvent('mouseenter'));
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).toBeNull();
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).toBeNull();
 
     context.fixture.componentInstance.content.set('Visible');
     await context.fixture.whenStable();
     await dispatch(context, new MouseEvent('mouseenter'));
     context.fixture.componentInstance.content.set('');
     await context.fixture.whenStable();
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).toBeNull();
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).toBeNull();
 
     context.fixture.componentInstance.content.set('Visible');
     await context.fixture.whenStable();
     await dispatch(context, new MouseEvent('mouseenter'));
     const overlayRef = context.tooltip['overlayRef'] as OverlayRef;
-    const updatePositionStrategy = vi.spyOn(
-      overlayRef,
-      'updatePositionStrategy',
-    );
+    const updatePositionStrategy = vi.spyOn(overlayRef, 'updatePositionStrategy');
 
     context.fixture.componentInstance.positions.set(['left', 'right']);
     await context.fixture.whenStable();
 
     expect(updatePositionStrategy).toHaveBeenCalledOnce();
-    expect(
-      context.overlayContainer.querySelectorAll('ui-tooltip-content'),
-    ).toHaveLength(1);
+    expect(context.overlayContainer.querySelectorAll('ui-tooltip-content')).toHaveLength(1);
 
     context.tooltip['overlayRef']?.detach();
     await context.fixture.whenStable();
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).toBeNull();
-    expect(context.button.getAttribute('aria-describedby')).toBe(
-      'existing-description',
-    );
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).toBeNull();
+    expect(context.button.getAttribute('aria-describedby')).toBe('existing-description');
 
     await dispatch(context, new MouseEvent('mouseenter'));
     context.fixture.destroy();
-    expect(
-      context.overlayContainer.querySelector('ui-tooltip-content'),
-    ).toBeNull();
+    expect(context.overlayContainer.querySelector('ui-tooltip-content')).toBeNull();
   });
 
   it('honors disabled arrows from the tooltip provider', async () => {
@@ -350,9 +284,7 @@ describe('Tooltip', () => {
 
     await dispatch(context, new MouseEvent('mouseenter'));
 
-    const content = context.overlayContainer.querySelector(
-      'ui-tooltip-content',
-    ) as HTMLElement;
+    const content = context.overlayContainer.querySelector('ui-tooltip-content') as HTMLElement;
     expect(content.classList).not.toContain('after:absolute');
   });
 });
