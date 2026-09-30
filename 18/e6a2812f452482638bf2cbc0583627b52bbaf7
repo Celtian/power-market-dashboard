@@ -1,0 +1,287 @@
+libs/ui/src/css/styles/common.css
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-59
+libs/ui/src/lib/tooltip/tooltip.provider.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-31
+apps/web/src/app/solar/solar-page.ts
+  s_aaef16154bb356::t_a298bc259b2f9e 7,10
+  s_ede2952ac339aa::t_27bc2505257445 1,4
+  s_ede2952ac339aa::t_e2446fc1b00f6e 2-3,5-6,8-9,11-17
+apps/web/src/app/app.ts
+  s_ede2952ac339aa::t_cd52be0311b17a 19,23-24,26,28
+  s_aaef16154bb356::t_a298bc259b2f9e 1-2,5-9,12,16,22,25,32-34,38-47
+  s_ede2952ac339aa::t_27bc2505257445 3,35
+  s_ede2952ac339aa::t_6806c41a8d7f62 4,10-11,13-14,20-21,27
+  s_aaef16154bb356::t_e8d43d1e59d0be 15
+nx.json
+  s_ede2952ac339aa::t_ce79ec24ba0552 5,16-17,32-41,75-81
+apps/web/ngsw-config.json
+  s_ede2952ac339aa::t_8d7f3df4186f8d 1-30
+libs/ui/src/lib/sonner/sonner-toaster.component.html
+  s_ede2952ac339aa::t_4d3de1029234a8 1-18
+libs/ui/src/lib/skeleton/skeleton.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-53
+apps/web/src/app/balancing/balancing-ladder-page.ts
+  s_aaef16154bb356::t_a298bc259b2f9e 7,10
+  s_ede2952ac339aa::t_27bc2505257445 1,4
+  s_ede2952ac339aa::t_e2446fc1b00f6e 2-3,5-6,8-9,11-17
+libs/ui/README.md
+  s_ede2952ac339aa::t_5a7c5ed7a546fa 1,3,5,7-18
+  s_ede2952ac339aa::t_ce79ec24ba0552 2,4,6
+apps/web/src/app/app.config.ts
+  s_ede2952ac339aa::t_0f75158ae17238 5,31-33
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-2,6,8-10
+  s_ede2952ac339aa::t_6806c41a8d7f62 15,21-22,24,29,34
+  s_ede2952ac339aa::t_99f2ffbe168be0 7,11,13-14,17-18,25,27
+  s_aaef16154bb356::t_a298bc259b2f9e 3-4,26,28,30
+apps/web/src/styles.css
+  s_ede2952ac339aa::t_6806c41a8d7f62 1
+apps/web/src/app/app.spec.ts
+  s_aaef16154bb356::t_8f82938a2d9d1e 118-119,125-126
+  s_ede2952ac339aa::t_27bc2505257445 3,7,52,57,63,71-79,84,87,101
+  s_ede2952ac339aa::t_4d3de1029234a8 10-25
+  s_ede2952ac339aa::t_98a6429079f294 31-32,56,61-62,70,80,82-83,85-86,88-89,95,100,102-103
+  s_aaef16154bb356::t_26a92ff6ab1c96 5,27-29,36,40-50,53-54,67-69,90,92-94,96-99,104-117,120-124,128-129
+  s_ede2952ac339aa::t_5a5507271cfa26 2,4,64-66
+  s_ede2952ac339aa::t_f6c32ae7be37e5 58-60,81,91
+  s_aaef16154bb356::t_0f18acac8249bb 51,55
+apps/web/src/app/app.html
+  s_aaef16154bb356::t_26a92ff6ab1c96 1-79,83,96
+  s_ede2952ac339aa::t_2bdf69eed9230a 80,85,95
+  s_ede2952ac339aa::t_6806c41a8d7f62 81-82,84,86-94
+libs/ui/src/lib/modal/components/modal-content/modal-content.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-14
+libs/ui/src/lib/tooltip/tooltip-content.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-121
+libs/ui/src/lib/modal/components/modal-header/modal-header.spec.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-33
+apps/web/src/app/pwa-update.service.spec.ts
+  s_ede2952ac339aa::t_99f2ffbe168be0 1-3,8-10,12,14,66,71-73,81,92,95-97,105,108,118,121-122,130,133,139,141
+  s_ede2952ac339aa::t_368c631376b1ff 120,123
+  s_ede2952ac339aa::t_fa89fab34b57f2 4-7,11,13,15-65,67-70,74-80,82-91,93-94,98-104,106-107,109-117,119,124-129,131-132,134-138,140,142-148
+libs/ui/src/lib/modal/components/modal-header/modal-header.html
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-2,5-23
+  s_ede2952ac339aa::t_5502106d59f760 3-4
+libs/ui/tsconfig.json
+  s_ede2952ac339aa::t_ce79ec24ba0552 1-30
+libs/ui/package.json
+  s_ede2952ac339aa::t_ce79ec24ba0552 1-5,17-18,23
+  s_ede2952ac339aa::t_de38b27881610a 6-16,19-22
+libs/ui/src/lib/modal/components/modal-footer/modal-footer.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-35
+apps/web/.postcssrc.json
+  s_fdf316ab38f810::t_a4ff563f3cc786 1-5
+libs/ui/src/lib/button/components/button-icon/button-icon.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-39
+libs/ui/tsconfig.spec.json
+  s_ede2952ac339aa::t_ce79ec24ba0552 1-8
+libs/ui/src/lib/button/button.styles.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-84
+libs/ui/src/lib/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-62
+libs/ui/src/lib/tooltip/tooltip.spec.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-358
+libs/ui/src/lib/helpers/public-api.ts
+  s_ede2952ac339aa::t_5a7c5ed7a546fa 1-4
+apps/web-e2e/src/example.spec.ts
+  s_ede2952ac339aa::t_ef3635ae76aaa6 25,36
+  s_ede2952ac339aa::t_99f2ffbe168be0 3,9,17-18,20,26,33,40,51,59,61
+  s_ede2952ac339aa::t_444c5d8a8523dc 6,46-50,52-55,60
+  s_ede2952ac339aa::t_21aa6b9f23971a 7-8,10-16,19,21-24,27-32,34-35,37-39,41-45,56-58,62-64
+libs/ui/project.json
+  s_ede2952ac339aa::t_ce79ec24ba0552 1-34
+libs/ui/tsconfig.lib.prod.json
+  s_ede2952ac339aa::t_ce79ec24ba0552 1-7
+libs/ui/src/lib/sonner/sonner.service.spec.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-147
+libs/ui/src/lib/tooltip/tooltip.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-228
+apps/api-e2e/project.json
+  s_ede2952ac339aa::t_8d7f3df4186f8d 14-16,20,23
+libs/ui/tsconfig.lib.json
+  s_ede2952ac339aa::t_ce79ec24ba0552 1-12
+apps/web/src/app/theme.service.ts
+  s_aaef16154bb356::t_a298bc259b2f9e 1-14,16-53,57-112
+  s_aaef16154bb356::t_270b6908746860 15
+  s_aaef16154bb356::t_5a163d418c023d 54-56
+libs/ui/src/lib/sonner/sonner-toaster.component.spec.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-144
+apps/web/public/manifest.webmanifest
+  s_ede2952ac339aa::t_0f75158ae17238 3-6,8-11,17,23,29,35,41,47,53,59
+  s_ede2952ac339aa::t_8d7f3df4186f8d 1-2,7,12-16,18-22,24-28,30-34,36-40,42-46,48-52,54-58,60-62
+libs/ui/ng-package.json
+  s_ede2952ac339aa::t_25fcad0015c4b6 7
+  s_ede2952ac339aa::t_ce79ec24ba0552 1-5,8
+  s_ede2952ac339aa::t_de38b27881610a 6
+libs/ui/src/lib/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.spec.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-87
+libs/ui/src/lib/button/components/button/button.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-45
+libs/ui/src/lib/sonner/sonner-toaster.component.ts
+  s_ede2952ac339aa::t_4d3de1029234a8 1-9,25,93
+  s_ede2952ac339aa::t_25fcad0015c4b6 10-24,26-92,94-100
+libs/ui/src/css/styles.css
+  s_ede2952ac339aa::t_de38b27881610a 1-28
+libs/ui/src/lib/modal/components/modal-header/modal-header.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-32
+libs/ui/src/lib/button/components/button-icon/button-icon.spec.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-74
+libs/ui/src/lib/tooltip/tooltip-content.html
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-8
+apps/web/src/app/theme.service.spec.ts
+  s_aaef16154bb356::t_26a92ff6ab1c96 1-13,15-51,53-143
+  s_aaef16154bb356::t_270b6908746860 14,52
+apps/web-e2e/playwright.config.mts
+  s_ede2952ac339aa::t_ef3635ae76aaa6 48,54
+  s_ede2952ac339aa::t_d51e2e6b6e4f11 34-35
+  s_ede2952ac339aa::t_21aa6b9f23971a 37-38
+  s_ede2952ac339aa::t_99f2ffbe168be0 6,36,42-43,47,49,53,55
+apps/web/src/app/app.css
+  s_ede2952ac339aa::t_e2446fc1b00f6e 1-4
+libs/ui/eslint.config.mjs
+  s_ede2952ac339aa::t_1181124e615394 14-19,47-57
+  s_ede2952ac339aa::t_ce79ec24ba0552 1-13,20-46,58-65
+libs/ui/src/lib/button/button.styles.spec.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-75
+apps/web/project.json
+  s_ede2952ac339aa::t_8d7f3df4186f8d 44-45
+  s_ede2952ac339aa::t_c56f15606d8609 11,23
+libs/ui/src/lib/helpers/ui-i18n.provider.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-275
+apps/web/src/app/app.routes.spec.ts
+  s_ede2952ac339aa::t_c8bd4804a0a7b2 2,21,38,47
+  s_ede2952ac339aa::t_5cbe26507f2909 9-14,16-17,19-20,22-23,25-26,28-31,33-34,36-37,39-40,42-43,45-46,48-49
+  s_ede2952ac339aa::t_27bc2505257445 1,3-8,15,18,24,27,32,35,41,44
+libs/ui/src/lib/bottom-navigation/components/bottom-navigation/bottom-navigation.html
+  s_ede2952ac339aa::t_25fcad0015c4b6 9-14,23,25-27
+  s_ede2952ac339aa::t_de38b27881610a 1-8,15-22,24,28-31
+libs/ui/src/index.ts
+  s_ede2952ac339aa::t_de38b27881610a 1-7
+apps/importer-e2e/project.json
+  s_ede2952ac339aa::t_8d7f3df4186f8d 17-21,24
+apps/web/src/app/app.routes.ts
+  s_ede2952ac339aa::t_e2446fc1b00f6e 3-4,8-9,12,14-15,19-20,23,25-28,31-32
+  s_ede2952ac339aa::t_27bc2505257445 5-7,10-11,13,16-18,21-22,24,29-30
+libs/ui/src/lib/helpers/overlay.spec.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-37
+libs/ui/src/lib/tooltip/tooltip-content.spec.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-61
+package.json
+  s_ede2952ac339aa::t_ce79ec24ba0552 100-101
+  s_ede2952ac339aa::t_ef546bb5703350 93
+  s_ede2952ac339aa::t_a78aedc5c966ee 17,43-44,51,55
+  s_ede2952ac339aa::t_6e3c180d753b21 34-35
+  s_fdf316ab38f810::t_7fb742e111938d 84,103,106
+  s_ede2952ac339aa::t_0cebe7279e0718 25
+  s_fdf316ab38f810::t_3e9d3e3c3ce4c0 36,40,49-50,56
+apps/web/src/app/pwa-update.service.ts
+  s_ede2952ac339aa::t_99f2ffbe168be0 1-6,10,34,44,47,62,64,66,87
+  s_ede2952ac339aa::t_0f75158ae17238 7-9,11-33,35-43,45-46,48-61,63,65,67-86,88-91
+libs/ui/src/lib/modal/modal.service.spec.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-71
+apps/web/src/index.html
+  s_ede2952ac339aa::t_25fcad0015c4b6 1
+  s_ede2952ac339aa::t_6806c41a8d7f62 2
+  s_aaef16154bb356::t_26a92ff6ab1c96 5,13-16,18,20,24,28-29,31-33,35-36,43,45
+  s_ede2952ac339aa::t_0f75158ae17238 7-10,12,38-42
+  s_ede2952ac339aa::t_8d7f3df4186f8d 47-49
+  s_ede2952ac339aa::t_ce0c85925994ab 17,19,21-23,25-27,30,34
+libs/ui/src/lib/helpers/overlay.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-117
+libs/ui/src/lib/modal/modal.service.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-49
+tsconfig.base.json
+  s_ede2952ac339aa::t_ce79ec24ba0552 13,18-19,22-23,26
+libs/ui/src/lib/sonner/sonner.service.ts
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-100
+bun.lock
+  s_ede2952ac339aa::t_edafc84a5c26ff 9,17,26-28,32,35-36,41-43,47-48,76,85,92-93,95,98,115-116,145-146,167-168,641-642,679-680,739-742,929-984,1001-1032,1109-1110,1323-1324,1425-1426,1439-1440,1455-1456,1473,1571-1572,1645-1646,1743-1744,1747-1748,1887-1888,2159-2160,2197-2204,2333,2421,2425-2426,2461-2462,2507-2510,2697-2702,2947-2948,2963-2964,3367-3386,3511-3512,3619-3620,3675-3680,3743-3744,6009-6030,6347-6348
+libs/ui/src/css/styles/colors.css
+  s_ede2952ac339aa::t_f95801ceaa734e 1-239
+libs/ui/src/css/styles/modal.css
+  s_ede2952ac339aa::t_67036d430c48c1 1-14
+libs/ui/src/css/styles/theme.css
+  s_ede2952ac339aa::t_961cea0da099f6 1-290
+libs/ui/src/lib/bottom-navigation/components/bottom-navigation/bottom-navigation.spec.ts
+  s_ede2952ac339aa::t_8708b54cc66f6e 1-42
+libs/ui/src/lib/bottom-navigation/components/bottom-navigation/bottom-navigation.ts
+  s_ede2952ac339aa::t_dd43702477e7c1 1-20
+libs/ui/src/lib/bottom-navigation/public-api.ts
+  s_ede2952ac339aa::t_767c835cafea46 1-2
+libs/ui/src/lib/button/components/button-icon/button-icon.html
+  s_ede2952ac339aa::t_61d1ddad59edd2 1
+libs/ui/src/lib/button/components/button/button.html
+  s_ede2952ac339aa::t_c984154ba97974 1
+libs/ui/src/lib/button/public-api.ts
+  s_ede2952ac339aa::t_5e2b4010eb40d6 1-2
+libs/ui/src/lib/helpers/overlay-layers.ts
+  s_ede2952ac339aa::t_736a0cf94c1571 1-6
+libs/ui/src/lib/helpers/tailwind.ts
+  s_ede2952ac339aa::t_325a476f40ecd2 1-6
+libs/ui/src/lib/modal/components/modal-confirm/modal-confirm.html
+  s_ede2952ac339aa::t_c41bffa4ad6b28 1-27
+libs/ui/src/lib/modal/components/modal-confirm/modal-confirm.spec.ts
+  s_ede2952ac339aa::t_aff381ef128545 1-52
+libs/ui/src/lib/modal/components/modal-confirm/modal-confirm.ts
+  s_ede2952ac339aa::t_5be609770eddfb 1-41
+libs/ui/src/lib/modal/components/modal-content/modal-content.html
+  s_ede2952ac339aa::t_a0223472368bac 1
+libs/ui/src/lib/modal/components/modal-footer/modal-footer.html
+  s_ede2952ac339aa::t_3ce39b0bd46ed9 1
+libs/ui/src/lib/modal/directives/modal-wrapper.ts
+  s_ede2952ac339aa::t_25207e845267db 1-10
+libs/ui/src/lib/modal/public-api.ts
+  s_ede2952ac339aa::t_0577431ff991e8 1-6
+libs/ui/src/lib/skeleton/public-api.ts
+  s_ede2952ac339aa::t_05e4079c29770b 1
+libs/ui/src/lib/skeleton/skeleton.spec.ts
+  s_ede2952ac339aa::t_d77719ff6dfe61 1-49
+libs/ui/src/lib/sonner/public-api.ts
+  s_ede2952ac339aa::t_1f287e586e0c3a 1-3
+libs/ui/src/lib/sonner/sonner-toaster-registry.spec.ts
+  s_ede2952ac339aa::t_e27a6144e21a10 1-34
+libs/ui/src/lib/sonner/sonner-toaster-registry.ts
+  s_ede2952ac339aa::t_a60bed7d539545 1-18
+libs/ui/src/lib/sonner/sonner.provider.spec.ts
+  s_ede2952ac339aa::t_4f1db89714e3f4 1-22
+libs/ui/src/lib/sonner/sonner.provider.ts
+  s_ede2952ac339aa::t_7790eda3f7d867 1-22
+libs/ui/src/lib/tooltip/public-api.ts
+  s_ede2952ac339aa::t_d3193c2cef1379 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "18e6a2812f452482638bf2cbc0583627b52bbaf7",
+  "prompts": {},
+  "humans": {
+    "h_aa1f579535d063": {
+      "author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  },
+  "sessions": {
+    "s_aaef16154bb356": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f14d-26b1-7762-a70b-63289f78210a",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_ede2952ac339aa": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f10b-32cb-7af1-bcb5-56e7a257cf2d",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_fdf316ab38f810": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f118-647c-7373-bbed-84eb61208eea",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  }
+}
