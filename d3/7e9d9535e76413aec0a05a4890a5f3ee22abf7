@@ -1,0 +1,126 @@
+apps/api/src/app/market/schemas.ts
+  s_6a4466c3eb0a49::t_30133254824d49 127-133
+apps/importer-e2e/src/importer/importer.spec.ts
+  s_6a4466c3eb0a49::t_d0315db67b1473 50-60,92-95,97-98,230-237
+  s_6a4466c3eb0a49::t_295d0b33c3ad92 32
+  s_6a4466c3eb0a49::t_0fc0cd3b8a1191 238
+.github/actions/cached-deps/action.yml
+  s_f0ffff6a6f341e::t_1f5b2277fd3bc3 1-37
+apps/web/src/app/theme.service.spec.ts
+  s_4668a662df4a15::t_77480e3109b59f 15,24,50-51,54,57,63,65-66
+apps/web/src/app/transloco-testing.ts
+  s_6a4466c3eb0a49::t_67aec8fe702ec4 72-78,160-166
+apps/web/src/app/market/market-data.models.ts
+  s_6a4466c3eb0a49::t_624ee874fd5a41 140-147,149
+libs/ui/src/lib/chart/chart-theme.spec.ts
+  s_608238ebd5350e::t_a236a7b006f418 42,52
+  s_608238ebd5350e::t_9ac5d6a943d69e 1-3,6-31,34,38-41,43-51,53-56,60,62-70,73-96
+libs/ui/src/lib/chart/chart.spec.ts
+  s_608238ebd5350e::t_a236a7b006f418 9-16
+  s_608238ebd5350e::t_9ac5d6a943d69e 1-8,17-42
+apps/web/public/manifest.webmanifest
+  s_4668a662df4a15::t_77480e3109b59f 10-11
+apps/importer/src/main.ts
+  s_6a4466c3eb0a49::t_1ae115f748b990 15,28-32
+apps/importer/src/startup-retry.ts
+  s_f0ffff6a6f341e::t_5f8ed88d3ab3b9 29-30
+  s_6a4466c3eb0a49::t_947bf3a9a16753 1-28,31-44
+apps/importer/src/app/import/queue.ts
+  s_6a4466c3eb0a49::t_ccfdcdd8398dea 19
+apps/api/src/app/market/market.service.ts
+  s_6a4466c3eb0a49::t_30133254824d49 17-19,47-51,189-195,199-212,215-221,231,234,239
+  s_f0ffff6a6f341e::t_5f8ed88d3ab3b9 213
+apps/web/public/i18n/cs.json
+  s_6a4466c3eb0a49::t_624ee874fd5a41 121-126
+apps/web/src/app/solar/solar-page.impl.ts
+  s_6a4466c3eb0a49::t_624ee874fd5a41 266,274,303-314,316-317
+apps/api-e2e/src/api/api.spec.ts
+  s_6a4466c3eb0a49::t_bf4261f4845f91 84-134
+apps/api/src/app/market/market.service.spec.ts
+  s_6a4466c3eb0a49::t_7caf9e807cacdb 1-20,22-33
+  s_f0ffff6a6f341e::t_5f8ed88d3ab3b9 21
+package.json
+  s_f0ffff6a6f341e::t_5f8ed88d3ab3b9 5
+apps/importer/src/startup-retry.spec.ts
+  s_6a4466c3eb0a49::t_1ae115f748b990 1-32
+.github/workflows/ci.yml
+  s_f0ffff6a6f341e::t_94c9d21219852f 54-55,57-58,60,63,66,69,72,75
+  s_f0ffff6a6f341e::t_c3b4f2e3f558dd 1,18
+apps/web/src/app/app.spec.ts
+  s_4668a662df4a15::t_77480e3109b59f 199,211,273-276,281-284
+apps/web/src/app/theme.service.ts
+  s_4668a662df4a15::t_77480e3109b59f 7,20,29,37
+apps/web/src/app/balancing/balancing-ladder-page.impl.ts
+  s_6a4466c3eb0a49::t_624ee874fd5a41 345,352
+apps/web/src/index.html
+  s_4668a662df4a15::t_77480e3109b59f 2,12,15,18-19
+libs/ui/src/lib/chart/chart-theme.ts
+  s_608238ebd5350e::t_da037e5a99e661 1,18-37,46-51,53,61-62,64-66,68-72
+apps/importer/src/app/import/queue.spec.ts
+  s_6a4466c3eb0a49::t_ccfdcdd8398dea 10-16
+apps/web/src/app/status-badges.spec.ts
+  s_6a4466c3eb0a49::t_7879d32514b915 149-155,181,243-249,279-301
+  s_6a4466c3eb0a49::t_67aec8fe702ec4 197
+  s_6a4466c3eb0a49::t_ebafde3ab6d01f 302
+README.md
+  s_bdcdfaca311d69::t_1f2acfe2f3df86 18,67,105,147,177,203
+  s_6a4466c3eb0a49::t_1b8ac827d8a61e 81-82,192-193
+  s_6a4466c3eb0a49::t_9d0e64f249feb5 78-80,93-96,190-191
+libs/ui/src/lib/chart/chart.ts
+  s_608238ebd5350e::t_da037e5a99e661 3,6,23,35-37,57,69-71
+apps/web/public/i18n/en.json
+  s_6a4466c3eb0a49::t_624ee874fd5a41 121-126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "d37e9d9535e76413aec0a05a4890a5f3ee22abf7",
+  "prompts": {},
+  "humans": {
+    "h_aa1f579535d063": {
+      "author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  },
+  "sessions": {
+    "s_4668a662df4a15": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f2fe-3fdf-7120-ada5-14acf134eabf",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_608238ebd5350e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f2fd-5a25-7121-b2af-ef1ce326f5eb",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_6a4466c3eb0a49": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f2e3-6c9c-70c2-8ee2-bb5537ab9b95",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_bdcdfaca311d69": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f2fd-dc25-7033-89f9-500b6a8c7c63",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_f0ffff6a6f341e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f2fa-22ea-72b2-a22a-06e00fc68086",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  }
+}
