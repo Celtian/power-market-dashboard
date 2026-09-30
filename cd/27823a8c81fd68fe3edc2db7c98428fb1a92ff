@@ -1,0 +1,954 @@
+libs/ui/src/lib/tooltip/tooltip-content.html
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1-8
+apps/api/src/app/app.module.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2-4,7-9
+libs/ui/src/lib/tooltip/tooltip.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 26,68,76,83,106,115,131-132,138-140,147-148,153,157,161-162,166,169,179-180,188,195,203,213,215,220-222,230-232,251,258,264,270,274-275,279,287
+libs/ui/src/lib/modal/modal.service.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 6,12
+apps/web/src/app/components/app-update-prompt/app-update-prompt.ts
+  s_2ae12b837b7a5c::t_1b709e053d3694 4,12
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3,7
+  s_1dc74fba7b8637::t_ae1bd5c49dcf28 1-2,5-6,8,11,13,16
+  s_1dc74fba7b8637::t_e5101c5f80f6c9 9-10,14-15,17-29
+libs/ui/src/lib/chart/public-api.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1-2
+apps/api/src/app/market/schemas.ts
+  s_cc399f689717ef::t_a72a4a9a73d799 155
+apps/web/src/app/components/logo/logo.html
+  s_4b8dcd5440179b::t_909efeefe73596 29-31,33,37,40-54,69
+  s_ce6eb515e95193::t_84c35de022b1bb 1-28,32,34-36,38-39,55-68
+apps/web/src/app/market/market-time.ts
+  s_e2b3b4d970400c::t_a4aec8e2a12053 2,4-10,13-19,21,24-27,29,31-36,38-39,41-50,53-63,66-67
+  s_e2b3b4d970400c::t_e415da5cdf1cc4 11
+  s_e2b3b4d970400c::t_e935908e15fb06 1,3,12,20,22-23,37,51-52,64-65
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 28,30,40
+apps/importer/src/app/http.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 12
+  s_374524461ba323::t_8cbb3e19e1957a 1-11,13-17
+libs/ui/src/lib/badge/badge.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1,3,5,7,10-11,14,17-19,21,23,26-28,31,33-35,39-42
+  s_e2b3b4d970400c::t_5dc544c37d5e11 4,6,8-9,15-16,20,22,24-25,29-30,32,36-38,43-44,46-47
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,12-13,45
+libs/database/src/lib/entities/market-window.entity.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1-2,4
+libs/ui/src/lib/input/components/input-date/input-date-modal.html
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-21,23-35
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 22
+apps/web/src/app/app.routes.ts
+  s_2ae12b837b7a5c::t_1840e42cdfa4a1 3-4,13,23,31
+  s_4b8dcd5440179b::t_f451af3101993e 32
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 14,33
+apps/web/proxy.conf.json
+  s_e2b3b4d970400c::t_ec4b67e965f9a4 1-7
+apps/importer/src/app/entsoe/entsoe.config.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 21
+.vscode/launch.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 9,15,17,24,30,32
+libs/ui/src/lib/sonner/sonner.service.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 81-83,85,87-97
+tools/backend/jest-config.cjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 10,17
+libs/ui/src/lib/form-item/components/form-item-message/form-item-message.spec.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-27
+libs/ui/src/lib/input/components/input-select/input-select.html
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-19,33-58,85,90-95
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 20-32,59-84,86-89
+libs/ui/src/lib/helpers/public-api.ts
+  s_e2b3b4d970400c::t_3525c459e3f13f 5
+libs/market/src/lib/calculations.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3-5,7,35,39,44,77,81
+libs/ui/src/index.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 3,5-8
+  s_e2b3b4d970400c::t_3525c459e3f13f 9-10
+libs/ui/src/lib/input/components/input-number/input-number.spec.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-14,16-37,39-52,66-75,77-93
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 15,38,53-65,76
+libs/database/src/lib/entities/market-snapshot.entity.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+libs/ui/src/lib/helpers/overlay.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 4,87
+apps/web/src/app/transloco-loader.spec.ts
+  s_2ae12b837b7a5c::t_bf8f6aebe5dd50 1,3,5,7,9,23-24,28
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,4,15,25
+  s_2ae12b837b7a5c::t_da910a0c90bed8 6,8,10-14,16-22,26-27,29-31
+apps/web/src/app/app.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 4-5,9-10,75-76,97,101-103,107,110,117,121,123-124,134,154-155,158-164,174-176,181,191-192,196,198,200,203,222,230,238,271,281
+  s_1dc74fba7b8637::t_011eb2f3612469 17-18,36,43-44,49-53,58-61
+  s_a7ae6c19293468::t_36ee12e6654567 7,45-48
+  s_8b5133baa26828::t_fecd0cfa5a7ec0 114-116,118-120,122,130-131
+  s_1dc74fba7b8637::t_ae1bd5c49dcf28 1,8,57,132,137-153,156-157,165,243-247,251-252,256-257,264-265
+  s_2ae12b837b7a5c::t_c55f1384b16641 6,14,40,42,62,133,178-180,182-183,205,207,209-210,212,214-221,223-225,228-229,231-233
+  s_8b5133baa26828::t_5f289a61d7afe7 125-129
+  s_3b29c4356ae774::t_329e5517bc08b3 188,194-195,197,199,202,206,208,211
+  s_ce6eb515e95193::t_408b53e37af72f 77-80
+  s_fd80f7ddd7f8c3::t_40e0f8129a9f31 81-88
+  s_8fea5b6eb9c657::t_3e44d71a6dc4d6 135,166-173,177,184-187,189-190,193,201,204,213,226-227
+  s_ee059573ccb5c5::t_25eb2f77b1d19c 63,136,234,242
+tools/backend/import-history.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 17,34,40
+libs/ui/src/lib/tooltip/tooltip-content.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 9,50-51
+libs/ui/src/lib/tooltip/tooltip.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 49,65,121,124-126
+apps/web/src/app/not-found/not-found-page.html
+  s_4b8dcd5440179b::t_04ebea1d9de9c3 1,3-7,9-10,12-13,17
+  s_2ae12b837b7a5c::t_1b709e053d3694 8,11,15-16
+  s_129bac21b2728f::t_7a4d8d6339c682 14
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+libs/ui/README.md
+  s_e2b3b4d970400c::t_43c40229a15383 8-10
+  s_e2b3b4d970400c::t_a7eb7b53f2f101 11,22-23
+  s_8a5050ef4b7e66::t_4ce417637b96b9 13,24-25
+  s_2e39680885c7da::t_87fa95eb108993 12
+  s_e2b3b4d970400c::t_edaa60cc33aae6 26
+libs/ui/src/lib/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 15
+libs/database/src/lib/entities/balancing-bid.entity.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,4,6
+libs/ui/src/lib/form-item/components/form-item/form-item.spec.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-23,25-53,55-78,80-81,83-90,93-108,110-111,115-123,127-132,134-147,149-157,160-211,213-218,220-221,223-225
+  s_e2b3b4d970400c::t_9997a21ad5baa8 24
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 54,91-92,109,112-114,124-126,133,148,158-159,212
+  s_e2b3b4d970400c::t_d2b5f726f725b8 79,82,219,222
+libs/ui/src/lib/helpers/ui-locale.provider.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 10-11
+  s_ede2952ac339aa::t_25fcad0015c4b6 1-9,12-36
+libs/ui/eslint.config.mjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 15,38,50
+  s_ee059573ccb5c5::t_dbebd0097d5e21 2
+libs/ui/src/lib/input/components/input-select/input-select.spec.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-52,55-59,61,63-78,80-85,87,89,91-105,107-127
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 53-54,60,62,79,86,88,90,106
+libs/ui/src/lib/button/components/button/button.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 4,6
+apps/web/src/app/transloco-loader.server.spec.ts
+  s_2ae12b837b7a5c::t_bf8f6aebe5dd50 1,3-5,7-8,12
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 13
+  s_2ae12b837b7a5c::t_da910a0c90bed8 2,6,9-11,14-15
+libs/ui/src/lib/modal/modal.service.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 23
+libs/ui/src/lib/dropdown/dropdown-panel.html
+  s_2e39680885c7da::t_4994d27ab8c01c 1
+libs/ui/src/lib/card/public-api.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1
+libs/ui/src/lib/input/components/input-number/input-number.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 50,71,74-77,79,87,111
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-49,51-70,72-73,78,80-86,88-110,112-135
+libs/market/src/lib/parser.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,4,6,12-14,18-20,24,72
+apps/web/public/i18n/cs.json
+  s_2ae12b837b7a5c::t_6e2426c58cd98d 1-13,15-26,91-107,156-157,166,175-179,223
+  s_e2b3b4d970400c::t_bbb44c0baf24df 158-165,167-170,173-174,180-199
+  s_2ae12b837b7a5c::t_31af5209c70e70 224
+  s_8b5133baa26828::t_7213e54a92ada0 14
+  s_e2b3b4d970400c::t_2f78aa500b25b0 30-90,111-118,123-124,126-155,200-201,212-222
+  s_cc399f689717ef::t_ae063df61e8569 125
+  s_d20dc54c2d6004::t_ebd554871518bb 27-29,202-211
+  s_3808cfaa298c26::t_6f3256556ad28a 171-172
+  s_cc399f689717ef::t_a72a4a9a73d799 119-122
+  s_d20dc54c2d6004::t_e4d3b6690590e8 108-110
+libs/ui/src/lib/input/input-signal-forms.spec.ts
+  s_e2b3b4d970400c::t_a7eb7b53f2f101 4,8-19,22-25,28-30,33-37,40,42-43,49-51,54-57
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1-3,5-7,20-21,26-27,31-32,38-39,41,44-48,52-53
+apps/web/src/app/balancing/balancing-ladder-page.impl.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 12,19-22,38,51,113,123,130-132,140,145,159,178,184,218,223,341-353,356,361,380-384,392,489,514,585,643
+  s_d20dc54c2d6004::t_3cdeab6a5e60fc 366-367,375-376
+  s_e2b3b4d970400c::t_4cf1f11346c2d2 183,189-198
+  s_e2b3b4d970400c::t_41fa2d50331bfb 469
+  s_53b1458f7c8601::t_64006702858955 112,114-115
+  s_53b1458f7c8601::t_fec6dd10d773b8 9-11,13,18,39-41,50,59,81,101,146,154,204-205,210-211,215-217,221-222,231,237,239,242-243,250,253-254,263,266,268,279,285,287-288,297,322,357-358,368-374,451,481,493,497,506-507,513,515,599-602,623,642,647,651,655-656,660-661,665,692
+  s_a7ae6c19293468::t_02c0bba76baa11 15-17,23,97-98,111,116-118,500,504,508
+  s_e2b3b4d970400c::t_3bd22c85ba1c05 32-37,91-95
+  s_e2b3b4d970400c::t_b158283525888a 1-8,14,24-31,42-49,52-58,60-80,82-90,99-100,102-110,119-122,124-129,133-139,141-144,147-153,155-158,160-177,199-203,206-209,212-214,219-220,224-230,232-236,238,240-241,244-249,251-252,255-262,264-265,267,269-278,280-284,286,289-296,298-321,323-340,354-355,359-360,362-363,378-379,385-391,393-402,404,413-414,416,425-426,428-432,441-442,445-447,449-450,452-460,462-467,470-480,482-488,490-492,494-496,498-499,501-503,505,509-512,516-582,587-598,603-622,624-641,644-646,648-650,652-654,657-659,662-664,666-691,693-695,697-698
+  s_e2b3b4d970400c::t_6390f405b43307 179-182,185-188
+  s_e2b3b4d970400c::t_bf8cc49d9747a7 403,415,427,443-444,448,461,468
+  s_53b1458f7c8601::t_534e9c957df9fb 696
+  s_e2b3b4d970400c::t_7055389f4bfe1c 405-412,417-424,433-440,583-584,586
+  s_d20dc54c2d6004::t_8bce53dafb09b8 96,364-365,377
+apps/web/src/app/balancing/balancing-ladder-page.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1
+libs/ui/src/lib/form-item/components/form-item-label/form-item-label.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,26
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1,3-25,27
+apps/web/src/app/market/market-api.service.spec.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1,5,7,21,26-28,30,34,37-41,47,49
+  s_e2b3b4d970400c::t_273bfcf2145f05 46,48
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2-3,22
+  s_e2b3b4d970400c::t_1b06fabf1a2744 4,6,8-20,23-25,29,31-33,35-36,42-45,50-52
+libs/market/src/lib/parser.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2-4,19,47,49,59,66,90,99-100,109,112,116,122-123,134,159,177,183,195,214,223,226
+README.md
+  s_e2b3b4d970400c::t_f5e6157a8d3956 53-61,63
+  s_e2b3b4d970400c::t_43c40229a15383 5,39,42-44
+  s_374524461ba323::t_820f5f03e60ed9 47-48
+  s_374524461ba323::t_3396ff7d0281a7 45
+apps/api/project.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 9,21,23,30,37,53
+typeorm.config.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+apps/web/src/app/solar/solar-page.html
+  s_e2b3b4d970400c::t_7055389f4bfe1c 5-7,56-58,146,330-331
+  s_d20dc54c2d6004::t_a179ff06fb6524 8-26
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 39-53,60-71,147-150,159-166,168-180,182-200,202-218,220-252,254-329,332,334
+  s_e2b3b4d970400c::t_fba7864690d197 1,3-4,38,54-55,59,73-75,142-145,167,181,201,219,333,335-336
+  s_cc399f689717ef::t_a72a4a9a73d799 27-37,151-158,253
+  s_ba8aca283ab3da::t_486fdacb7fdcad 2,76-141
+  s_a7ae6c19293468::t_a340e073dfb91f 72
+apps/api/src/app/market/market.service.ts
+  s_cc399f689717ef::t_ae063df61e8569 163-179
+  s_cc399f689717ef::t_a72a4a9a73d799 203
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,4-5,14-15,78,100,126-127,131,135,138,194,197
+apps/importer-e2e/project.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5,9-10,17
+apps/api/src/app/market/queries.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,4-5,85
+libs/ui/src/lib/flag/flag.ts
+  s_8a5050ef4b7e66::t_aa052707bc9097 9
+  s_8a5050ef4b7e66::t_b98278b1094d0a 1-8,10-25,27-54
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 26
+apps/web/src/app/market/market-data.models.ts
+  s_cc399f689717ef::t_a72a4a9a73d799 144
+  s_e2b3b4d970400c::t_e935908e15fb06 1-3,21-23,41,85,93,158
+  s_e2b3b4d970400c::t_a4aec8e2a12053 4-20,24-40,42-84,86-92,94-143,145-157,159-161
+apps/api-e2e/src/api/api.spec.ts
+  s_cc399f689717ef::t_702f27657f9408 127-191,193,196-200
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3,8,16,40,73-76,108-110,195,202,207,214,242
+  s_cc399f689717ef::t_d0666f34dc7b0d 192,194
+apps/api/eslint.config.mjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,3
+libs/ui/src/lib/modal/components/modal-header/modal-header.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1
+libs/ui/src/lib/input/components/input-select/input-select.css
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-30
+apps/web/tsconfig.app.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5,7-8
+transloco.config.ts
+  s_2ae12b837b7a5c::t_bf8f6aebe5dd50 1,4-5,7
+  s_2ae12b837b7a5c::t_8edd85f4be9479 2-3,6,8-11
+apps/web/src/app/not-found/not-found-page.spec.ts
+  s_2ae12b837b7a5c::t_c55f1384b16641 4,14
+  s_4b8dcd5440179b::t_79637144bb679e 3,8-11,13,16-20,26,34-35,58-59
+  s_4b8dcd5440179b::t_04ebea1d9de9c3 1-2,6-7,12,15,21-25,27-30,32-33,36,40-45,48-50,54-57
+  s_129bac21b2728f::t_d49f9322dcbf61 46-47
+  s_ce6eb515e95193::t_408b53e37af72f 37-39
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5,31,51-53
+libs/ui/src/lib/flag/public-api.ts
+  s_8a5050ef4b7e66::t_b98278b1094d0a 1
+libs/database/src/lib/entities/import-job.entity.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,11
+apps/api/src/app/app.service.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 6
+apps/web/src/app/market/market-time.spec.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1,8,10-13,16-17,21-23,25,28-29,31
+  s_e2b3b4d970400c::t_1b06fabf1a2744 2-7,14-15,19-20,24,26-27,30,32-33
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 18
+  s_e2b3b4d970400c::t_273bfcf2145f05 9
+libs/ui/src/lib/button/components/button-icon/button-icon.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 19,22
+apps/web/src/app/status-badges.spec.ts
+  s_53b1458f7c8601::t_fec6dd10d773b8 1-4,6-8,11-13,19,21-22,25-27,29,39,46-49,52-54,57,60,82-84,89,93,106-107,122,136-138,183,185,190-192,272,282,299,312-314
+  s_53b1458f7c8601::t_171f0559e9bf37 105,108
+  s_cc399f689717ef::t_702f27657f9408 15,128,146-147,149-153,155-164,178-182,198-204,206-207,214-220
+  s_d20dc54c2d6004::t_dbb6f5cdfd8a5e 14,16-18,23-24,28,30-38,40-45,50-51,55-56,58-59,61-77,79-81,86-88,90-92,94-99,101-104,109-121,123-126,129-135,143-144,184,186-189,193,221-222,273-281,283-287,289-294,296-298,300-311,315-317
+  s_ee059573ccb5c5::t_a9d606f9ed6d59 145,165-166,172-174,177
+  s_53b1458f7c8601::t_eebbdeb15fd757 127
+  s_cc399f689717ef::t_f06898b77b29c7 232-233,263
+  s_cc399f689717ef::t_d0666f34dc7b0d 148,205,211-213,223-231,234-262,264-271,288,295
+  s_cc399f689717ef::t_c31c50377a905c 154,167-171,176
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5,9-10,20,78,85,100,139-142,175,194-197,208-210
+.vscode/settings.json
+  s_92806c987c5aeb::t_1443fca8f674d6 1-17
+libs/market/jest.config.cjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1
+apps/importer-e2e/eslint.config.mjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,3
+eslint.config.mjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,4-25,27-41
+libs/ui/src/lib/sonner/sonner-toaster.component.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 28,78,80-82
+libs/ui/src/lib/button/button.styles.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 16-17,19-24,31,38
+libs/ui/src/lib/bottom-navigation/components/bottom-navigation-item/bottom-navigation-item.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3,31
+apps/web/src/app/components/logo/logo.spec.ts
+  s_ce6eb515e95193::t_54f000cdf88ca1 18,25,29,31-36,43,46-49
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 24,44
+  s_4b8dcd5440179b::t_93484528ce54ef 1,3-5,17,19-23,28,30,37-42,45
+  s_4b8dcd5440179b::t_80cf344bcf7764 2,6-16,26-27,50-51
+apps/importer/tsconfig.app.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 6,12,14-15
+apps/web/project.json
+  s_8a5050ef4b7e66::t_4ce417637b96b9 21-25
+  s_e2b3b4d970400c::t_ec4b67e965f9a4 68-69
+AGENTS.md
+  s_136f42b7d1e129::t_426363a26d1c3a 90-91
+apps/web/src/app/transloco-loader.server.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+  s_2ae12b837b7a5c::t_bf8f6aebe5dd50 1,3-5,10,12-14,19
+  s_2ae12b837b7a5c::t_1840e42cdfa4a1 6-9,11,15-18,20-29
+apps/web/src/main.server.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,6
+libs/ui/src/lib/form-item/components/form-item-label/form-item-label.spec.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-36,38-47,49-60,63-69
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 37,48,61-62
+libs/ui/src/lib/modal/components/modal-content/modal-content.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 7
+apps/api/src/app/market/market.controller.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1-3,7,18,22,39,63
+libs/ui/src/lib/chart/chart.provider.ts
+  s_e2b3b4d970400c::t_a71efbb666c1e2 1-6,8,10-14,16-17,19
+  s_e2b3b4d970400c::t_e935908e15fb06 7,9,18
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 15,20
+libs/ui/src/lib/chart/chart-theme.spec.ts
+  s_e2b3b4d970400c::t_1b06fabf1a2744 2,7-10,13-14,18-19
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 11-12,17
+  s_e2b3b4d970400c::t_e935908e15fb06 1,3-6,15-16
+libs/ui/src/lib/chart/chart.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1-2,4,7,33-35,63-65
+  s_e2b3b4d970400c::t_e935908e15fb06 3,6,10,26,31,40,56,61
+  s_e2b3b4d970400c::t_a71efbb666c1e2 5,8-9,11-25,27-30,32,36-39,41-55,57-60,62,66-67
+libs/ui/src/lib/form-item/components/form-item-message/form-item-message.html
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1
+apps/importer/src/main.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 10,12,14,41
+  s_374524461ba323::t_d6555e10aea122 13,33,36-37
+libs/ui/src/lib/input/components/input-calendar/input-calendar.spec.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-48,52-88,90-93,100-123,126-172,174-182
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 49-51,89,124-125,173
+  s_e2b3b4d970400c::t_6390f405b43307 94-99
+libs/ui/src/lib/input/components/input-select/types.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 2-8
+libs/ui/src/lib/helpers/ui-i18n.provider.ts
+  s_e2b3b4d970400c::t_fa7b5cd64bbe57 89-101,224-226,229-232,234-243
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 185,215,227-228,233,296
+apps/importer/src/app/import/scheduler.service.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3-4,6-7,9-10,28,44,54,63,71,102,118
+tsconfig.base.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 20
+apps/api/src/app/app.controller.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+libs/ui/src/lib/dropdown/dropdown-panel.ts
+  s_2e39680885c7da::t_99989a1680a74c 1,4-6,9-11
+  s_2e39680885c7da::t_4994d27ab8c01c 2-3,7-8,12-14
+apps/importer/src/app/import/source.client.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 4,6,15-17
+apps/web/eslint.config.mjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1-3,6-27,29-34
+libs/ui/src/lib/form-item/components/form-item-message/form-item-message.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-18,20-32,34
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 19,33
+apps/web/src/app/components/app-update-prompt/app-update-prompt.spec.ts
+  s_1dc74fba7b8637::t_8d4d329fc41784 31,41
+  s_2ae12b837b7a5c::t_c55f1384b16641 4,6,15,46-52,54
+  s_1dc74fba7b8637::t_ae1bd5c49dcf28 1-2,7,9,20,28,38
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3,24-25,33,43,53
+  s_1dc74fba7b8637::t_e5101c5f80f6c9 5,8,10-14,16-19,21-23,26-27,29-30,32,34-37,39-40,42,44-45,55-56
+apps/web/tsconfig.spec.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5,7
+apps/web/src/app/market/market-live.service.spec.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1-2,4,6-7,9,15
+  s_e2b3b4d970400c::t_1b06fabf1a2744 3,5,8,10-14,16-17
+apps/importer/src/app/app.module.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,3,5,11-13,18
+apps/web/src/app/theme.service.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,12
+apps/web/src/app/not-found/not-found-page.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,4,6
+  s_4b8dcd5440179b::t_04ebea1d9de9c3 2-3,7,9-10,12,14-16,18-32
+  s_2ae12b837b7a5c::t_1b709e053d3694 5,13
+  s_4b8dcd5440179b::t_79637144bb679e 8,11,17
+libs/ui/src/lib/dropdown/dropdown-panel.css
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5,13,21,28,35,43,51,58,65
+  s_2e39680885c7da::t_4994d27ab8c01c 1-4,6-12,14-20,22-27,29-34,36-42,44-50,52-57,59-64,66-71
+libs/ui/src/lib/form-item/components/form-item/form-item.ts
+  s_e2b3b4d970400c::t_cdc2230bc5604f 22-25,28,30,32-44,46,48
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,15,20,71,74,76
+  s_e2b3b4d970400c::t_46563d8e4d7437 61
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 2-3,5-14,16-19,21,26-27,29,31,45,47,49-60,62-70,72-73,75,77
+  s_e2b3b4d970400c::t_311cb4307d7cd1 4
+libs/ui/src/lib/dropdown/dropdown.spec.ts
+  s_2e39680885c7da::t_99989a1680a74c 6-9,11,14-15,51,55,69,74,113-115,120-122,126,135,138,143,146,154,157-159,172,175,188,201,212,214
+  s_2e39680885c7da::t_1f8bdb7b0ae4c5 60-65,67-68,70,72-73,75
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 13,37,45-48,59,77-78,123,165,191,194,205,221
+  s_2e39680885c7da::t_4994d27ab8c01c 1-5,16-36,38-44,49-50,52-54,56-58,66,71,76,79-112,116-119,124-125,127-129,133-134,136-137,139-142,144-145,147,151-153,155-156,160-164,166-171,173-174,176-187,189-190,192-193,195-200,202-204,206-211,213,215-220,222-224
+  s_2e39680885c7da::t_892db970d314c5 10,12,130-132,148-150
+libs/ui/src/lib/modal/components/modal-footer/modal-footer.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 7-12,15-16,18,27
+libs/database/src/lib/market.repository.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 4-5,15,26,69,72,74,163,178,204,224
+.vscode/extensions.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+apps/api/webpack.config.js
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 18,23
+apps/api/src/app/market/events.service.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,3,47
+libs/ui/src/lib/modal/components/modal-header/modal-header.html
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 11-21
+apps/web/src/app/app.routes.server.spec.ts
+  s_4b8dcd5440179b::t_f37d9a8e7ab9e1 1-22
+apps/web/src/app/transloco-testing.ts
+  s_53b1458f7c8601::t_fec6dd10d773b8 1,5,7-8,11-14,16,18-19,22-26,32-33,36-37,39-42,44,46-51,53-56,59-61,77-78,80,86,88-89,92-95,97,99-100,103-107,111,114,117-118,120-123,125,127-132,134-137,140-142,148,158-159,161,170-171
+  s_2ae12b837b7a5c::t_c55f1384b16641 2-4,6,9-10,15,17,20-21,27-28,34,57-58,62-63,81-85,87,90-91,96,98,101-102,108-109,115,138-139,143-144,162-169,172-174
+  s_53b1458f7c8601::t_eebbdeb15fd757 76,79,157,160
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 30,65-67,113,146
+  s_cc399f689717ef::t_d0666f34dc7b0d 68-72,149-153
+  s_d20dc54c2d6004::t_5afc7fa727c3e4 29,31,35,38,43,45,52,64
+  s_cc399f689717ef::t_ae063df61e8569 73-75,154-156
+  s_d20dc54c2d6004::t_2bdbb85e997c87 110,112,116,119,124,126,133,145,147
+libs/database/src/lib/entities/snapshot-document.entity.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+apps/importer-e2e/tsconfig.spec.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 8
+apps/importer/src/app/import/source.client.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3,14,30,52,102,109,132
+apps/web-e2e/project.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 6
+libs/ui/src/lib/badge/public-api.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1
+apps/web/src/app/components/logo/logo.ts
+  s_4b8dcd5440179b::t_909efeefe73596 1,3-4,6,8-11,13,15-17
+  s_4b8dcd5440179b::t_80cf344bcf7764 2,5,7,14
+  s_ce6eb515e95193::t_54f000cdf88ca1 12
+libs/database/src/lib/data-source.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 7-12
+.prettierrc
+  s_ee059573ccb5c5::t_2cea0c675de66e 2-22
+  s_ede2952ac339aa::t_ce79ec24ba0552 1,23
+libs/database/src/lib/database.module.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3,5
+apps/web/src/app/app-update-prompt.service.ts
+  s_1dc74fba7b8637::t_ae1bd5c49dcf28 1-4,15-16,21,24
+  s_1dc74fba7b8637::t_e5101c5f80f6c9 5-12,14,17-20,23,25-34
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 13,22
+libs/ui/src/lib/input/components/input-calendar/input-calendar.html
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-31,33-82,90-94,126,128-131
+  s_e2b3b4d970400c::t_6390f405b43307 32
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 83-89,95-125,127
+libs/database/src/lib/entities/source-document.entity.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+libs/market/src/lib/types.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+apps/api/src/main.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5
+libs/ui/src/lib/flag/flag.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 11,28
+  s_8a5050ef4b7e66::t_b98278b1094d0a 1-10,12-27,29-51
+libs/ui/src/lib/sonner/sonner.service.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 19,24,29,34,39,44,78
+apps/api-e2e/eslint.config.mjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,3
+libs/ui/src/lib/sonner/sonner-toaster.component.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 141
+apps/web/src/app/app.ts
+  s_1dc74fba7b8637::t_ca995ac3d6b8b0 74
+  s_2ae12b837b7a5c::t_1b709e053d3694 1-3,25,50,59,77-83,85-86,88-89,97-106,108-112
+  s_4b8dcd5440179b::t_2d5aebbe5845e5 51
+  s_1dc74fba7b8637::t_ae1bd5c49dcf28 30
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5-6,16-18,84,87,92-93,107
+  s_2e39680885c7da::t_a7d0cd073df962 23-24,48-49,65-66,68-71
+  s_2ae12b837b7a5c::t_0aeb1974c0bd96 7,33-42
+  s_2e39680885c7da::t_2cb1c67ab2b04c 10
+  s_8b5133baa26828::t_7213e54a92ada0 11,53,67
+  s_8fea5b6eb9c657::t_3e44d71a6dc4d6 27,58
+apps/importer/src/app/import/queue.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 10,41
+apps/web/src/index.html
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 17,19,21-23,25,28,32,36,41,51,81
+  s_ce6eb515e95193::t_bb2a081b6e74a0 40,42-50,52-80
+package.json
+  s_2ae12b837b7a5c::t_b8837bad717727 8,31-33,100
+  s_8b5133baa26828::t_5851b9fdec5124 58
+  s_8a5050ef4b7e66::t_4ce417637b96b9 7,108
+  s_2ae12b837b7a5c::t_f79959fc5dd83a 9
+  s_1dc74fba7b8637::t_440639dae4eb16 60
+  s_e2b3b4d970400c::t_b6e04d3bad8530 20
+  s_ee059573ccb5c5::t_2cea0c675de66e 69,116-117
+apps/api-e2e/tsconfig.spec.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 8
+apps/importer/webpack.config.js
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 18,23
+libs/ui/src/lib/form-item/components/form-item/form-item.html
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 4-6,8
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-3,7,9
+libs/ui/src/lib/input/public-api.ts
+  s_e2b3b4d970400c::t_3525c459e3f13f 1-6
+apps/web/src/app/language-persistence.spec.ts
+  s_2ae12b837b7a5c::t_bf8f6aebe5dd50 1,3,8,10,12,21,24,27-28,32,34,36,39-40,43,51
+  s_2ae12b837b7a5c::t_da910a0c90bed8 4-7,9,11,13,15-17,19-20,22-23,25-26,29-31,33,35,37-38,46-50,52-58
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,14,18
+  s_2ae12b837b7a5c::t_f79959fc5dd83a 41-42,44-45
+libs/ui/src/lib/flag/flag.html
+  s_8a5050ef4b7e66::t_b98278b1094d0a 1-9
+apps/web/src/app/app.routes.server.ts
+  s_4b8dcd5440179b::t_da58d21466a145 4-19,22-24
+apps/web/src/app/app.config.server.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3
+  s_2ae12b837b7a5c::t_1840e42cdfa4a1 1,4-5,8,12-14
+libs/ui/src/lib/dropdown/dropdown-panel.spec.ts
+  s_2e39680885c7da::t_4994d27ab8c01c 3,5-15,18-19,32-33
+  s_2e39680885c7da::t_99989a1680a74c 1-2,4,16-17,20-31
+.gitignore
+  s_8a5050ef4b7e66::t_b98278b1094d0a 48
+apps/web/src/app/app-update-prompt.service.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5,9
+  s_1dc74fba7b8637::t_e5101c5f80f6c9 12-22,24-39,41-45,48-50,53,55-59,61-69
+  s_1dc74fba7b8637::t_ae1bd5c49dcf28 1-4,6-8,10-11,23,40,46-47,51-52,54,60
+apps/importer/src/app/import/queue.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+apps/web-e2e/src/example.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,20-24,26-27,29,36,40,48,63,91-92,95-96,98,101,104,113,115,120,123,129,134,141,147,153,161-164,167-170,182,184,189-190,197-198,206,210-212,214,217-222,225-227,236,238-240,242-252,254-256,258-259,267-269,271-274,276-277,279,281,283-286,294-295,301-303,305-306,309,311,314-322,329,332-333,335-338,351-353,355,361,366-367,371,375-379,381-383,385,393,396,398,400-408,411-412,416-420,423
+  s_e2b3b4d970400c::t_02ef8782a579f4 100,102-103,105-112,114,116-118,122,124-128,130-132,158-159,172-173,175-181,183,185-188,191,195-196,199-205,207-209,213,231-235,237,307-308,310,312-313,323-328,330-331,334,339-350,354,356-360,362-365,368-370,372-374,380,384,386-392,394-395
+  s_cc399f689717ef::t_702f27657f9408 215-216,223-224,228-230,253,257
+  s_ce6eb515e95193::t_4a19ff291e8ba8 30-31,33-34
+  s_fd80f7ddd7f8c3::t_40e0f8129a9f31 25,28,32,35,37-39,41-43,45-47,49
+  s_4b8dcd5440179b::t_f37d9a8e7ab9e1 90,93-94,97,99,425
+  s_cc399f689717ef::t_d0666f34dc7b0d 138,174,260-266,270,275,287-293,296-300
+  s_e2b3b4d970400c::t_aad4220eac4849 166,171
+  s_e2b3b4d970400c::t_f5e6157a8d3956 133,135-137,139-140,142-146,148-152,154-157,160,165,397,414
+  s_ba8aca283ab3da::t_486fdacb7fdcad 241
+  s_3808cfaa298c26::t_6f3256556ad28a 278,304
+  s_e2b3b4d970400c::t_5c90db3b97ca48 421-422,424
+  s_e2b3b4d970400c::t_ed03796a509f20 119,121
+  s_a7ae6c19293468::t_c12595eeb98a9e 192-194,280,282,399,409-410,413,415
+apps/web/src/app/app.html
+  s_2ae12b837b7a5c::t_1b709e053d3694 23-31,34,59,62,87,97,126,132-134,138-140
+  s_8b5133baa26828::t_7213e54a92ada0 144-156
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 33,48,78,96,118
+  s_2e39680885c7da::t_cd6e041d8f2f8e 6,20-21,52-58,60,63-77,79,81-85,88-89,91-95,98-101
+  s_67384fec7f1722::t_2d53c34c1a6c8e 80,86,90
+  s_fd80f7ddd7f8c3::t_40e0f8129a9f31 8,10,16,18
+  s_3b29c4356ae774::t_329e5517bc08b3 12-14
+  s_8fea5b6eb9c657::t_3e44d71a6dc4d6 22,43-44,50-51,61
+  s_ee059573ccb5c5::t_e6ff54a48ac071 19
+libs/ui/src/lib/bottom-navigation/components/bottom-navigation/bottom-navigation.html
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 9-14,18,23,25
+libs/ui/src/lib/helpers/overlay.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 20,24
+apps/importer/src/app/entsoe/entsoe.controller.ts
+  s_374524461ba323::t_c9c365faeb7eab 27,33
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,11,45
+  s_374524461ba323::t_74165a6cd3ffce 3-9,16,22-26,28-32,34-44,46
+libs/database/src/lib/entities/market-change.entity.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2
+apps/importer/src/app/app.controller.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3
+  s_374524461ba323::t_0175e551a49da3 2,6,12-22
+libs/ui/src/lib/input/components/input-select/input-select.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,57,79-82,85,88-89,91,98,111,128
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 2-56,58-78,83-84,86-87,90,92-97,99-110,112-127,129-154
+libs/ui/src/lib/input/components/input-date/input-date-modal.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-5,7-40
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 6
+libs/ui/src/lib/input/components/input-date/input-date.html
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-28
+apps/web/src/app/app.config.ts
+  s_e2b3b4d970400c::t_afd738687eb4d8 75-76,78-80,86-93,95-99,102-103,108-142
+  s_3808cfaa298c26::t_6f3256556ad28a 100-101
+  s_2ae12b837b7a5c::t_fc0766f9dbab97 58-61
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 10,16-19,77
+  s_e2b3b4d970400c::t_6d315ec3341397 4
+  s_2ae12b837b7a5c::t_1840e42cdfa4a1 20-21,23-24,39,41-43,46-51,54-55,57,62,81-85,143-144
+  s_e2b3b4d970400c::t_3320206110b354 22
+  s_1dc74fba7b8637::t_ca995ac3d6b8b0 63-70
+  s_e2b3b4d970400c::t_e935908e15fb06 1,14-15,26-28,30,33,44-45,52-53,56,94,104-107
+  s_e2b3b4d970400c::t_1fbac5a985cfaf 25
+  s_e2b3b4d970400c::t_58fc7b16710a5e 145-149
+libs/ui/src/lib/input/components/input-number/input-number.html
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 24-33
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-23,34-35
+libs/ui/src/lib/form-item/public-api.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-3
+nx.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 6
+libs/ui/src/lib/input/components/input-date/input-date.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-77,79-80,83-85,87-115,117-171
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 78,81-82,86,116
+libs/ui/src/lib/input/components/input-select/input-select-option-context.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-7,9-24
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 8
+apps/api-e2e/project.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5,9-10,17
+libs/ui/ng-package.json
+  s_8a5050ef4b7e66::t_4ce417637b96b9 7
+libs/ui/src/lib/chart/chart-theme.ts
+  s_e2b3b4d970400c::t_a71efbb666c1e2 2,4-7,12-13,16-23,27-29,31-33,36-67,71,74-76,80,83-87
+  s_e2b3b4d970400c::t_e935908e15fb06 1,3,8-11,14,24-26,30,34-35,68-70,72-73,77-79,81-82
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 15
+libs/ui/package.json
+  s_e2b3b4d970400c::t_b3d293afc06d68 5,8
+  s_e2b3b4d970400c::t_12df6fdfe59f24 13,16
+apps/importer/src/app/app.service.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 6
+libs/ui/src/lib/form-item/components/form-item-label/form-item-label.html
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 7-12
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-6,13-14
+apps/web/ngsw-config.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 25
+  s_2ae12b837b7a5c::t_1840e42cdfa4a1 14
+apps/web/src/app/balancing/balancing-ladder-page.html
+  s_e2b3b4d970400c::t_e67b128b823b6e 56-63,65-75,77-87,89-99,101-111,113,115-123,125-136,138,140
+  s_e2b3b4d970400c::t_aa427f21f31705 1-4,27,43-44,48-51,141-142,152-159,171,185,187-190,196-197,212-217,223-224,233-234,423,425-426
+  s_e2b3b4d970400c::t_7055389f4bfe1c 5-7,45-47,52-55,64,76,88,100,112,114,124,137,139,143-151,160
+  s_d20dc54c2d6004::t_a179ff06fb6524 8-26
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 28-42,161-170,172-184,186,191-195,198-211,218-222,225-232,235-422,424
+libs/ui/src/lib/modal/components/modal-header/modal-header.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 16-18
+libs/database/jest.config.cjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1
+libs/ui/src/lib/tooltip/tooltip-content.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 13,15,31,34-35,74,76
+apps/web/src/app/pwa-update.service.spec.ts
+  s_2ae12b837b7a5c::t_c55f1384b16641 5,35-40,42-45
+  s_1dc74fba7b8637::t_011eb2f3612469 22,59,64,87-89
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 4,8,41
+  s_1dc74fba7b8637::t_ae1bd5c49dcf28 3,9,56,60-61
+libs/ui/src/lib/button/button.styles.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 79-80
+apps/web/src/app/components/app-update-prompt/app-update-prompt.html
+  s_1dc74fba7b8637::t_e5101c5f80f6c9 1-9,11-12,14-24,26-32,34-35
+  s_2ae12b837b7a5c::t_1b709e053d3694 10,13,25,33
+apps/web/src/app/market/market-api.service.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 31
+  s_e2b3b4d970400c::t_7055389f4bfe1c 32
+  s_e2b3b4d970400c::t_e935908e15fb06 1-2,11,18-19,24,30,36,41-46
+  s_e2b3b4d970400c::t_a4aec8e2a12053 3-10,12-17,20-23,25-29,33-35,37-40,47-49
+apps/importer/eslint.config.mjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,3
+apps/web/src/app/solar/solar-page.impl.ts
+  s_d20dc54c2d6004::t_527588a27a90b7 36,77
+  s_d20dc54c2d6004::t_3cdeab6a5e60fc 285-287,295-297,323
+  s_53b1458f7c8601::t_fec6dd10d773b8 9-11,13,18,37-39,48,63,82,129-130,137-138,142-145,148-149,153-154,158-159,165,171,173-174,180,182-183,213,219,223,225-226,234,239,248,251-252,344,372,376-377,383-384,391-392,445,458-459,507,509
+  s_cc399f689717ef::t_a72a4a9a73d799 21,57-61,110,193-211,244-247,298-322,338-339,419-441,516-517
+  s_e2b3b4d970400c::t_2ecedbe1a39c4e 33-35,74-76,362
+  s_cc399f689717ef::t_d858b55e4d93f4 336-337
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 12,19-20,22,40-41,94,115,121,160,260-275,278-279,281,325-332
+  s_e2b3b4d970400c::t_e020593d0b1c30 499
+  s_53b1458f7c8601::t_64006702858955 93,95-96
+  s_e2b3b4d970400c::t_7a7006dd7ec038 1-8,14,24-32,42,44-47,49-56,62,64-73,80-81,83-91,100-105,107-109,111-114,116-120,122-128,131,135-136,139-141,146-147,150-152,155-157,161-164,166-170,172,175-179,181,184-192,212,214-218,220-222,224,227-233,235-238,240-243,249-250,253-259,276,284,324,333-335,340-343,345-361,363-371,373-375,378-380,386-388,442-444,446-457,460-498,500-503,510-511,514-515,518-519
+  s_a7ae6c19293468::t_02c0bba76baa11 15-17,23,78-79,92,97-99,381,385,389,393,504-506,508,512-513
+  s_cc399f689717ef::t_ae063df61e8569 43,132-134,277,280,282-283,288-294,382,390,394-418
+  s_e2b3b4d970400c::t_477fd6991216ee 106
+apps/importer/src/app/import/worker.controller.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3,5-6,9,117,125,135
+apps/web/src/app/solar/solar-page.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1
+apps/importer/src/app/entsoe/entsoe.service.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3,38
+libs/database/src/testing.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1-2,5,8,28-31,66,82,106
+apps/web/src/app/localized-title-strategy.ts
+  s_2ae12b837b7a5c::t_0aeb1974c0bd96 11,15
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,4,32
+  s_2ae12b837b7a5c::t_1840e42cdfa4a1 6,8-10,13-14,16-26,28-31
+  s_2ae12b837b7a5c::t_bf8f6aebe5dd50 2-3,5,7,12,27
+libs/ui/src/css/styles/common.css
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 21-22
+libs/market/src/lib/calculations.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3-5,74,81,92-93
+libs/ui/src/lib/input/components/input-number/input-number.css
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-9
+apps/importer-e2e/src/importer/importer.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,3,5-6,17,21,31,69,75,89,92,101,193,199,222,232,235
+  s_374524461ba323::t_3223d04ea0aa3c 122-153
+apps/web/src/main.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,4,6
+libs/ui/src/lib/card/card.spec.ts
+  s_e2b3b4d970400c::t_1b06fabf1a2744 2,4,7-8,10,12,15-16,18,20-21,24-25
+  s_e2b3b4d970400c::t_e935908e15fb06 1,3,5-6,9,11,13-14,17,19,22-23
+apps/web/src/app/market/market-live.service.ts
+  s_e2b3b4d970400c::t_a4aec8e2a12053 5,7,9-18,20-25,27-32,34-37,42,50,53,56,58-59,61-63
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2-3,8,19,51,54,60
+  s_e2b3b4d970400c::t_6f7f68dec2c8f8 40-41
+  s_e2b3b4d970400c::t_e935908e15fb06 1,4,6,26,33,38-39,43-49,52,55,57
+apps/web/src/server.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 7,38,47
+libs/market/src/lib/time.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 4,21
+libs/ui/src/lib/tooltip/tooltip.provider.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 13-16
+apps/web/public/i18n/en.json
+  s_d20dc54c2d6004::t_e4d3b6690590e8 108-110
+  s_8b5133baa26828::t_7213e54a92ada0 14
+  s_cc399f689717ef::t_a72a4a9a73d799 119-122
+  s_e2b3b4d970400c::t_2f78aa500b25b0 30-90,111-118,123-124,126-155,200-201,212-222
+  s_cc399f689717ef::t_ae063df61e8569 125
+  s_3808cfaa298c26::t_6f3256556ad28a 171-172
+  s_2ae12b837b7a5c::t_6e2426c58cd98d 1-13,15-26,91-107,156-157,166,175-179,223
+  s_2ae12b837b7a5c::t_31af5209c70e70 224
+  s_d20dc54c2d6004::t_ebd554871518bb 27-29,202-211
+  s_e2b3b4d970400c::t_4b8f43d733d6ba 158-165,167-170,173-174,180-199
+libs/database/src/lib/data-source.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,6
+.prettierignore
+  s_ee059573ccb5c5::t_2cea0c675de66e 1
+libs/ui/src/lib/badge/badge.spec.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1-2,4,12-13,17-20
+  s_e2b3b4d970400c::t_1b06fabf1a2744 3,5-11,14-16,21-22
+libs/ui/src/lib/dropdown/dropdown.ts
+  s_2e39680885c7da::t_4994d27ab8c01c 1-5,8-18,20,22-27,29-30,32,37,39-40,44-45,47-49,51-81,83-93,95-98,100-165,169-180,184-196
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 46,50,82,99,166-168,181-182
+  s_2e39680885c7da::t_99989a1680a74c 6-7,19,21,28,31,33-36,38,42,94,183
+  s_2e39680885c7da::t_892db970d314c5 41,43
+flag-resizer.config.ts
+  s_8a5050ef4b7e66::t_b98278b1094d0a 1-26
+libs/database/src/lib/entities/generation-interval.entity.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,4
+apps/web/src/app/pwa-update.service.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 5,28-39,41
+  s_1dc74fba7b8637::t_ae1bd5c49dcf28 2,4,8
+  s_2ae12b837b7a5c::t_1b709e053d3694 6,16,46
+apps/web/src/app/transloco-loader.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 3
+  s_2ae12b837b7a5c::t_1840e42cdfa4a1 5-13
+  s_2ae12b837b7a5c::t_bf8f6aebe5dd50 1-2,4
+apps/importer/project.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 9,21,23,30,37,53
+apps/web/src/app/app.routes.spec.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 5,10-11,13,56,59,62-63,66,68,70,72,75
+  s_4b8dcd5440179b::t_61edb4148aa36d 61
+  s_2ae12b837b7a5c::t_c55f1384b16641 18,64-65,67,69,71,73-74
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,4,7,9,36
+  s_a7ae6c19293468::t_36ee12e6654567 6,19-26
+libs/ui/src/lib/input/components/input-calendar/input-calendar.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 56-61,64-65,118,153,155,165-167,192,202,209,222,255,288,311,327-328,334,343,345,361,365,370,375,384,415,421,451,458,487
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 1-55,62-63,66-117,119-152,154,156-164,168-174,181-191,193-200,203-208,210-221,223-254,256-287,289-310,312-318,321-326,329-333,335-342,344,346-360,362-364,366-369,371-374,376-383,385-391,395-414,416-420,422-450,452-457,459-486,488-489
+  s_e2b3b4d970400c::t_6390f405b43307 175-180,201,392-394
+  s_e2b3b4d970400c::t_a212de1a5101c8 319-320
+libs/ui/src/lib/skeleton/skeleton.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 24
+apps/web-e2e/playwright.config.mts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2-3
+libs/ui/src/lib/card/card.ts
+  s_e2b3b4d970400c::t_e935908e15fb06 1,3,5,7,9-10,13-14,16,19,22-23,26,32-34,37,41,48-49,51-53,61-63,68-70,75-77,80
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 2,83
+  s_e2b3b4d970400c::t_5dc544c37d5e11 4,6,8,11-12,15,17-18,20-21,24-25,27-31,35-36,38-40,42-47,50,54-60,64-67,71-74,78-79,81-82,84-85
+apps/api/tsconfig.app.json
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 6,12,14-15
+libs/ui/src/lib/button/components/button-icon/button-icon.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 4
+libs/ui/src/lib/dropdown/public-api.ts
+  s_2e39680885c7da::t_99989a1680a74c 1-2
+libs/ui/src/lib/input/components/input-date/input-date.spec.ts
+  s_e2b3b4d970400c::t_4c7cfb9760c00f 2-28,30-36,40-44,46-74,80-90,93-124,126-141,143-145,147-200,202-210,212-213,215-217
+  s_e2b3b4d970400c::t_6390f405b43307 37-39,75-79
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1,29,45,91-92,125,142,146,201,211,214
+apps/web/src/app/theme.service.spec.ts
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 87,115,121,133
+apps/web-e2e/eslint.config.mjs
+  s_ee059573ccb5c5::t_00b3f1ab86acf6 1-3,6-12
+bun.lock
+  s_ee059573ccb5c5::t_819a479199ac97 9,20-22,47,49,65,84,97,105-106,153-154,195,207,227,229,237,411,413,535-588,707-720,1117-1118,1337-1338,1391-1392,1489-1490,1507-1509,1517-1520,1539-1540,1565-1566,1571-1574,1587-1588,1615,1657-1658,1673-1674,1681-1682,1729-1732,1797-1798,1819-1820,1863-1864,1869-1871,1897,1921-1925,2095-2096,2237-2240,2335-2336,2339-2340,2369-2370,2403-2404,2409-2410,2415-2418,2431,2439-2440,2469-2470,2571-2573,2583-2584,2615-2616,2725-2726,2751-2752,2857-2858,2943-2944,2951-2952,3035,3053-3054,3097-3098,3139-3140,3145-3150,3153-3154,3177,3181,3183,3185,3247-3248,3385-3391,3407-3408,3447-3448,3451-3452,3461-3463,3469-3470,3475-3476,3485-3486,3505-3506,3517-3518,3557,3559,3615-3616,3621,3639-3648,3665-3666,3685-3686,3691-3692,3697-3698,3703,3713-3714,3725-3728,3733,3737-3740,3747-3748,3751-3752,3757-3758,3761-3762,3765,3771,3775-3776,3779-3780,3783-3784,3801-3802,3821-3822,3825-3826,3855-3857,3859,3863,3919-3920,3923-3924,3927-3928,3935-3936,3963-3964,3973-3976,4127,4129,4131,4133,4135,4137,4139,4141,4143,4145,4183,4185,4187,4189,4203,4205,4207,4209,4211,4213,4215,4565,4567,4569,4571,4573,4575-4579,4581,4583,4987,5219-5221,5407,5409,5471,5509-5510,5537,5545,5547,5623-5625,5651-5658,5709-5716,5725-5726,5729-5730,5743-5744,5767-5768,5783,5785,5787,5789,5791,5793,5795,5797,5799,5801,5803,5805,5807,5809,5811,5813,5815,5817,5819,5821,5823,5825,5827,5829,5831,5833,5835,5837,5839,5841,5843,5845,5847,5849,5851,5853,5855,5857,5859,5861,5863,5865,5867,5869,5871,5873,5875,5877,5879,5881,5883,5885,5887,5889,5891,5893,5895,5897,5899,5901,5903,5905,5907,5909,5911,5913,5915,5917,5919,5921,5923,5925,5927,5929,5931,5933,5935,5937,5939,5941,5943,5945,5947,5949,5951,5953,5955,5957,5959,5961,5963,5965,5967,5969,5971,5973,5975,5977,5979,5981,5983,5985,5987,5989,5991,5993,5995,5997,5999,6001,6003,6005,6007,6009,6011,6013,6015,6017,6019,6021,6023,6025,6027,6029,6031,6033,6035,6037,6039,6041,6043,6045,6047,6049,6051,6053,6055,6057,6059,6061,6063,6065,6067,6069,6071,6073,6075,6077,6079,6081,6083,6085,6087,6089,6091,6093,6095,6097,6099,6101,6103,6105,6107,6109,6111,6113,6115,6117,6119,6121,6123,6125,6127,6129,6131,6133,6135,6137,6139,6141,6143,6145,6147,6149,6151,6153,6155,6157,6159,6161,6163,6165,6167,6169,6171,6173,6175,6177,6179,6181,6183,6185,6187,6189,6191,6193,6195,6197,6199,6201,6203,6205,6207,6209,6211,6213,6215,6217,6219,6221,6223,6225,6227,6229,6231,6233,6235,6237,6239,6241,6243,6245,6247,6249,6251,6253,6255,6257,6259,6261,6263,6265,6267,6269,6271,6273,6275,6277,6279,6281,6283,6285,6287,6289,6291,6293,6295,6297,6299,6301,6303,6305,6307,6309,6311,6313,6315,6317,6319,6321,6323,6325,6327,6329,6331,6333,6335,6337,6339,6341,6343,6345,6347,6349,6351,6353,6355,6357,6359,6361,6363,6365,6367,6369,6371,6373,6375,6377,6379,6381,6383,6385,6387,6389,6391,6393,6395,6397,6399,6401,6403,6405,6407,6409,6411,6413,6415,6417,6419,6421,6423,6425,6427,6429,6431,6433,6435,6437,6439,6441,6443,6445,6447,6449,6451,6453,6455,6457,6459,6461,6463,6465,6467,6469,6471,6473,6475,6477,6479,6481,6483,6485,6487,6489,6491,6493,6495,6497,6499,6501,6503,6505,6507,6509,6511,6513,6515,6517,6519,6521,6523,6525,6527,6529,6531,6533,6535,6537,6539,6541,6543,6545,6547,6549,6551,6553,6555,6557,6559,6561,6563,6565,6567,6569,6571,6573
+libs/ui/assets/flags/ATTRIBUTION.txt
+  s_2e39680885c7da::t_aa68203bcdeb02 1-50
+libs/ui/assets/flags/LICENSE-GRAPHICS
+  s_2e39680885c7da::t_c36e58ed830caf 1-94
+libs/ui/src/lib/flag/flag-assets.generated.ts
+  s_ee059573ccb5c5::t_8438a22db91833 1-292
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "cd27823a8c81fd68fe3edc2db7c98428fb1a92ff",
+  "prompts": {},
+  "humans": {
+    "h_aa1f579535d063": {
+      "author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  },
+  "sessions": {
+    "s_129bac21b2728f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f19c-e4d8-7720-9fc3-ff407aa101be",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_136f42b7d1e129": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f247-1af5-7182-9527-d02a3b6ba094",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_1dc74fba7b8637": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f171-3193-74e0-93ca-db1b28a86d58",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_2ae12b837b7a5c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f18d-a670-7b73-bd5b-89bc6dfb852d",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_2e39680885c7da": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f16f-5720-7323-bc69-ce496b169132",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_374524461ba323": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f212-7613-73e0-8b3d-3ac0162f7ef3",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_3808cfaa298c26": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f231-3954-79d1-866b-73616bc09fcc",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_3b29c4356ae774": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f19b-e293-7292-ac74-5ec89b74ff96",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_4b8dcd5440179b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f16e-7a3a-7db2-9435-5ad70c74c8da",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_53b1458f7c8601": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f238-b1f8-7fe0-860a-4b0b44922bfc",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_67384fec7f1722": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f194-342a-72e1-bdf9-e19f445e0320",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_8a5050ef4b7e66": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f170-4d6f-7442-ba33-6a65572ba932",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_8b5133baa26828": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f211-8ae0-7922-928c-12896df41c23",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_8fea5b6eb9c657": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f187-2a99-74e2-995b-4e79d096dedd",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_92806c987c5aeb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f248-cc05-7813-81dd-ed95e2bfe9d3",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_a7ae6c19293468": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f232-d854-75e3-a097-22b4d65fde4c",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_ba8aca283ab3da": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f224-99e6-7db0-9cb3-6c5ad3653b22",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_cc399f689717ef": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f244-38f8-79b0-bdf7-b5dd8cafa39a",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_ce6eb515e95193": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f23e-f4f7-7bd1-9f99-5d3f7e8e8292",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_d20dc54c2d6004": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f213-3065-7930-be8f-7782672454eb",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_e2b3b4d970400c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f19d-1f92-7142-b2fa-227f3ffef748",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_ede2952ac339aa": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f10b-32cb-7af1-bcb5-56e7a257cf2d",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_ee059573ccb5c5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f24b-3a8b-7e41-b6ba-940e5ad452a1",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    },
+    "s_fd80f7ddd7f8c3": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f186-dd9d-7c90-b213-b367b425569d",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  }
+}
