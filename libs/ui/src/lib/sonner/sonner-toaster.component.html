@@ -1,0 +1,18 @@
+@if (browserReady()) {
+  <ngx-sonner-toaster
+    [theme]="resolvedTheme()"
+    [position]="position()"
+    [hotKey]="hotKey()"
+    [richColors]="richColors()"
+    [expand]="expand()"
+    [duration]="duration()"
+    [visibleToasts]="visibleToasts()"
+    [closeButton]="closeButton()"
+    [toastOptions]="toastOptions()"
+    [offset]="offset()"
+    [dir]="dir()"
+    [invert]="invert()"
+    [class]="className()"
+    [style]="toasterStyle()"
+  />
+}

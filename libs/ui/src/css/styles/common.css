@@ -1,0 +1,59 @@
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  .cdk-drag-handle:not(:disabled) {
+    cursor: grab;
+  }
+
+  body:has(.cdk-drag-dragging),
+  body:has(.cdk-drag-dragging) * {
+    cursor: grabbing !important;
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@custom-variant hover {
+  transition-property:
+    color, background-color, border-color, outline-color, text-decoration-color,
+    fill, stroke, opacity, box-shadow, transform, translate, scale, rotate,
+    filter;
+  transition-timing-function: var(--default-transition-timing-function);
+  transition-duration: 200ms;
+
+  @media (hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@utility surface-* {
+  background-color: --value(--color-primary-*);
+  color: --value(--color-primary-contrast-*);
+
+  @variant dark {
+    background-color: --value(--color-secondary- *);
+    color: --value(--color-secondary-contrast- *);
+  }
+}
+
+@utility focusable {
+  @apply focus:ring-0 focus:outline-2 focus:outline-offset-2 focus:outline-solid;
+}
+
+@utility ui-scrollbar {
+  @apply scrollbar-thin scrollbar-thumb-primary-400 scrollbar-track-primary-200 scrollbar-corner-primary-200;
+
+  @variant dark {
+    @apply scrollbar-thumb-secondary-600 scrollbar-track-secondary-800 scrollbar-corner-secondary-800;
+  }
+}

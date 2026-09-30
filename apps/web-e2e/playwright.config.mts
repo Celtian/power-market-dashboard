@@ -3,7 +3,7 @@ import { nxE2EPreset } from '@nx/playwright/preset';
 import { workspaceRoot } from '@nx/devkit';
 
 // For CI, you may want to set BASE_URL to the deployed application.
-const baseURL = process.env['BASE_URL'] || 'http://localhost:4200';
+const baseURL = process.env['BASE_URL'] || 'http://localhost:4300';
 
 /**
  * Read environment variables from file.
@@ -31,25 +31,28 @@ export default defineConfig({
   },
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'bun nx run web:serve',
-    url: 'http://localhost:4200',
-    reuseExistingServer: true,
-    cwd: workspaceRoot
+    command:
+      "bun nx build web && node_modules/.bin/http-server dist/apps/web/browser -p 4300 -c-1 -d false -i false -P 'http://127.0.0.1:4300/index.csr.html?'",
+    url: 'http://localhost:4300',
+    reuseExistingServer: false,
+    cwd: workspaceRoot,
   },
   projects: [
     {
-      name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      name: 'firefox',
+      grepInvert: /@chromium/,
+      use: { ...devices['Desktop Firefox'] },
     },
 
     {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      name: 'webkit',
+      grepInvert: /@chromium/,
+      use: { ...devices['Desktop Safari'] },
     },
 
     // Uncomment for mobile browsers support

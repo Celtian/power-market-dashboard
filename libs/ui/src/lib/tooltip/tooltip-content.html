@@ -1,0 +1,8 @@
+@if (text(); as t) { {{ t }} } @if (template(); as t) {
+<ng-container [ngTemplateOutlet]="t" />
+} @if (component(); as componentType) {
+<ng-template
+  [ngComponentOutlet]="componentType"
+  [ngComponentOutletInputs]="componentInputs()"
+/>
+}

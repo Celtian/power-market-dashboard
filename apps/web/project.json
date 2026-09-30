@@ -8,9 +8,7 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/web",
@@ -22,9 +20,7 @@
             "input": "apps/web/public"
           }
         ],
-        "styles": [
-          "apps/web/src/styles.css"
-        ],
+        "styles": ["apps/web/src/styles.css"],
         "server": "apps/web/src/main.server.ts",
         "ssr": {
           "entry": "apps/web/src/server.ts"
@@ -45,7 +41,8 @@
               "maximumError": "8kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "serviceWorker": "apps/web/ngsw-config.json"
         },
         "development": {
           "optimization": false,

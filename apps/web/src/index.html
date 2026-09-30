@@ -1,13 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="theme-blue ui-scrollbar">
   <head>
     <meta charset="utf-8" />
-    <title>web</title>
+    <title>Power Market Dashboard</title>
     <base href="/" />
+    <meta
+      name="description"
+      content="Realtime Hungarian solar generation and balancing energy market dashboard."
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1d4ed8" />
+    <script>
+      (() => {
+        let theme;
+        try {
+          const storedTheme = localStorage.getItem("theme");
+          theme =
+            storedTheme === "light" || storedTheme === "dark"
+              ? storedTheme
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+        } catch {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        document.documentElement.style.colorScheme = theme;
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute("content", theme === "dark" ? "#2a3444" : "#1d4ed8");
+      })();
+    </script>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="icons/icon-192x192.png"
+    />
+    <link rel="manifest" href="manifest.webmanifest" />
   </head>
-  <body>
+  <body class="surface-200 dark:surface-700">
     <app-root></app-root>
+    <noscript
+      >Please enable JavaScript to continue using this application.</noscript
+    >
   </body>
 </html>

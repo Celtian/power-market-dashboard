@@ -1,0 +1,31 @@
+<div
+  ngxFixedFooter
+  class="fixed inset-x-0 bottom-0 z-50"
+  cssAttribute="padding"
+  [class.sm:hidden]="mobileOnly()"
+  [containerSelector]="containerSelector()"
+>
+  @if (actionPortal(); as portal) {
+  <section
+    class="border-t border-primary-400 bg-primary-300 text-primary-contrast-300 shadow-lg dark:border-secondary-600 dark:bg-secondary-800 dark:text-secondary-contrast-800"
+    [attr.aria-label]="i18n().navigation.pageActions"
+  >
+    <ng-template [cdkPortalOutlet]="portal" />
+  </section>
+  }
+
+  <nav
+    class="border-t border-primary-400 bg-primary-300 text-primary-contrast-300 shadow-lg pb-[env(safe-area-inset-bottom)] sm:hidden dark:border-secondary-600 dark:bg-secondary-800 dark:text-secondary-contrast-800"
+    [attr.aria-label]="ariaLabel()"
+  >
+    <div class="grid auto-cols-fr grid-flow-col">
+      @if (contentPortal(); as portal) {
+      <ng-template [cdkPortalOutlet]="portal" />
+      } @else {
+      <ng-content
+        select="a[ui-bottom-navigation-item],button[ui-bottom-navigation-item]"
+      />
+      }
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,14 @@
+.cdk-overlay-pane.ui-modal-sm {
+  max-width: calc(100vw - 2rem);
+  width: var(--breakpoint-sm);
+}
+
+.cdk-overlay-pane.ui-modal-md {
+  max-width: calc(100vw - 2rem);
+  width: var(--breakpoint-2xl);
+}
+
+.cdk-dialog-container:focus,
+.cdk-dialog-container:focus-visible {
+  outline: none;
+}

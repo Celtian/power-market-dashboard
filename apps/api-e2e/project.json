@@ -11,13 +11,13 @@
       "outputs": [
         "{workspaceRoot}/coverage/api-e2e"
       ],
+      "dependsOn": [
+        "api:build"
+      ],
       "options": {
         "jestConfig": "apps/api-e2e/jest.config.cjs",
         "passWithNoTests": false
-      },
-      "dependsOn": [
-        "api:build"
-      ]
+      }
     }
   }
 }

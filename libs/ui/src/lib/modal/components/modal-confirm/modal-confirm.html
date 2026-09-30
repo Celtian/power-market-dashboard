@@ -1,0 +1,27 @@
+<ui-modal-header [modalTitle]="data.title" [titleId]="data.titleId" />
+<ui-modal-content [contentId]="data.contentId">
+  <p>{{ data.content }}</p>
+</ui-modal-content>
+<ui-modal-footer>
+  <button
+    data-modal-cancel
+    ui-button
+    type="button"
+    rounded="all"
+    [withBorder]="true"
+    (click)="cancel()"
+  >
+    {{ data.cancelLabel }}
+  </button>
+  <button
+    data-modal-confirm
+    ui-button
+    type="button"
+    rounded="all"
+    [color]="data.confirmColor"
+    [withBorder]="true"
+    (click)="confirm()"
+  >
+    {{ data.confirmLabel }}
+  </button>
+</ui-modal-footer>

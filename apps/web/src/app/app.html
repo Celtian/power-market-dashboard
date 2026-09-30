@@ -1,2 +1,96 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<div class="flex min-h-screen flex-col">
+  <header
+    class="sticky top-0 z-20 border-b border-primary-400 surface-300 shadow-md dark:border-secondary-600 dark:surface-800"
+  >
+    <div
+      class="mx-auto grid h-14 w-full max-w-screen-2xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-4 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:px-6"
+    >
+      <a
+        class="min-w-0 truncate rounded-sm font-bold focusable focus:outline-primary-500 dark:focus:outline-primary-400"
+        routerLink="/solar"
+      >
+        Power Market Dashboard
+      </a>
+
+      <nav
+        class="hidden items-stretch self-stretch sm:flex"
+        data-desktop-navigation
+        aria-label="Primary navigation"
+      >
+        <a
+          class="flex items-center rounded-sm px-4 font-medium focusable hover:surface-400 focus:outline-primary-500 dark:hover:surface-700 dark:focus:outline-primary-400"
+          routerLink="/solar"
+          routerLinkActive="surface-400 font-bold dark:surface-700"
+          ariaCurrentWhenActive="page"
+        >
+          Solar
+        </a>
+        <a
+          class="flex items-center rounded-sm px-4 font-medium focusable hover:surface-400 focus:outline-primary-500 dark:hover:surface-700 dark:focus:outline-primary-400"
+          routerLink="/balancing"
+          routerLinkActive="surface-400 font-bold dark:surface-700"
+          ariaCurrentWhenActive="page"
+        >
+          Balancing
+        </a>
+      </nav>
+
+      <div class="flex justify-end">
+        <button
+          ui-button-icon
+          data-theme-toggle
+          rounded="all"
+          size="sm"
+          type="button"
+          [attr.aria-label]="themeToggleLabel()"
+          [attr.title]="themeToggleLabel()"
+          [withBorder]="true"
+          (click)="theme.toggleTheme()"
+        >
+          <ng-icon
+            class="size-4"
+            aria-hidden="true"
+            [name]="themeToggleIcon()"
+          />
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex flex-1 flex-col" data-bottom-navigation-container>
+    <main
+      class="mx-auto flex w-full max-w-screen-2xl flex-1 flex-col p-4 sm:p-6"
+      data-app-content
+      role="main"
+    >
+      <router-outlet />
+    </main>
+
+    <footer
+      class="border-t border-primary-400 surface-300 dark:border-secondary-600 dark:surface-800"
+    >
+      <div
+        class="mx-auto w-full max-w-screen-2xl px-4 py-6 text-center text-sm sm:px-6"
+      >
+        &copy; {{ currentYear }} Power Market Dashboard
+      </div>
+    </footer>
+  </div>
+</div>
+
+<ui-bottom-navigation
+  ariaLabel="Primary navigation"
+  containerSelector="[data-bottom-navigation-container]"
+  [mobileOnly]="true"
+>
+  <a ui-bottom-navigation-item routerLink="/solar">
+    <ng-icon class="size-5" aria-hidden="true" name="faSolidSun" />
+    <span class="max-w-full truncate">Solar</span>
+  </a>
+  <a ui-bottom-navigation-item routerLink="/balancing">
+    <ng-icon class="size-5" aria-hidden="true" name="faSolidScaleBalanced" />
+    <span class="max-w-full truncate">Balancing</span>
+  </a>
+</ui-bottom-navigation>
+
+<ui-sonner-toaster />
