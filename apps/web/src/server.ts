@@ -10,6 +10,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { createApiProxy } from './api-proxy';
+import { railwayHealthcheck } from './railway-healthcheck';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -17,6 +18,8 @@ const browserDistFolder = resolve(serverDistFolder, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 const apiOrigin = process.env['API_ORIGIN']?.trim();
+
+app.get('/', railwayHealthcheck);
 
 if (apiOrigin) {
   app.use('/api', createApiProxy(apiOrigin));
