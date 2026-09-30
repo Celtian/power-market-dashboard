@@ -1,0 +1,30 @@
+apps/web/src/railway-healthcheck.ts
+  s_f9ef5c275dea2e::t_b74d14cfe13e80 1-10
+apps/web/src/server.ts
+  s_f9ef5c275dea2e::t_b74d14cfe13e80 13,22
+  s_f9ef5c275dea2e::t_f01dc2bbaa2667 23
+apps/web/src/railway-healthcheck.spec.ts
+  s_f9ef5c275dea2e::t_28bc235a20ea67 1-2,4-19,38-50,52,54-58,60,62-63
+  s_f9ef5c275dea2e::t_14d472fb570050 3,20-37,51,53,59,61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "15c411193291807d392df0af50075a2864c4423d",
+  "prompts": {},
+  "humans": {
+    "h_aa1f579535d063": {
+      "author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  },
+  "sessions": {
+    "s_f9ef5c275dea2e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f231-d7dd-77c1-9fb9-7611b518633e",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  }
+}
