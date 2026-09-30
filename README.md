@@ -40,8 +40,9 @@ bun nx serve web
 ```
 
 The web development server proxies `/api` to `http://localhost:3000`. Production
-deployments must route `/api` to the NestJS API and disable response buffering
-for the long-lived SSE endpoint.
+deployments set `API_ORIGIN` on the SSR web service (for example,
+`http://api.railway.internal:3000`). The built-in proxy routes `/api` to the
+NestJS API and streams the long-lived SSE endpoint without buffering.
 
 API: `http://localhost:3000/api`; importer: `http://localhost:3001/api`.
 OpenAPI UI and JSON: API `/api/docs` and `/api/docs-json` on port `3000`;
@@ -61,6 +62,7 @@ The existing importer `/api/entsoe/day-ahead-prices` endpoint still uses
 | `PORT`                     | API default 3000, importer default 3001                                  |
 | `IMPORT_SCHEDULER_ENABLED` | Set `false` to disable automatic scheduling; dispatcher/worker still run |
 | `RABBITMQ_QUEUE_PREFIX`    | Default `market`; isolate independent deployments sharing a broker       |
+| `API_ORIGIN`               | Web SSR upstream origin; required when running the production web server |
 
 ## Data and freshness
 

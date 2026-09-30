@@ -9,23 +9,20 @@ import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { createApiProxy } from './api-proxy';
+
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
+const apiOrigin = process.env['API_ORIGIN']?.trim();
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/**', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
+if (apiOrigin) {
+  app.use('/api', createApiProxy(apiOrigin));
+} else {
+  app.use('/api', (_req, res) => res.status(503).json({ message: 'API proxy is not configured' }));
+}
 
 /**
  * Serve static files from /browser
@@ -53,6 +50,7 @@ app.use('/**', (req, res, next) => {
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
+  if (!apiOrigin) throw new Error('API_ORIGIN is required');
   const port = process.env['PORT'] || 4000;
   app.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);

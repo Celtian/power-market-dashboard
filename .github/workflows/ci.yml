@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CI: 'true'
+      HUSKY: '0'
+      TEST_DATABASE_URL: postgresql://power_market:power_market@localhost:5432/power_market
+      TEST_RABBITMQ_URL: amqp://power_market:power_market@localhost:5672
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: power_market
+          POSTGRES_USER: power_market
+          POSTGRES_PASSWORD: power_market
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U power_market -d power_market"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      rabbitmq:
+        image: rabbitmq:4-alpine
+        env:
+          RABBITMQ_DEFAULT_USER: power_market
+          RABBITMQ_DEFAULT_PASS: power_market
+        ports:
+          - 5672:5672
+        options: >-
+          --health-cmd "rabbitmq-diagnostics -q ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun nx run-many -t lint
+
+      - name: Unit tests
+        run: bun nx run-many -t test
+
+      - name: Production builds
+        run: bun nx run-many -t build -p web api importer --configuration=production
+
+      - name: Backend end-to-end tests
+        run: bun nx run-many -t e2e -p api-e2e importer-e2e --parallel=1
+
+      - name: Install Chromium
+        run: bunx playwright install --with-deps chromium
+
+      - name: Web end-to-end tests
+        run: bun nx e2e web-e2e -- --project=chromium
