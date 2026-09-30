@@ -15,7 +15,7 @@ flowchart LR
   snapshots --> api[REST + SSE API]
 ```
 
-## Local setup
+## 🛠️ Local setup
 
 ```sh
 bun install
@@ -64,7 +64,7 @@ The existing importer `/api/entsoe/day-ahead-prices` endpoint still uses
 | `RABBITMQ_QUEUE_PREFIX`    | Default `market`; isolate independent deployments sharing a broker       |
 | `API_ORIGIN`               | Web SSR upstream origin; required when running the production web server |
 
-## Data and freshness
+## 🔄 Data and freshness
 
 Source queries: solar forecast `A69/A01/B16`, actual `A75/A16/B16`, balancing bids
 `A37/B74/A51` (aFRR) and `A37/B74/A47` (mFRR). Bids use `offset` pagination.
@@ -75,10 +75,11 @@ The scheduler checks current windows every 15 seconds, including the previous
 90 minutes for balancing bids and yesterday/today solar data plus tomorrow's
 forecast. It initially imports seven completed UTC days and rechecks them every
 six hours. A shared limiter allows at most one request per 350 ms, prioritizes
-live work over history, and applies a shared cooldown for HTTP 429. Live and
-historical queues have separate consumers. Run one importer scheduler and one API
-instance for this initial deployment; independent importer processes do not share
-the in-process rate limiter.
+live work over history, and applies a shared cooldown for HTTP 429. The live
+consumer processes up to four jobs concurrently while history remains serial;
+the queues otherwise have separate consumers. Run one importer scheduler and one
+API instance for this initial deployment; independent importer processes do not
+share the in-process rate limiter.
 
 Target: additional source-API-to-REST/SSE latency under 30 seconds under normal
 source response times and load. This is not a guarantee during outages, rate
@@ -89,7 +90,10 @@ bids have a submission deadline 30 minutes after the delivery period ends.
 `sourceCreatedAt` is the source document timestamp and may describe export
 creation; it is **not** a verified publication time. `fetchedAt` is when a complete
 batch was received, `storedAt` when its snapshot was stored, and `checkedAt` records
-the most recent check. `/api/data-status` exposes import timings and freshness.
+the most recent check. `/api/data-status` exposes import timings, freshness and a
+`pipeline` summary derived from the scheduler heartbeat and oldest active live job.
+Its status is `healthy`, `delayed` or `offline`, allowing clients to distinguish an
+import outage from upstream publication latency.
 Worker JSON logs include source fetch, queue wait and processing durations.
 
 Snapshots retain revisions and original XML for changed data. Identical
@@ -98,7 +102,7 @@ by SHA-256. There is no automatic retention deletion. Monitor database growth,
 queue age and dead-letter messages. All time storage is UTC; the market timezone
 is `Europe/Budapest` (23/25-hour DST days are supported).
 
-## API and visualization contracts
+## 🔌 API and visualization contracts
 
 All timestamps include a timezone; ranges are end-exclusive and aligned to
 15-minute delivery boundaries. Missing values are `null`, never inferred zeros.
@@ -140,7 +144,7 @@ refetch. Reconnect using `Last-Event-ID` to replay committed changes. IDs are st
 15-second heartbeats, and sends `unavailable` before closing on database failure.
 Configure reverse proxies to disable buffering and allow long-lived SSE requests.
 
-## Database and migrations
+## 🗄️ Database and migrations
 
 The shared `DatabaseModule` uses `@nestjs/typeorm`, decorated entities and
 injected repositories. Transactions use TypeORM's `EntityManager`; the importer
@@ -170,7 +174,7 @@ fully applied, baseline it once with
 migrations. Use this only for an existing matching schema; fresh databases need
 the regular migration command.
 
-## Operations and recovery
+## 🛟 Operations and recovery
 
 ```sh
 # UTC day range, exclusive end; low-priority jobs, no direct external fetch
@@ -183,8 +187,10 @@ bun --env-file=apps/importer/.env run db:rollback
 Messages are persistent and publisher-confirmed. Consumers ACK after commit.
 Retryable failures use up to five attempts with exponential backoff and
 `Retry-After`; permanent failures go to `<prefix>.import.dead`. PostgreSQL job state
-is retained. Stalled published/running jobs are redispatched after five minutes;
-session advisory locks prevent concurrent processing of the same data window.
+is retained. RabbitMQ provisioning at importer startup retries indefinitely with
+exponential delays capped at 30 seconds, so a transient broker outage does not
+terminate the process. Stalled published/running jobs are redispatched after five
+minutes; session advisory locks prevent concurrent processing of the same data window.
 After resolving a permanent failure, re-enqueue its date range using the CLI.
 Do not automatically drain a dead-letter queue back into the live queue.
 
@@ -194,7 +200,7 @@ checks PostgreSQL and reports dataset import state. RabbitMQ management is at
 source failures, `fetchMs`/`queueMs`/`processingMs`, and disk growth. Source tokens
 and full Axios error objects are never logged.
 
-## Verification
+## 🧪 Verification
 
 ```sh
 bun nx run-many -t lint -p api importer market database api-e2e importer-e2e

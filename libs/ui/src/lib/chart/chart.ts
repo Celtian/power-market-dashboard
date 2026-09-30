@@ -1,9 +1,9 @@
 import { Component, type InputSignal, type Signal, computed, inject, input } from '@angular/core';
 
-import type { ChartData, ChartOptions } from 'chart.js';
+import type { ChartData, ChartOptions, Plugin } from 'chart.js';
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
-import { mergeChartTheme } from './chart-theme';
+import { createChartTooltipShadowPlugin, mergeChartTheme } from './chart-theme';
 import { CHART_THEME } from './chart.provider';
 
 @Component({
@@ -20,6 +20,7 @@ import { CHART_THEME } from './chart.provider';
         [data]="data()"
         [legend]="legend()"
         [options]="resolvedOptions()"
+        [plugins]="tooltipPlugins"
       ></canvas>
     </div>
   `,
@@ -31,6 +32,9 @@ export class ChartLine {
   public readonly data = input.required<ChartData<'line'>>();
   public readonly legend = input(false);
   public readonly options: InputSignal<ChartOptions<'line'>> = input<ChartOptions<'line'>>({});
+  protected readonly tooltipPlugins: Plugin<'line'>[] = [
+    createChartTooltipShadowPlugin<'line'>(),
+  ];
   protected readonly resolvedOptions: Signal<ChartOptions<'line'>> = computed(() =>
     mergeChartTheme<'line'>(this.chartTheme?.() ?? { type: 'light' }, this.options()),
   );
@@ -50,6 +54,7 @@ export class ChartLine {
         [data]="data()"
         [legend]="legend()"
         [options]="resolvedOptions()"
+        [plugins]="tooltipPlugins"
       ></canvas>
     </div>
   `,
@@ -61,6 +66,9 @@ export class ChartBar {
   public readonly data = input.required<ChartData<'bar'>>();
   public readonly legend = input(false);
   public readonly options: InputSignal<ChartOptions<'bar'>> = input<ChartOptions<'bar'>>({});
+  protected readonly tooltipPlugins: Plugin<'bar'>[] = [
+    createChartTooltipShadowPlugin<'bar'>(),
+  ];
   protected readonly resolvedOptions: Signal<ChartOptions<'bar'>> = computed(() =>
     mergeChartTheme<'bar'>(this.chartTheme?.() ?? { type: 'light' }, this.options()),
   );

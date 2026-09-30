@@ -16,7 +16,7 @@ export function queueOptions(priority: 'live' | 'history', consumer = true): Rmq
       urls: [url],
       queue: `${prefix()}.import.${priority}`,
       noAck: !consumer,
-      prefetchCount: 1,
+      prefetchCount: consumer && priority === 'live' ? 4 : 1,
       persistent: true,
       queueOptions: {
         durable: true,

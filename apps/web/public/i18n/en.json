@@ -118,7 +118,12 @@
     "method-note": "Deviation is actual minus forecast. Missing intervals remain gaps and are never interpreted as zero.",
     "freshness": {
       "badge": "Actual delayed by {{ minutes }} min",
-      "message": "The latest actual interval ended at {{ time }}. ENTSO-E has not published newer actual data yet."
+      "message": "The latest actual interval ended at {{ time }}. ENTSO-E has not published newer actual data yet.",
+      "importer-delayed-badge": "Import delayed",
+      "importer-delayed-message": "The import service is delayed. Its last successful solar poll was at {{ time }}.",
+      "importer-offline-badge": "Importer offline",
+      "importer-offline-message": "The import service is not updating data. Its last successful solar poll was at {{ time }}.",
+      "unknown-time": "an unknown time"
     },
     "metrics": {
       "actual": "Latest actual",

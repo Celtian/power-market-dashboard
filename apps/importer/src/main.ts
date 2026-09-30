@@ -12,6 +12,7 @@ import { AppModule } from './app/app.module';
 import { EntsoeConfig } from './app/entsoe/entsoe.config';
 import { configureHttp } from './app/http';
 import { provisionQueues, queueOptions } from './app/import/queue';
+import { retryStartup } from './startup-retry';
 
 async function bootstrap() {
   const localEnvFile = join(process.cwd(), 'apps/importer/.env');
@@ -24,7 +25,11 @@ async function bootstrap() {
   const config = new EntsoeConfig();
   void config.securityToken;
   void config.timeoutMs;
-  await provisionQueues();
+  await retryStartup(provisionQueues, ({ attempt, delayMs, reason }) => {
+    Logger.warn(
+      `RabbitMQ provisioning attempt ${attempt} failed (${reason}); retrying in ${delayMs} ms`,
+    );
+  });
   const app = await NestFactory.create(AppModule);
   app.enableShutdownHooks();
   app.connectMicroservice(queueOptions('live'));

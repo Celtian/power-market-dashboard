@@ -124,6 +124,13 @@ export const historySchema = object({
   metadata,
 });
 export const statusSchema = object({
+  pipeline: object({
+    status: { type: 'string', enum: ['healthy', 'delayed', 'offline'] },
+    schedulerHeartbeatAt: { ...timestamp, nullable: true },
+    schedulerAgeSeconds: nullableNumber,
+    activeLiveJobs: number,
+    oldestLiveJobAgeSeconds: nullableNumber,
+  }),
   datasets: array(
     object(
       {

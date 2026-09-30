@@ -1,4 +1,4 @@
-import type { ChartOptions, ChartType } from 'chart.js';
+import type { ChartOptions, ChartType, Plugin } from 'chart.js';
 
 import type { ChartTheme } from './chart.provider';
 
@@ -15,6 +15,26 @@ const cssValue = (name: string, fallback: string): string => {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
 };
 
+const fontFamily = (): string => {
+  const fallback = 'ui-sans-serif, system-ui, sans-serif';
+  if (typeof document === 'undefined') return fallback;
+  return getComputedStyle(document.body).fontFamily || fallback;
+};
+
+export const createChartTooltipShadowPlugin = <T extends ChartType>(): Plugin<T> => ({
+  id: 'ui-chart-tooltip-shadow',
+  beforeTooltipDraw: (chart) => {
+    chart.ctx.save();
+    chart.ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
+    chart.ctx.shadowBlur = 15;
+    chart.ctx.shadowOffsetX = 0;
+    chart.ctx.shadowOffsetY = 6;
+  },
+  afterTooltipDraw: (chart) => {
+    chart.ctx.restore();
+  },
+});
+
 export const mergeChartTheme = <T extends ChartType>(
   theme: ChartTheme,
   options: ChartOptions<T>,
@@ -23,7 +43,14 @@ export const mergeChartTheme = <T extends ChartType>(
   const text = dark
     ? cssValue('--app-secondary-contrast-800', '#e5e7eb')
     : cssValue('--app-primary-contrast-200', '#1f2937');
+  const tooltipBackground = dark
+    ? cssValue('--app-secondary-800', '#1f2937')
+    : cssValue('--app-primary-200', '#bfdbfe');
+  const tooltipBorder = dark
+    ? cssValue('--app-secondary-600', '#374151')
+    : cssValue('--app-primary-400', '#60a5fa');
   const grid = dark ? 'rgba(148, 163, 184, 0.18)' : 'rgba(100, 116, 139, 0.18)';
+  const tooltipFont = { family: fontFamily(), size: 12 };
   const themed: ChartOptions<T> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -31,10 +58,18 @@ export const mergeChartTheme = <T extends ChartType>(
     plugins: {
       legend: { labels: { color: text, usePointStyle: true } },
       tooltip: {
-        backgroundColor: dark ? '#181f2d' : '#ffffff',
-        borderColor: dark ? '#424b5a' : '#d1d5db',
+        backgroundColor: tooltipBackground,
+        borderColor: tooltipBorder,
         borderWidth: 1,
+        bodyFont: tooltipFont,
+        bodySpacing: 2,
+        boxPadding: 4,
         bodyColor: text,
+        cornerRadius: 8,
+        padding: { x: 8, y: 4 },
+        titleFont: { ...tooltipFont, weight: 600 },
+        titleMarginBottom: 4,
+        titleSpacing: 0,
         titleColor: text,
       },
     },

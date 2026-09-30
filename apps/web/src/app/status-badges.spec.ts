@@ -146,6 +146,13 @@ describe('status badge tooltips', () => {
       additionalLatencyTargetSeconds: 30,
       bidPublicationDeadlineMinutesAfterDelivery: 15,
       solarActualFreshnessTargetSeconds: 1200,
+      pipeline: {
+        activeLiveJobs: 1,
+        oldestLiveJobAgeSeconds: 5,
+        schedulerAgeSeconds: 2,
+        schedulerHeartbeatAt: '2026-09-30T12:30:00.000Z',
+        status: 'healthy',
+      },
       datasets: [
         {
           available: true,
@@ -171,9 +178,7 @@ describe('status badge tooltips', () => {
 
     state.status.set({
       ...freshStatus,
-      datasets: freshStatus.datasets.map((dataset) =>
-        dataset.dataset === 'solar-actual' ? { ...dataset, pollAgeSeconds: 60 } : dataset,
-      ),
+      pipeline: { ...freshStatus.pipeline!, status: 'delayed' },
     });
     await fixture.whenStable();
 
@@ -189,6 +194,7 @@ describe('status badge tooltips', () => {
     expect(tooltips.map((tooltip) => tooltip.target())).toEqual([
       'Data jsou zobrazena pro Maďarsko v tržním časovém pásmu Europe/Budapest.',
       'Živé aktualizace nejsou dostupné.',
+      'Importní služba je zpožděná. Poslední úspěšný poll solárních dat proběhl v neznámý čas.',
       'Některé očekávané záznamy chybí.',
     ]);
     expect(state.productionChart().datasets.map((dataset) => dataset.label)).toEqual([
@@ -234,6 +240,13 @@ describe('status badge tooltips', () => {
     const status: DataStatusResponse = {
       additionalLatencyTargetSeconds: 30,
       bidPublicationDeadlineMinutesAfterDelivery: 15,
+      pipeline: {
+        activeLiveJobs: 0,
+        oldestLiveJobAgeSeconds: null,
+        schedulerAgeSeconds: 2,
+        schedulerHeartbeatAt: '2026-09-30T12:34:59.000Z',
+        status: 'healthy',
+      },
       datasets: [
         {
           available: true,
@@ -261,6 +274,30 @@ describe('status badge tooltips', () => {
     expect(fixture.nativeElement.textContent).toContain('Actual delayed by 20 min');
     expect(fixture.nativeElement.textContent).toContain(
       'The latest actual interval ended at 02:15 PM. ENTSO-E has not published newer actual data yet.',
+    );
+
+    state.status.set({
+      ...status,
+      pipeline: {
+        activeLiveJobs: 17,
+        oldestLiveJobAgeSeconds: 180,
+        schedulerAgeSeconds: 180,
+        schedulerHeartbeatAt: '2026-09-30T12:32:00.000Z',
+        status: 'offline',
+      },
+      datasets: status.datasets.map((dataset) => ({
+        ...dataset,
+        lastSuccessAt: '2026-09-30T12:15:00.000Z',
+      })),
+    });
+    await fixture.whenStable();
+
+    expect(fixture.nativeElement.textContent).toContain('Importer offline');
+    expect(fixture.nativeElement.textContent).toContain(
+      'The import service is not updating data. Its last successful solar poll was at Sep 30, 2026, 2:15 PM.',
+    );
+    expect(fixture.nativeElement.textContent).not.toContain(
+      'ENTSO-E has not published newer actual data yet.',
     );
 
     state.selectedDate.set('2026-09-29');

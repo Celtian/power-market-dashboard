@@ -81,6 +81,57 @@ describe('market API with PostgreSQL', () => {
     );
     expect(rows[0].count).toBe('194');
   });
+  it('reports healthy, delayed and offline import pipeline states', async () => {
+    await database.db.query(
+      `INSERT INTO scheduler_state(key,updated_at) VALUES('live',now())
+       ON CONFLICT(key) DO UPDATE SET updated_at=EXCLUDED.updated_at`,
+    );
+    await database.db.query(
+      `UPDATE import_jobs
+       SET created_at=now(),error=NULL
+       WHERE priority='live' AND state IN ('pending','published','running','retry')`,
+    );
+
+    let response = await fetch(`${app.url}/data-status`);
+    let body = (await response.json()) as {
+      pipeline: {
+        activeLiveJobs: number;
+        oldestLiveJobAgeSeconds: number | null;
+        schedulerAgeSeconds: number | null;
+        schedulerHeartbeatAt: string | null;
+        status: string;
+      };
+    };
+    expect(body.pipeline).toMatchObject({
+      status: 'healthy',
+      schedulerHeartbeatAt: expect.any(String),
+    });
+    expect(body.pipeline.schedulerAgeSeconds).toBeLessThan(5);
+
+    await database.db.query(
+      `UPDATE import_jobs
+       SET created_at=now()-interval '2 minutes'
+       WHERE priority='live' AND state IN ('pending','published','running','retry')`,
+    );
+    response = await fetch(`${app.url}/data-status`);
+    body = await response.json();
+    expect(body.pipeline.status).toBe('delayed');
+    expect(body.pipeline.oldestLiveJobAgeSeconds).toBeGreaterThan(100);
+
+    await database.db.query(
+      `UPDATE scheduler_state SET updated_at=now()-interval '2 minutes' WHERE key='live'`,
+    );
+    response = await fetch(`${app.url}/data-status`);
+    body = await response.json();
+    expect(body.pipeline).toMatchObject({ status: 'offline' });
+    expect(body.pipeline.schedulerAgeSeconds).toBeGreaterThan(100);
+
+    await database.db.query(
+      `UPDATE import_jobs
+       SET created_at=now()
+       WHERE priority='live' AND state IN ('pending','published','running','retry')`,
+    );
+  });
   it('serves a ladder in source currency and null above offered volume', async () => {
     const response = await fetch(
       `${app.url}/balancing/ladder?at=${from}&product=afrr&direction=up&productType=A04&currency=HUF&targetMw=10`,

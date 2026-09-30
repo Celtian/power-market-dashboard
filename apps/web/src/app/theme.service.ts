@@ -4,6 +4,7 @@ import { DestroyRef, PLATFORM_ID, Service, inject, signal } from '@angular/core'
 export type Theme = 'light' | 'dark';
 
 const THEME_STORAGE_KEY = 'theme';
+const DEFAULT_THEME: Theme = 'dark';
 const THEME_COLORS: Record<Theme, string> = {
   dark: '#2a3444',
   light: '#1d4ed8',
@@ -16,12 +17,7 @@ export class ThemeService {
   private readonly destroyRef = inject(DestroyRef);
   private readonly document = inject(DOCUMENT);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private readonly themeState = signal<Theme>('light');
-  private readonly mediaQuery =
-    this.isBrowser && typeof window.matchMedia === 'function'
-      ? window.matchMedia('(prefers-color-scheme: dark)')
-      : undefined;
-  private hasStoredPreference = false;
+  private readonly themeState = signal<Theme>(DEFAULT_THEME);
 
   public readonly theme = this.themeState.asReadonly();
 
@@ -30,29 +26,19 @@ export class ThemeService {
       return;
     }
 
-    const storedTheme = this.readStoredTheme();
-    this.hasStoredPreference = storedTheme !== null;
-    this.applyTheme(storedTheme ?? this.systemTheme());
+    this.applyTheme(this.readStoredTheme() ?? DEFAULT_THEME);
 
-    const onSystemThemeChange = () => {
-      if (!this.hasStoredPreference) {
-        this.applyTheme(this.systemTheme());
-      }
-    };
     const onStorage = (event: StorageEvent) => {
       if (event.key !== THEME_STORAGE_KEY) {
         return;
       }
 
       const storedTheme = isTheme(event.newValue) ? event.newValue : null;
-      this.hasStoredPreference = storedTheme !== null;
-      this.applyTheme(storedTheme ?? this.systemTheme());
+      this.applyTheme(storedTheme ?? DEFAULT_THEME);
     };
 
-    this.mediaQuery?.addEventListener('change', onSystemThemeChange);
     window.addEventListener('storage', onStorage);
     this.destroyRef.onDestroy(() => {
-      this.mediaQuery?.removeEventListener('change', onSystemThemeChange);
       window.removeEventListener('storage', onStorage);
     });
   }
@@ -64,7 +50,6 @@ export class ThemeService {
       return;
     }
 
-    this.hasStoredPreference = true;
     try {
       localStorage.setItem(THEME_STORAGE_KEY, theme);
     } catch {
@@ -99,7 +84,4 @@ export class ThemeService {
     }
   }
 
-  private systemTheme(): Theme {
-    return this.mediaQuery?.matches ? 'dark' : 'light';
-  }
 }

@@ -4,32 +4,15 @@ import { TestBed } from '@angular/core/testing';
 import { ThemeService } from './theme.service';
 
 describe('ThemeService', () => {
-  let mediaQuery: MediaQueryList;
-
   beforeEach(() => {
     TestBed.resetTestingModule();
     localStorage.clear();
     document.documentElement.classList.remove('dark');
     document.documentElement.style.colorScheme = '';
     ensureThemeMeta().content = '#1d4ed8';
-    mediaQuery = {
-      matches: false,
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-    } as unknown as MediaQueryList;
-    vi.stubGlobal('matchMedia', vi.fn().mockReturnValue(mediaQuery));
   });
 
-  afterEach(() => {
-    vi.unstubAllGlobals();
-  });
-
-  it('uses the system theme when no preference is stored', () => {
-    Object.defineProperty(mediaQuery, 'matches', {
-      configurable: true,
-      value: true,
-    });
-
+  it('uses the dark theme when no preference is stored', () => {
     const service = TestBed.inject(ThemeService);
 
     expect(service.theme()).toBe('dark');
@@ -38,12 +21,8 @@ describe('ThemeService', () => {
     expect(themeColor()).toBe('#2a3444');
   });
 
-  it('restores a stored theme instead of the system theme', () => {
+  it('restores a stored theme instead of the default theme', () => {
     localStorage.setItem('theme', 'light');
-    Object.defineProperty(mediaQuery, 'matches', {
-      configurable: true,
-      value: true,
-    });
 
     const service = TestBed.inject(ThemeService);
 
@@ -68,26 +47,23 @@ describe('ThemeService', () => {
     expect(localStorage.getItem('theme')).toBe('light');
   });
 
-  it('follows system changes until an explicit preference is selected', () => {
+  it('falls back to the dark theme when the stored preference is removed', () => {
+    localStorage.setItem('theme', 'light');
     const service = TestBed.inject(ThemeService);
 
-    setSystemDarkMode(true);
+    window.dispatchEvent(new StorageEvent('storage', { key: 'theme', newValue: null }));
 
     expect(service.theme()).toBe('dark');
-
-    service.setTheme('light');
-    setSystemDarkMode(true);
-
-    expect(service.theme()).toBe('light');
+    expect(document.documentElement.classList).toContain('dark');
   });
 
   it('synchronizes theme changes from another tab', () => {
     const service = TestBed.inject(ThemeService);
 
-    window.dispatchEvent(new StorageEvent('storage', { key: 'theme', newValue: 'dark' }));
+    window.dispatchEvent(new StorageEvent('storage', { key: 'theme', newValue: 'light' }));
 
-    expect(service.theme()).toBe('dark');
-    expect(document.documentElement.classList).toContain('dark');
+    expect(service.theme()).toBe('light');
+    expect(document.documentElement.classList).not.toContain('dark');
   });
 
   it('does not access browser state or mutate the document during SSR', () => {
@@ -104,17 +80,6 @@ describe('ThemeService', () => {
     expect(document.documentElement.classList).not.toContain('dark');
     expect(themeColor()).toBe('server-color');
   });
-
-  function setSystemDarkMode(matches: boolean): void {
-    Object.defineProperty(mediaQuery, 'matches', {
-      configurable: true,
-      value: matches,
-    });
-    const changeListener = vi
-      .mocked(mediaQuery.addEventListener)
-      .mock.calls.find(([type]) => type === 'change')?.[1] as EventListener | undefined;
-    changeListener?.(new Event('change'));
-  }
 });
 
 function ensureThemeMeta(): HTMLMetaElement {

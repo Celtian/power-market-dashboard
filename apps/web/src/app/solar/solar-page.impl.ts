@@ -263,6 +263,7 @@ export class SolarPage {
     const datasets = status?.datasets.filter((item) =>
       ['solar-actual', 'solar-forecast'].includes(item.dataset),
     );
+    const pipelineDelayed = status?.pipeline && status.pipeline.status !== 'healthy';
     const stale = datasets?.some(
       (dataset) =>
         !!dataset.error ||
@@ -270,7 +271,7 @@ export class SolarPage {
           dataset.pollAgeSeconds >
             (status?.additionalLatencyTargetSeconds ?? 30) + (status?.pollingSeconds ?? 15)),
     );
-    if (stale || this.live.connectionState() === 'offline') return 'yellow';
+    if (pipelineDelayed || stale || this.live.connectionState() === 'offline') return 'yellow';
     return this.live.connectionState() === 'connected' ? 'green' : 'yellow';
   });
 
@@ -299,12 +300,21 @@ export class SolarPage {
   protected readonly actualFreshnessWarning = computed<ActualFreshnessWarning | null>(() => {
     const now = this.currentTime();
     const status = this.status();
-    if (now === null || !status || this.selectedDate() !== marketToday(DateTime.fromMillis(now))) {
-      return null;
+    if (now === null || !status) return null;
+    const actual = status.datasets.find((dataset) => dataset.dataset === 'solar-actual');
+    const pipeline = status.pipeline;
+    if (pipeline && pipeline.status !== 'healthy') {
+      const lastSuccess = actual?.lastSuccessAt;
+      const time = lastSuccess
+        ? this.formatDateTime(lastSuccess)
+        : this.t('solar.freshness.unknown-time');
+      return {
+        label: this.t(`solar.freshness.importer-${pipeline.status}-badge`),
+        message: this.t(`solar.freshness.importer-${pipeline.status}-message`, { time }),
+      };
     }
-    const intervalEnd = status.datasets.find(
-      (dataset) => dataset.dataset === 'solar-actual',
-    )?.latestIntervalEnd;
+    if (this.selectedDate() !== marketToday(DateTime.fromMillis(now))) return null;
+    const intervalEnd = actual?.latestIntervalEnd;
     if (!intervalEnd) return null;
     const ageSeconds = Math.max(0, (now - Date.parse(intervalEnd)) / 1000);
     if (ageSeconds <= status.solarActualFreshnessTargetSeconds) return null;

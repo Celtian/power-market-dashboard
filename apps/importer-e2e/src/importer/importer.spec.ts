@@ -29,7 +29,7 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
   let channel: ConfirmChannel;
   const prefix = `market-test-${randomUUID()}`;
   const url = process.env.TEST_RABBITMQ_URL || 'amqp://power_market:power_market@localhost:5672';
-  let mode: 'normal' | 'hold' | 'failure' | 'invalid' | 'scheduled' = 'normal';
+  let mode: 'normal' | 'hold' | 'failure' | 'invalid' | 'scheduled' | 'slow' = 'normal';
   let held: ServerResponse | undefined;
   let calls = 0;
   const server = createServer((req, res) => {
@@ -45,6 +45,17 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
     }
     if (mode === 'invalid') {
       res.end('<invalid>');
+      return;
+    }
+    if (mode === 'slow') {
+      const offset = Number(
+        new URL(req.url ?? '/', 'http://localhost').searchParams.get('offset') ?? 0,
+      );
+      setTimeout(() => {
+        if (res.destroyed) return;
+        res.setHeader('Content-Type', 'application/xml');
+        res.end(offset === 0 ? page(100) : page(25, 100));
+      }, 1_000);
       return;
     }
     if (mode === 'scheduled') {
@@ -78,9 +89,13 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
     res.end(offset === 0 ? page(100) : page(25, 100));
   });
   let env: Record<string, string>;
-  async function enqueue() {
+  async function enqueue(quarterOffset = 0) {
+    const start = Date.parse('2026-09-27T00:00Z') + quarterOffset * 15 * 60_000;
+    const from = new Date(start).toISOString();
+    const to = new Date(start + 15 * 60_000).toISOString();
     const rows = await database.db.query(
-      `INSERT INTO import_jobs(dataset,"from","to",priority) VALUES('afrr','2026-09-27T00:00Z','2026-09-27T00:15Z','live') RETURNING id`,
+      `INSERT INTO import_jobs(dataset,"from","to",priority) VALUES('afrr',$1,$2,'live') RETURNING id`,
+      [from, to],
     );
     return rows[0].id as string;
   }
@@ -211,6 +226,15 @@ describe('import pipeline with RabbitMQ and controlled source', () => {
     importer = await startApp('importer', env);
     const completed = await state(id, 'complete');
     expect(completed.attempts).toBeGreaterThanOrEqual(2);
+  });
+  it('processes slow live source requests concurrently within the latency target', async () => {
+    mode = 'slow';
+    const started = Date.now();
+    const ids = await Promise.all([0, 1, 2, 3].map((offset) => enqueue(offset)));
+
+    await Promise.all(ids.map((id) => state(id, 'complete')));
+
+    expect(Date.now() - started).toBeLessThan(6_500);
   });
   it('retains the last snapshot during an outage and retries successfully', async () => {
     await state(await enqueue(), 'complete');

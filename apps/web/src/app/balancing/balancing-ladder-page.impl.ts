@@ -342,13 +342,14 @@ export class BalancingLadderPage {
     if (this.error()) return 'red';
     const status = this.status();
     const dataset = status?.datasets.find((item) => item.dataset === this.product());
+    const pipelineDelayed = status?.pipeline && status.pipeline.status !== 'healthy';
     const stale =
       !!dataset?.error ||
       (dataset?.pollAgeSeconds !== null &&
         dataset?.pollAgeSeconds !== undefined &&
         dataset.pollAgeSeconds >
           (status?.additionalLatencyTargetSeconds ?? 30) + (status?.pollingSeconds ?? 15));
-    if (stale || this.live.connectionState() === 'offline') return 'yellow';
+    if (pipelineDelayed || stale || this.live.connectionState() === 'offline') return 'yellow';
     return this.live.connectionState() === 'connected' ? 'green' : 'yellow';
   });
 

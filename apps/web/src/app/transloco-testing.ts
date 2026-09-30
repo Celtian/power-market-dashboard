@@ -69,6 +69,13 @@ const EN = {
       badge: 'Actual delayed by {{ minutes }} min',
       message:
         'The latest actual interval ended at {{ time }}. ENTSO-E has not published newer actual data yet.',
+      'importer-delayed-badge': 'Import delayed',
+      'importer-delayed-message':
+        'The import service is delayed. Its last successful solar poll was at {{ time }}.',
+      'importer-offline-badge': 'Importer offline',
+      'importer-offline-message':
+        'The import service is not updating data. Its last successful solar poll was at {{ time }}.',
+      'unknown-time': 'an unknown time',
     },
     metrics: {
       interval: 'Interval',
@@ -150,6 +157,13 @@ const CS = {
       badge: 'Skutečnost zpožděna o {{ minutes }} min',
       message:
         'Poslední skutečný interval skončil ve {{ time }}. ENTSO-E zatím novější data nezveřejnilo.',
+      'importer-delayed-badge': 'Import je zpožděný',
+      'importer-delayed-message':
+        'Importní služba je zpožděná. Poslední úspěšný poll solárních dat proběhl {{ time }}.',
+      'importer-offline-badge': 'Importér je offline',
+      'importer-offline-message':
+        'Importní služba neaktualizuje data. Poslední úspěšný poll solárních dat proběhl {{ time }}.',
+      'unknown-time': 'v neznámý čas',
     },
     metrics: {
       interval: 'Interval',

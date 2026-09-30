@@ -196,7 +196,7 @@ describe('App', () => {
     expect(tooltips[0].tooltipPosition()).toEqual(['bottomRight', 'topRight']);
     expect(tooltips[1].target()).toBe('Switch to Czech');
     expect(tooltips[1].tooltipPosition()).toEqual(['bottomLeft', 'topLeft']);
-    expect(tooltips[2].target()).toBe('Switch to dark theme');
+    expect(tooltips[2].target()).toBe('Switch to light theme');
     expect(tooltips[2].tooltipPosition()).toEqual(['bottomLeft', 'topLeft']);
     expect(tooltipElements[0].nativeElement.hasAttribute('title')).toBe(false);
     expect(tooltips[3].target()).toBe('Open navigation');
@@ -208,7 +208,7 @@ describe('App', () => {
     (tooltipElements[2].nativeElement as HTMLButtonElement).click();
     await fixture.whenStable();
 
-    expect(tooltips[2].target()).toBe('Switch to light theme');
+    expect(tooltips[2].target()).toBe('Switch to dark theme');
   });
 
   it('toggles the language and updates the flag, text, and document language', async () => {
@@ -270,16 +270,17 @@ describe('App', () => {
     await fixture.whenStable();
     const button = fixture.nativeElement.querySelector('[data-theme-toggle]') as HTMLButtonElement;
 
-    expect(button.getAttribute('aria-label')).toBe('Switch to dark theme');
-    const darkThemeIconPath = button.querySelector('path')?.getAttribute('d');
-    expect(darkThemeIconPath).toBeTruthy();
+    expect(button.getAttribute('aria-label')).toBe('Switch to light theme');
+    const lightThemeIconPath = button.querySelector('path')?.getAttribute('d');
+    expect(lightThemeIconPath).toBeTruthy();
+    expect(document.documentElement.classList).toContain('dark');
 
     button.click();
     await fixture.whenStable();
 
-    expect(button.getAttribute('aria-label')).toBe('Switch to light theme');
-    expect(button.querySelector('path')?.getAttribute('d')).not.toBe(darkThemeIconPath);
-    expect(document.documentElement.classList).toContain('dark');
-    expect(localStorage.getItem('theme')).toBe('dark');
+    expect(button.getAttribute('aria-label')).toBe('Switch to dark theme');
+    expect(button.querySelector('path')?.getAttribute('d')).not.toBe(lightThemeIconPath);
+    expect(document.documentElement.classList).not.toContain('dark');
+    expect(localStorage.getItem('theme')).toBe('light');
   });
 });

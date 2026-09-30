@@ -1,4 +1,4 @@
-name: CI
+name: 🧪 CI
 
 on:
   pull_request:
@@ -15,6 +15,7 @@ concurrency:
 
 jobs:
   verify:
+    name: 🛠️ Verify
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -50,31 +51,26 @@ jobs:
           --health-retries 12
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - name: 🗜️ Check out repository
+        uses: actions/checkout@v7
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: 1.4.2
+      - name: 🛠️ Install dependencies
+        uses: ./.github/actions/cached-deps
 
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Lint
+      - name: 🧹 Lint
         run: bun nx run-many -t lint
 
-      - name: Unit tests
+      - name: 🧪 Unit tests
         run: bun nx run-many -t test
 
-      - name: Production builds
+      - name: 📦 Production builds
         run: bun nx run-many -t build -p web api importer --configuration=production
 
-      - name: Backend end-to-end tests
+      - name: 🧪 Backend end-to-end tests
         run: bun nx run-many -t e2e -p api-e2e importer-e2e --parallel=1
 
-      - name: Install Chromium
+      - name: 🗜️ Install Chromium
         run: bunx playwright install --with-deps chromium
 
-      - name: Web end-to-end tests
+      - name: 🧪 Web end-to-end tests
         run: bun nx e2e web-e2e -- --project=chromium

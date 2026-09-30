@@ -1,0 +1,37 @@
+name: Get and Cache Dependencies
+description: Install dependencies with Bun and cache downloaded packages
+inputs:
+  caching:
+    description: Whether to cache downloaded packages
+    required: false
+    default: 'true'
+  working-directory:
+    description: Directory containing package.json and bun.lock
+    required: false
+    default: .
+outputs:
+  used-cache:
+    description: Whether the dependency cache was restored exactly
+    value: ${{ steps.cache.outputs.cache-hit }}
+runs:
+  using: composite
+  steps:
+    - name: 🥟 Set up Bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: ${{ inputs.working-directory }}/package.json
+
+    - name: 🗜️ Restore Bun package cache
+      if: inputs.caching == 'true'
+      id: cache
+      uses: actions/cache@v6
+      with:
+        path: ~/.bun/install/cache
+        key: ${{ runner.os }}-${{ runner.arch }}-bun-${{ hashFiles(format('{0}/bun.lock', inputs.working-directory)) }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-bun-
+
+    - name: 🛠️ Install dependencies
+      working-directory: ${{ inputs.working-directory }}
+      run: bun install --frozen-lockfile
+      shell: bash

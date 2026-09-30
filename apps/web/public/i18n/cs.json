@@ -118,7 +118,12 @@
     "method-note": "Odchylka je skutečnost minus predikce. Chybějící intervaly zůstávají mezerami a nikdy se nepovažují za nulu.",
     "freshness": {
       "badge": "Skutečnost zpožděna o {{ minutes }} min",
-      "message": "Poslední skutečný interval skončil ve {{ time }}. ENTSO-E zatím novější data nezveřejnilo."
+      "message": "Poslední skutečný interval skončil ve {{ time }}. ENTSO-E zatím novější data nezveřejnilo.",
+      "importer-delayed-badge": "Import je zpožděný",
+      "importer-delayed-message": "Importní služba je zpožděná. Poslední úspěšný poll solárních dat proběhl {{ time }}.",
+      "importer-offline-badge": "Importér je offline",
+      "importer-offline-message": "Importní služba neaktualizuje data. Poslední úspěšný poll solárních dat proběhl {{ time }}.",
+      "unknown-time": "v neznámý čas"
     },
     "metrics": {
       "actual": "Poslední skutečnost",

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="theme-blue ui-scrollbar">
+<html lang="en" class="dark theme-blue ui-scrollbar" style="color-scheme: dark">
   <head>
     <meta charset="utf-8" />
     <title>Power Market Dashboard</title>
@@ -9,21 +9,14 @@
       content="Realtime Hungarian solar generation and balancing energy market dashboard."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#1d4ed8" />
+    <meta name="theme-color" content="#2a3444" />
     <script>
       (() => {
-        let theme;
+        let theme = 'dark';
         try {
           const storedTheme = localStorage.getItem('theme');
-          theme =
-            storedTheme === 'light' || storedTheme === 'dark'
-              ? storedTheme
-              : window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light';
-        } catch {
-          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
+          theme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : theme;
+        } catch {}
 
         document.documentElement.classList.toggle('dark', theme === 'dark');
         document.documentElement.style.colorScheme = theme;

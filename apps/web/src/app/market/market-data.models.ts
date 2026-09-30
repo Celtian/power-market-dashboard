@@ -137,7 +137,16 @@ export interface ProductGroup {
   currency: string | null;
 }
 
+export interface PipelineStatus {
+  status: 'healthy' | 'delayed' | 'offline';
+  schedulerHeartbeatAt: string | null;
+  schedulerAgeSeconds: number | null;
+  activeLiveJobs: number;
+  oldestLiveJobAgeSeconds: number | null;
+}
+
 export interface DataStatusResponse {
+  pipeline?: PipelineStatus;
   datasets: DatasetStatus[];
   groups: ProductGroup[];
   additionalLatencyTargetSeconds: number;

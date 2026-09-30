@@ -7,4 +7,11 @@ describe('RabbitMQ acknowledgement configuration', () => {
     expect(queueOptions('live', false).options?.noAck).toBe(true);
     expect(queueOptions('live', false).options?.persistent).toBe(true);
   });
+
+  it('allows bounded live concurrency while keeping history serial', () => {
+    process.env.RABBITMQ_URL = 'amqp://localhost';
+    expect(queueOptions('live').options?.prefetchCount).toBe(4);
+    expect(queueOptions('history').options?.prefetchCount).toBe(1);
+    expect(queueOptions('live', false).options?.prefetchCount).toBe(1);
+  });
 });

@@ -14,6 +14,9 @@ import {
 
 import { LadderQuery, PriceHistoryQuery, RangeQuery, validateRange } from './queries';
 
+const ADDITIONAL_LATENCY_TARGET_SECONDS = 30;
+const PIPELINE_OFFLINE_SECONDS = 45;
+
 const ids = (windows: WindowMetadata[]) =>
   windows.flatMap((w) => (w.snapshotId ? [w.snapshotId] : []));
 function metadata(windows: WindowMetadata[]) {
@@ -40,6 +43,11 @@ interface SuccessRow {
   dataset: string;
   lastSuccessAt: Date | null;
   latestIntervalEnd: Date | null;
+}
+interface PipelineRow {
+  schedulerHeartbeatAt: Date | null;
+  activeLiveJobs: string;
+  oldestLiveJobAt: Date | null;
 }
 interface GroupRow {
   product: string;
@@ -178,10 +186,39 @@ export class MarketService {
        FROM market_windows w
        GROUP BY w.dataset`,
     );
+    const pipelineRows = await this.db.query<PipelineRow[]>(
+      `SELECT
+         (SELECT updated_at FROM scheduler_state WHERE key='live') AS "schedulerHeartbeatAt",
+         count(*) FILTER (WHERE priority='live' AND state IN ('pending','published','running','retry')) AS "activeLiveJobs",
+         min(created_at) FILTER (WHERE priority='live' AND state IN ('pending','published','running','retry')) AS "oldestLiveJobAt"
+       FROM import_jobs`,
+    );
     const groups = await this.db.query<GroupRow[]>(
       `SELECT DISTINCT w.dataset AS product,b.direction,b.product_type AS "productType",b.currency FROM market_windows w JOIN balancing_bids b ON b.snapshot_id=w.snapshot_id WHERE w."to">now()-interval '7 days' ORDER BY product,b.direction,"productType",b.currency`,
     );
+    const now = Date.now();
+    const pipelineRow = pipelineRows[0];
+    const schedulerAgeSeconds = pipelineRow?.schedulerHeartbeatAt
+      ? Math.max(0, (now - new Date(pipelineRow.schedulerHeartbeatAt).getTime()) / 1000)
+      : null;
+    const oldestLiveJobAgeSeconds = pipelineRow?.oldestLiveJobAt
+      ? Math.max(0, (now - new Date(pipelineRow.oldestLiveJobAt).getTime()) / 1000)
+      : null;
+    const pipelineOffline =
+      schedulerAgeSeconds === null || schedulerAgeSeconds > PIPELINE_OFFLINE_SECONDS;
+    const pipelineDelayed =
+      (oldestLiveJobAgeSeconds !== null &&
+        oldestLiveJobAgeSeconds > ADDITIONAL_LATENCY_TARGET_SECONDS) ||
+      latest.some((row) => !!row.error);
+    const pipelineStatus = pipelineOffline ? 'offline' : pipelineDelayed ? 'delayed' : 'healthy';
     return {
+      pipeline: {
+        status: pipelineStatus,
+        schedulerHeartbeatAt: pipelineRow?.schedulerHeartbeatAt?.toISOString() ?? null,
+        schedulerAgeSeconds,
+        activeLiveJobs: Number(pipelineRow?.activeLiveJobs ?? 0),
+        oldestLiveJobAgeSeconds,
+      },
       datasets: DATASETS.map((dataset) => {
         const success = successful.find((r) => r.dataset === dataset);
         const attempt = latest.find((r) => r.dataset === dataset);
@@ -191,15 +228,15 @@ export class MarketService {
           ...attempt,
           available: !!success?.latestIntervalEnd,
           pollAgeSeconds: success?.lastSuccessAt
-            ? Math.max(0, (Date.now() - new Date(success.lastSuccessAt).getTime()) / 1000)
+            ? Math.max(0, (now - new Date(success.lastSuccessAt).getTime()) / 1000)
             : null,
           intervalAgeSeconds: success?.latestIntervalEnd
-            ? Math.max(0, (Date.now() - new Date(success.latestIntervalEnd).getTime()) / 1000)
+            ? Math.max(0, (now - new Date(success.latestIntervalEnd).getTime()) / 1000)
             : null,
         };
       }),
       groups: groups,
-      additionalLatencyTargetSeconds: 30,
+      additionalLatencyTargetSeconds: ADDITIONAL_LATENCY_TARGET_SECONDS,
       solarActualFreshnessTargetSeconds: 20 * 60,
       pollingSeconds: 15,
       bidPublicationDeadlineMinutesAfterDelivery: 30,
